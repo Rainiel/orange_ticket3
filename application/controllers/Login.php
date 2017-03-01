@@ -15,6 +15,10 @@ class Login extends CI_Controller {
                 {
                 redirect('Dashboard');
                 }
+          if($this->session->userdata('Acc_type') == 'Sub-Admin')
+                {
+                redirect('Tickets');
+                }
           if($this->session->userdata('Acc_type') == 'user')
                 {
                 redirect('Tickets');
@@ -41,6 +45,7 @@ class Login extends CI_Controller {
             'username'      =>      $username,
             'ufname'        =>      $fname,
             'Acc_type'      =>      $account_type,
+            'Team'          =>      $team,
             'is_logged_in'  =>      TRUE
           );
           $this->session->set_userdata($data_ses);

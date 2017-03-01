@@ -9,7 +9,7 @@ class Ticket_control extends CI_controller{
 
         $post_data=array(
             'Status'        => $this->input->post('Stat'),
-            'AssignedTo'    => $this->input->post('Ass'),
+            'AssignedTo'    => $this->input->post('Nauto'),
             'Subject'       => $this->input->post('Subj'),
             'Priority'      => $this->input->post('Prio'),
             'Issue'         => $this->input->post('Iss'),
@@ -17,24 +17,75 @@ class Ticket_control extends CI_controller{
             'User'          => $this->session->userdata('userID')
         );
 
-        $query=$this->Tickets_model->save_ticket($post_data);
+        $this->Tickets_model->save_ticket($post_data);
 
-        if($query)
-        {
-            redirect('Tickets');
+    }
+
+    public function editTicket()
+    {
+        $this->load->model('Tickets_model');
+        $post_data=array(
+                'Status'   => $this->input->post('uStatus'),
+                //'AssignedTo' => $this->input->post('uAssign'),
+                'Priority' => $this->input->post('uPriority')
+            );
+
+        $id=$this->input->post('TID');
+        for($i=0;$i<count($id);$i++){
+            echo($id[$i]);
+            $update = $this->Tickets_model->update_ticket($post_data, $id[$i]);
         }
-        else
-        {
-            echo "error";
+
+    }
+
+    public function getEditTicket()
+    {
+        $this->load->model('Tickets_model');
+        $post_data=array(
+                'AssignedTo' => $this->input->post('uAssign'),
+            );
+
+        $id=$this->input->post('TID');
+        for($i=0;$i<count($id);$i++){
+            echo($id[$i]);
+            $update = $this->Tickets_model->update_ticket($post_data, $id[$i]);
         }
+    }
+
+    public function filterTicket()
+    {
+        $return=array();
+        $stat=$this->input->post('stat');
+        $Ass=$this->input->post('Ass');
+ 
+        $id = $this->session->userdata('userID');
+        $Acc_type = $this->session->userdata('Acc_type');
+        $team = $this->session->userdata('Team');
+        $this->load->model('Tickets_model');
+
+        $result=$this->Tickets_model->filterTicket($stat, $Ass, $Acc_type, $id, $team);
+
+        if($result != false)
+         { 
+            foreach($result as $Tickets )
+             {          
+                $Time = date("F j, Y", strtotime($Tickets['Stamp'])); 
+                $Tickets['Stamp'] = $Time;
+                $return[] = $Tickets;
+             }
+        }      
+        echo json_encode($return);
     }
 
     public function showTickets()
     {
         $return=array();
         $this->load->model('Tickets_model');
+        $id = $this->session->userdata('userID');
+        $Acc_type = $this->session->userdata('Acc_type');
+        $team = $this->session->userdata('Team');
 
-        $result=$this->Tickets_model->showAllTickets();
+        $result=$this->Tickets_model->showAllTickets($Acc_type, $id, $team);
          if($result != false)
          { 
             foreach($result as $Tickets )
@@ -43,29 +94,20 @@ class Ticket_control extends CI_controller{
                 $Tickets['Stamp'] = $Time;  
                 $return[] = $Tickets;
              }
-        }      
-           
+        }
       echo json_encode($return);
     }
 
-    public function userShowTickets()
+    public function showTicketsSA()
     {
-        $return=array();
         $this->load->model('Tickets_model');
+        $id = $this->session->userdata('userID');
+        $Acc_type = $this->session->userdata('Acc_type');
+        $team = $this->session->userdata('Team');
 
-        $result=$this->Tickets_model->userShowAllTicket($this->session->userdata('userID'));
+        $result=$this->Tickets_model->showAllTicketsSA($Acc_type, $id, $team);
 
-         if($result != false)
-         { 
-            foreach($result as $Tickets )
-             {          
-                $Time = date("F j, Y", strtotime($Tickets['Stamp'])); 
-                $Tickets['Stamp'] = $Time;  
-                $return[] = $Tickets;
-             }
-        }      
-           
-      echo json_encode($return);
+      echo json_encode($result);
     }
 
     public function getTicket()
@@ -83,9 +125,29 @@ class Ticket_control extends CI_controller{
             $kahitano = new DateTime($rs['Stamp']);
             $Time = $kahitano->format('F j, Y');
             $rs['Stamp'] = $Time;
-
         }
         echo json_encode($rs);
+    }
+
+     public function ticketGraph()
+    {
+        $this->load->model('Tickets_model');
+        $result=$this->Tickets_model->ticketGraph();
+
+        echo json_encode($result);
+    }
+
+    public function AutoAssign()
+    {   
+        $this->load->model('Tickets_model');
+        //$max=$this->Tickets_model->maxID();
+        $id = 1;
+
+          for($i=0;$i<$id;$i++){
+              echo($id[$i]);
+            $result=$this->Tickets_model->AutoAssign($id[$i]);
+          }
+        echo json_encode($result);
     }
 
 }

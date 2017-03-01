@@ -1,12 +1,12 @@
 
-<div class="col s10" >
-      <div class="row">
+<div class="col s10" style="padding: 10px;">
+      <!-- <div class="row">
        <h6 style="
 		    margin-top: 20px;
 		    margin-bottom: 0px;
 		    margin-left: 0px;
 		">Dashboard</h6>
-      </div>
+      </div> -->
   <div class="row" style="box-shadow: 0px 1px 10px 0px #888888;
      						 margin-left: 0px;
      						 padding-left: 15px;
@@ -15,36 +15,40 @@
 	<div class="row">
         <div class="col s12 m3">
           <div class="card blue-grey darken-1">
-            <div class="card-content white-text" style="background: #4db6ac;">
-             <i class="medium material-icons">markunread_mailbox</i>
-              <!-- <span class="card-title">Tickets</span> -->
+            <div class="card-content white-text" style="background: #61d7f1;">
+             <i class="fa fa-paper-plane-o" aria-hidden="true" style="font-size: 65px"></i>
+                 <p class="ticketNum pull-right" style="font-size: 40px; margin-top: -10px; margin-right: 20px">9</p>
+                 <p class="ticketNum pull-right" style="font-size: 12px; margin-top: 40px; margin-right: -35px">Tickets</p>
             </div>
           </div>
         </div>
 
         <div class="col s12 m3">
           <div class="card blue-grey darken-1">
-            <div class="card-content white-text" style="background: #e57373;">
-              <i class="medium material-icons">trending_up</i>
-              <p></p>
+            <div class="card-content white-text" style="background: #ec7172;">
+              <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 65px"></i>
+              <p class="urgentNum pull-right" style="font-size: 40px; margin-top: -10px; margin-right: 20px">10</p>
+              <p class="urgentNum pull-right" style="font-size: 12px; margin-top: 40px; margin-right: -45px">Urgent</p>
             </div>
           </div>
         </div>
 
         <div class="col s12 m3">
           <div class="card blue-grey darken-1">
-            <div class="card-content white-text" style="background: #81c784;">
-              <i class="medium material-icons">assignment</i>
-              <p></p>
+            <div class="card-content white-text" style="background: #6bd049;">
+              <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 65px"></i>
+              <p class="comNum pull-right" style="font-size: 40px; margin-top: -10px; margin-right: 30px">4</p>
+              <p class="comNum pull-right" style="font-size: 12px; margin-top: 40px; margin-right: -60px">Completed</p>
             </div>
           </div>
         </div>
 
         <div class="col s12 m3">
           <div class="card blue-grey darken-1">
-            <div class="card-content white-text" style="background: #ffc107;">
-              <i class="medium material-icons">supervisor_account</i>
-              <p></p>
+            <div class="card-content white-text" style="background: #f0e94b;">
+              <i class="fa fa-users" aria-hidden="true" style="font-size: 65px"></i>
+              <p class="onlineNum pull-right" style="font-size: 40px; margin-top: -10px; margin-right: 20px">2</p>
+              <p class="onlineNum pull-right" style="font-size: 12px; margin-top: 40px; margin-right: -35px">Online</p>
             </div>
           </div>
         </div>
@@ -52,78 +56,97 @@
 
 
 
-    <div class="row">
+   <div class="row">
 
-        <div class="col s4" >
-          <table style="box-shadow: 0px 1px 10px 0px #888888;">
-	        <thead style="background: #2d3e50;">
-	          <tr>
-	              <th data-field="id" style="color: white;">Conversation</th>
-	              <th data-field="name" style="color: white;">Status</th>
-	              <th data-field="price" style="color: white;">Assignee</th>
-	              <th data-field="price" style="color: white;">Priority</th>
-	          </tr>
-	        </thead>
+        <div class="col s5">
+          <div class="row">
+            <div style="
+                margin-top: 0px;
+                margin-bottom: 0px;
+                margin-left: 0px;
+                padding-top: 12px;
+                padding-bottom: 12px;
+                background: #2d3e50;
+                color: white;
+                font-size: 18px;
+                font-weight: bold;
+            ">
+              <p style="margin-left: 15px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px;">Conversations</p>
+            </div>
 
-	        <tbody>
-	          <tr>
-	            <td>Alvin</td>
-	            <td>Open</td>
-	            <td>General</td>
-	            <td>Minor</td>	            
-	          </tr>
-	          <tr>
-	            <td>Alan</td>
-	            <td>Open</td>
-	            <td>General</td>
-	            <td>General</td>            
-	          </tr>
-	          <tr>
-	            <td>Jonathan</td>
-	            <td>Open</td>
-	            <td>General</td>
-	            <td>Minor</td> 
-	          </tr>
-	        </tbody>
-	      </table>	
-      	</div>
+            <div class="col s4" style="padding-left: 0px;">
+              <ul class="pieID legend" >
+                  <li id="new">
+                    <em>New</em>
+                    <span>23</span>
+                  </li>
+                  <li>
+                    <em>In-progress</em>
+                    <span>21</span>
+                  </li>
+                  <li>
+                    <em>On-hold</em>
+                    <span>5</span>
+                  </li>
+                  <li>
+                    <em>Resolve</em>
+                    <span>8</span>
+                  </li>
+                  <li>
+                    <em>Closed</em>
+                    <span>15</span>
+                  </li>
+                </ul>
+              </div>
 
-       	<div class="col s8">
-          <table style="box-shadow: 0px 1px 10px 0px #888888;">
-	        <thead style="background: #2d3e50;">
-	          <tr>
-	              <th data-field="id" style="color: white;">Conversation</th>
-	              <th data-field="name" style="color: white;">Status</th>
-	              <th data-field="price" style="color: white;">Assignee</th>
-	              <th data-field="price" style="color: white;">Priority</th>
-	          </tr>
-	        </thead>
+            <div class="col s8" style="margin: 0px;padding-right: 0px; margin-top: 20px">
+              <div class="pieID pie">
 
-	        <tbody>
-	          <tr>
-	            <td>Alvin</td>
-	            <td>Open</td>
-	            <td>General</td>
-	            <td>Minor</td>
-	            
-	          </tr>
-	          <tr>
-	            <td>Alan</td>
-	            <td>Open</td>
-	            <td>General</td>
-	            <td>General</td>
-	            
-	          </tr>
-	          <tr>
-	            <td>Jonathan</td>
-	            <td>Open</td>
-	            <td>General</td>
-	            <td>Minor</td>
-	          </tr>
-	        </tbody>
-	      </table>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-    </div>	
+        <div class="col s7">
+          <table style="box-shadow: 0px 1px 10px 0px #888888;">
+          <thead style="background: #2d3e50;">
+            <tr>
+                <th data-field="id" style="color: white; border-radius: 0px">Conversation</th>
+                <th data-field="name" style="color: white; border-radius: 0px;">Status</th>
+                <th data-field="price" style="color: white; border-radius: 0px">Assignee</th>
+                <th data-field="price" style="color: white; border-radius: 0px">Priority</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Alvin</td>
+              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #61d7f1">Open</a></td>
+              <td>General</td>
+              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #f0e94b">Minor</a></td>
+
+            </tr>
+            <tr>
+              <td>Alan</td>
+              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #61d7f1">Open</a></td>
+              <td>General</td>
+              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #ec7172">Major</a></td>
+
+            </tr>
+            <tr>
+              <td>Jonathan</td>
+              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #61d7f1">Open</a></td>
+              <td>General</td>
+              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #f0e94b">Minor</a></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+    </div>
   </div> 
 </div>
+
+<script src="assets/materialize/js/dashboard.js"></script>
+<script src="assets/materialize/js/pieGraph.js"></script>

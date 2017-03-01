@@ -23,5 +23,16 @@ class Welcome extends CI_Controller {
 		$this->load->view('includes/header');
 		$this->load->view('login');
 		$this->load->view('includes/footer');
+		if($this->session->userdata('is_logged_in'))
+        {
+			if($this->session->userdata('Acc_type') == 'Admin')
+                {redirect('Dashboard');}
+            if($this->session->userdata('Acc_type') == 'Sub-Admin')
+                {redirect('Tickets');}
+            if($this->session->userdata('Acc_type') == 'User')
+                {redirect('Tickets');}
+            else{redirect('');}
+		}
+		else{redirect('');}
 	}
 }

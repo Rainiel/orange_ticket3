@@ -10,11 +10,8 @@
     <!--Import jQuery before materialize.js-->
 
 </div>
-<!-- <script type="text/javascript">
-  $(document).on('click', '.left-nav-a', function(e) {
-     window.location.href = $(this).attr('href');
-
-  });
-</script> -->
+<script type="text/javascript">
+  var base_url = $("#base").val();
+</script>
 </body>
 </html>

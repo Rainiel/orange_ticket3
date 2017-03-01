@@ -12,24 +12,27 @@
      						 padding-left: 10px;
      						 padding-right: 10px;
      						 padding-top: 10px;">
-
+ <input type="hidden" value="<?php echo base_url(); ?>" id="base">
     <div class="row">
         <div class="col s2" style="padding-left: 0px;">
         	<!-- Modal Trigger -->
-  	<a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="background-color: #2d3e50;padding-left: 20px;"><i class="fa fa-plus" aria-hidden="true" style="padding-right: 10px;"></i>Ticket</a>
-  				<hr>
+  	<a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="background-color: #2d3e50;padding-left: 20px;
+		  	<?php if ($this->session->userdata('Acc_type') != 'user'){?> display: none; <?php } ?>"
+		  	<?php if ($this->session->userdata('Acc_type') != 'user'){?> disabled <?php } ?>
+		><i class="fa fa-plus" aria-hidden="true" style="padding-right: 10px;"></i>Ticket</a>
+		  	<?php if ($this->session->userdata('Acc_type') == 'user'){?> <hr> <?php } ?>
 				  <!-- Modal Structure -->
-				  <?php echo form_open('Ticket_control/addTicket') ?>
+				  <form id="addTicket">
 				  <div id="modal1" class="modal" style="width: 35%;">
 				    <div class="modal-content" style="background-color: #2d3e50; padding: 15px;" >
-				      <h5 style="margin: 0px; color: white;">Ticket</h5>
+				      <h5 style="margin: 0px; color: white;">Ticket</h5></div>
 				      <div class="col s12"><p style="padding-top: 20px;">Start Creating Ticket</p></div>
 				      <div class="input-field col s12">
 				          <input id="icon_prefix" type="text" class="validate" name="Subj" required>
 				          <label>Subject</label>
 				      </div>
 				      <div class="input-field col s12">
-					    <select name="Iss" required>
+					    <select id="selectTeam" name="Iss" required>
 					      <option value="" disabled selected required>Choose Issue Type</option>
 					      <option value="Data">Data Issue</option>
 					      <option value="Technical">Technical Issue</option>
@@ -40,83 +43,96 @@
 				         <textarea id="textarea1" class="materialize-textarea" name="Desc"></textarea>
 				         <label for="textarea1">Description</label>
 				      </div>
-				    </div>
-
+				    
 				    <div class="modal-footer">
-				      <button class="btn waves-effect waves-light" type="submit" name="action">Add
-					    <i class="material-icons right">send</i>
+				      <button id="addForm" class=" modal-action modal-close waves-effect waves-green btn-flat" type="submit">Add
+					    <i class="material-icons right">Update</i>
 					  </button>
 				    </div>
+				    
 				    <input type="text" style="display: none;" name="Stat" value="New">
 				    <input type="text" style="display: none;" name="Prio" value="Low">
-				    <input type="text" style="display: none;" name="Ass" value="">
+				    <input type="text" style="display: none;" name="Ass" value="1">
+				    <input type="hidden" id="auto" name="Nauto">
 				  </div>
-				  <?php echo form_close() ?>
+				  </form>
 				  <!-- END MODAL -->
           <div class="tabs-vertical" id="sideBar">
-		        <ul class="tabs">
-		           <li class="tab">
-		              <a class="waves-effect" href="#appsDir">New</a>
+		        <ul class="tabs" id="statFilt">
+		        	<li class="tab filt">
+		              <a class="waves-effect" data-stat="">All</a>
 		           </li>
-		           <li class="tab">
-		             <a class="waves-effect" href="#emailDir">in-progress</a>
+		           <li class="tab filt" >
+		              <a class="waves-effect" data-stat="New">New</a>
 		           </li>
-		           <li class="tab">
-		             <a class="waves-effect" href="#codeDir">on-hold</a>
+		           <li class="tab filt">
+		             <a class="waves-effect" data-stat="In-progress">In-progress</a>
 		           </li>
-		           <li class="tab">
-		             <a class="waves-effect" href="#codeDir">Resolved</a>
+		           <li class="tab filt">
+		             <a class="waves-effect" data-stat="On-hold">On-hold</a>
 		           </li>
-		           <li class="tab">
-		             <a class="waves-effect" href="#codeDir">Suspended</a>
+		           <li class="tab filt">
+		             <a class="waves-effect" data-stat="Resolved">Resolved</a>
+		           </li>
+		           <li class="tab filt">
+		             <a class="waves-effect" data-stat="Closed">Closed</a>
 		           </li>
 		        </ul>    
      	  </div>
+     	  <?php if ($this->session->userdata('Acc_type') == 'Admin'){?> 
+		 <hr id="hr">
+     	  <div class="tabs-vertical" id="sideBar4">
+		        <ul class="tabs" id="assFilt">
+		        	<li class="tab filt">
+		              <a class="waves-effect" data-Ass="">All</a>
+		           </li>
+		           <li class="tab filt">
+		              <a class="waves-effect" data-Ass="Data">Data</a>
+		           </li>
+		           <li class="tab filt">
+		             <a class="waves-effect" data-Ass="Technical">Technical</a>
+		           </li>
+		        </ul>    
+     	  </div>
+		<?php } ?>
+     	  <form id="editTicket">
      	  <div class="input-field col s12 sideBar2" style="display: none;">
-		    <select>
-		      <option value="" disabled selected>No Changes</option>
-		      <option value="1">Option 1</option>
-		      <option value="2">Option 2</option>
-		      <option value="3">Option 3</option>
+		    <!-- <select name="uAssign" id="sidebarS1">
 		    </select>
-		    <label>Assigne To</label>
+		    <label>Assign To</label> -->
 		  </div>
 		  <div class="input-field col s12 sideBar2" style="display: none;">
-		    <select>
-		      <option value="" disabled selected>No Changes</option>
-		      <option value="1" style="border-left: 3px solid black">in-progress</option>
-		      <option value="2">on-hold</option>
-		      <option value="3">Resolved</option>
-		      <option value="3">Closed</option>
+		    <select name="uStatus" id="sidebarS2">
 		    </select>
 		    <label>Status</label>
 		  </div>
-
 		  <div class="input-field col s12 sideBar2" style="display: none;">
-		    <select>
-		      <option value="" disabled selected>No Changes</option>
-		      <option value="1">Low</option>
-		      <option value="2">High</option>
+		    <select name="uPriority" id="sidebarS3">
 		    </select>
 		    <label>Priority</label>
 		  </div>
-		  <button style="display: none;" id="sideBar2Btn" class="btn waves-effect waves-light" type="submit" name="action">Update
+		  <button style="display: none;" id="sideBar2Btn" class="btn waves-effect waves-light" type="submit"
 		    <i class="material-icons right">send</i>
 		  </button>
+		<input type="hidden" id="ticket_id2" name="TID[]">
+		<?php if ($this->session->userdata('Acc_type') == 'user'){?> 
+		<input type="hidden" id="account" value="user"> <?php } ?>
+		  </form>
       	</div>
 
        	<div class="col s10" style="padding-right: 0px; border-left: 1px solid #e1e1e1">
           <table class="highlight" id="allTable">
 	        <thead>
 	          <tr>
-	          	  <th data-field="id" style="width: 50px; padding-left: 20px; padding-top: 5px;">
+	          	  <th data-field="id" style="width: 50px; padding-left: 20px; padding-top: 5px; 
+	          	  <?php if ($this->session->userdata('Acc_type') == 'user'){?> display: none; <?php } ?>">
 	          	    <input type="checkbox" class="filled-in" id="filled-in-box" />
       				<label for="filled-in-box" style="margin-top: 15px;"></label>
       			  </th>
-	              <th style="padding-top: 5px; padding-bottom: 10px; width: 300px;">Subject</th>
+	              <th style="padding-top: 5px; padding-bottom: 10px; width: 300px;">Tickets</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Status</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Assignee</th>
-	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Priority</th>            
+	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Priority</th>        
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center; color: #2bbbad">Date Filed</th>
 	          </tr>
 	        </thead>
@@ -130,15 +146,52 @@
 	          </tr> -->
 	        </tbody>
 	      </table>
-	      <input type="hidden" id="ticket_id">
-
-	      <div class="col s12 123" id="headT" style="display: none;"></div>
-	      <hr class="123" style="display: none;">
-	      <div class="col s12 123" style="display: none;">This div is 12-columns wide</div>
+	      
+	      
+	      	<div class="col s12 123" id="headT" style="display: none;"></div>
+		      <hr class="123" style="display: none;">
+		      <div class="col s12 123" style="display: none;">
+				<ul class="collection">
+					<li class="collection-item">
+						<span class="title" style="color: #2d3e50"  style="margin-right: 20px"><b>Issue type: Welcome!</b></span> <span class="title-second" style="font-size: 14px; margin-left: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span><i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i><i class="fa fa-trash" aria-hidden="true"  style="margin-left: 6px;"></i>
+						<p style="font-size: 12px; margin-top: -5px">Created: February 18 2017, 9:00 AM <br></p>
+					</li>
+					<ul class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none;">
+					  <li class="collection-item avatar" style="border-bottom: none">
+						<img src="assets/images/square.png" alt="" class="circle">
+						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
+						<p style="font-size: 12px;	margin-top: -5px;">February 18<br>
+						</p>
+						<span class="title" style="color: #2d3e50; font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
+							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
+							sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+							<br>
+							<br>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
+							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
+							sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+						</span>
+						<a href="#!" class="secondary-content"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
+					  </li>
+						<ul class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">
+		  			  		<li class="collection-header" style="padding: 0px; height: 20px">
+								<p style="margin-left: 20px; margin-bottom: 20px; font-size: 12px">
+									<i class="fa fa-inbox" aria-hidden="true"></i>rainiel@orangeapps.com
+								</p>
+							</li>
+							<li class="collection-item" style="border-bottom: none"><input type="text" name="fname" placeholder="Enter your reply here" style="border-bottom: none"></li>
+							<a class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SAVE</a>
+					  	</ul>
+					</ul>
+			  </div>
         </div>
     </div>	
-    	
-
+   	
+	<!-- <input type="hidden" id="ticket_id" name="TID"> -->
   </div> 
 </div> 
 <script src="assets/materialize/js/adminTickets.js"></script>

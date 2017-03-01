@@ -2,57 +2,200 @@ $(document).ready(function() {
 $('.modal').modal();
 $('select').material_select();
 Show_tickets();
+AutoAssign();
 
 $(document).on('click', '.fill-box', function(){
 		var check = $('.fill-box:checked').length;
 		if(check > 0){
 			showTicketInfo($(this).parent('td').attr('data-Id2'));
     		$('#sideBar').hide();
+    		$('#sideBar4').hide();
+    		$('#hr').hide();
     		$('.sideBar2').show();
+    		//$('#sideBar3').show();
     		$('#sideBar2Btn').show();
 			
 		}
 		if(check == 0){
 			$('#sideBar').show();
+			$('#sideBar4').show();
+			$('#hr').show();
         	$('.sideBar2').hide();
+        	//$('#sideBar3').hide();
         	$('#sideBar2Btn').hide();
 		}
     });
+        	
 $(document).on('click', '#filled-in-box', function(){
 	
-    	if($(this).is(":checked"))
-    	{
-   			$('.fill-box').prop("checked", true);
-    	}
-        else{
-        	$('.fill-box').prop("checked", false);
-        }
-        var check = $('.fill-box:checked').length;
-		if(check > 0){
-			// showTicketInfo();
-    		$('#sideBar').hide();
-    		$('.sideBar2').show();
-    		$('#sideBar2Btn').show();
-			
-		}
-		if(check == 0){
-			$('#sideBar').show();
-        	$('.sideBar2').hide();
-        	$('#sideBar2Btn').hide();
-		}
+	if($(this).is(":checked")){
+		$('.fill-box').prop("checked", true);
+	}
+    else{
+    	$('.fill-box').prop("checked", false);
+    }
+    var check = $('.fill-box:checked').length;
+	if(check > 0){
+		// showTicketInfo();
+		$('#sideBar').hide();
+		$('#sideBar4').hide();
+		$('#hr').hide();
+		$('.sideBar2').show();
+		$('#sideBar2Btn').show();
+		
+	}
+	if(check == 0){
+		$('#sideBar').show();
+		$('#sideBar4').show();
+		$('#hr').show();
+    	$('.sideBar2').hide();
+    	$('#sideBar2Btn').hide();
+	}
     });
 
 $(document).on('click', '.ticketView', function(){
 	showTicketInfo($(this).parent('tr').attr('data-Id'));
 	$('#allTable').hide();
 	$('.123').show();
+	$('#sideBar').hide();
+	$('#sideBar4').hide();
+	$('#hr').hide();
+	$('.sideBar2').show();
+	//$('#sideBar3').show();
+	$('#sideBar2Btn').show();
 });
 
+$(document).on('click', '#backT', function(){
+	$('#allTable').show();
+	$('.123').hide();
+	$('#sideBar').show();
+	$('#sideBar4').show();
+	$('#hr').show();
+	$('.sideBar2').hide();
+	//$('#sideBar3').hide();
+	$('#sideBar2Btn').hide();
+});
 
-function Show_tickets()
-	{
-		$.ajax(
-		{
+$(document).on('click', '#sideBar2Btn', function(){
+	var getTicket = [];
+	$(':checkbox:checked').each(function(){
+		getTicket.push($(this).attr('id'));
+	})
+
+	var uAssign 	= $.trim($('#sidebarS1').val());
+	var uStatus 	= $.trim($('#sidebarS2').val());
+	var uPriority 	= $.trim($('#sidebarS3').val());
+
+	base_url 		= $('#base').val();
+	$.ajax({
+		type: 'POST',
+		url: base_url + 'Ticket_control/editTicket',
+		data: {'uAssign' : uAssign, 'uStatus' : uStatus, 'uPriority' : uPriority, 'TID' : getTicket},
+		success: function(data){
+			Show_tickets();
+			$('#filled-in-box').prop('checked',false);
+			$('#sideBar').show();
+			$('#sideBar4').show();
+			$('#hr').show();
+	    	$('.sideBar2').hide();
+	    	$('#sideBar2Btn').hide();
+		},
+		error: function(){
+			alert('123456789');
+		},
+	});
+});
+ 
+$(document).on('submit', '#addTicket', function(e){
+	e.preventDefault();
+	base_url = $('#base').val();
+ $.ajax({
+    type: "POST",
+    url: base_url + 'Ticket_control/addTicket',
+    // url: "<?php echo base_url(); ?>index.php/comment/create",
+    contentType: false,
+    cache: false,
+	processData: false,
+	data: new FormData(this),
+		success: function(data){
+			 Show_tickets();
+			 $('.sideBar2').show();
+		},
+		error: function(){
+			alert()
+		},
+ });
+});
+
+$(document).on('submit', '#editTicket', function(e){
+	e.preventDefault();
+});
+
+$(document).on('click', '.filt', function(){
+	var $Acc_type = $('#account').val();
+	var Status = $('#statFilt a.active').attr('data-stat');
+	var Assign = $('#assFilt a.active').attr('data-Ass');
+
+		$.ajax({
+			type : 'POST',
+			url: 'Ticket_control/filterTicket',
+			data: {
+				 'stat' : Status, 'Ass' : Assign
+			},
+			dataType:'json',
+			success: function(data)
+			{
+				var body='';
+				var i;
+				
+				for(i=0;i<data.length;i++)
+				{
+				var test = data[i].ticketId;
+				if($Acc_type != 'user'){
+					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
+				
+				 			'<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
+      							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
+      							'<label for="'+test+'" style="margin-top: 15px;" ></label>' +
+			      			'</td>'+
+							'<td class="ticketView">'+
+							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
+							'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Status+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
+						'</tr>';
+				}
+				else{
+					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
+				
+							'<td class="ticketView">'+
+							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
+							'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Status+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
+						'</tr>';
+				}
+				}
+				$('#showTicket').html(body); 
+			},
+			error: function()
+			{
+				alert('dito pumapasok');
+			},
+		});
+ });
+
+function Show_tickets(){
+	var $Acc_type = $('#account').val();
+		$.ajax({
 			type:'ajax',
 			url: 'Ticket_control/showTickets',
 			dataType:'json',
@@ -64,30 +207,73 @@ function Show_tickets()
 				for(i=0;i<data.length;i++)
 				{
 				var test = data[i].ticketId;
-				body+=	'<tr data-Id="'+data[i].ticketId+'">'+
+				if($Acc_type != 'user'){
+					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
+				
 				 			'<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
-      							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="box-'+test+'" />'+
-      							'<label for="box-'+test+'" style="margin-top: 15px;" ></label>' +
+      							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
+      							'<label for="'+test+'" style="margin-top: 15px;" ></label>' +
 			      			'</td>'+
 							'<td class="ticketView">'+
-							'<img src="desktop/No photo.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">Name: '+data[i].User+'</p>'+
+							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
 							'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Status+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].AssignedTo+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
-							 // '<td>'+
-							 // 	 '<a href="javascript:;" class="btn btn-info item-edit" data="'+data[i].userid+'"><span class="glyphicon glyphicon-edit"></span>&nbsp;Edit</a>'+
-							 // 	 '<a href="javascript:;" class="btn btn-danger item-delete" data="'+data[i].userid+'" style="margin-left:10px;"><span class="glyphicon glyphicon-remove"></span>&nbsp;Delete</a>'+
-							 // 	'<a  class="btn btn-warning"   onclick="getData('+data[i].ticketid+');" style="margin-left:10px;"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;View</a>'+
-							 // 	'<a  onclick="Show_ticket_info('+data[i].ticketid+');" class="btn btn-warning" style="margin-left:10px;"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;View</a>'+
-							 // '</td>'+
 						'</tr>';
-				 	
 				}
-				$('#showTicket').html(body); 
+				else{
+					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
+				
+							'<td class="ticketView">'+
+							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
+							'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Status+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
+						'</tr>';
+				}
+				}
+				$('#showTicket').html(body); 	
+			},
+			error: function()
+			{
+				alert('dito pumapasok');
+			},
+		});
+	}
+
+function AutoAssign(){
+		$.ajax({
+			type:'ajax',
+			url: 'Ticket_control/AutoAssign',
+			dataType:'json',
+			success: function(data)
+			{
+				var body='';
+				var i;
+				var min = [];
+				var b;
+
+				for(i=0;i<data.length;i++)
+				{
+					+data[i].tick+
+				min.push(data[i].tick);
+				}
+				var a = Math.min.apply(null, min);
+				for(i=0;i<data.length;i++)
+				{
+					if(a == data[i].tick){
+						b = data[i].userId;
+					}
+				}
+				$('#auto').val(b);
 			},
 			error: function()
 			{
@@ -98,7 +284,6 @@ function Show_tickets()
  });
 
 function showTicketInfo(id){
-		$('#ticket_id').val(id);
 		$.ajax({
 			url : 'Ticket_control/getTicket',
 			type :'POST',
@@ -108,9 +293,37 @@ function showTicketInfo(id){
 			dataType: 'JSON',
 			success: function(data){
 				var headT='';
-				
-					headT += '<div style="font-size: 20px;">'+"Ticket Subject: "+data.Subject+'</div>'
+				//var sideBarS1='';
+				var sideBarS2='';
+				var sideBarS3='';
 
+					headT += '<div style="font-size: 20px;">'+"Ticket Subject: "+data.Subject+'<button id="backT" style="float: right;" class="btn waves-effect waves-light">Back'+
+		    		'<i class="fa fa-arrow-left" aria-hidden="true"></i>'+
+		  			'</button></div>';
+
+					// sideBarS1 +=
+					// '<option value="'+data.AssignedTo+'" selected>'+data.AssignedTo+'</option>'+
+					// '<option value="Data">Data Team</option>'+
+					// '<option value="Technical">Technical Team</option>';
+					sideBarS2 +=
+					'<option value="'+data.Status+'"  selected>'+data.Status+'</option>'+
+					'<option value="In-progress">In-progress</option>'+
+					'<option value="On-hold">On-hold</option>'+
+					'<option value="Resolved">Resolved</option>'+
+					'<option value="Closed">Closed</option>';
+					 sideBarS3 +=
+					 '<option value="'+data.Priority+'" selected>'+data.Priority+'</option>'+
+					 '<option value="Low">Low</option>'+
+					 '<option value="High">High</option>';
+
+
+				//$('#sidebarS1').html(sideBarS1);
+				//$('#sidebarS1').material_select();
+				$('#sidebarS2').html(sideBarS2);
+				$('#sidebarS2').material_select();
+				$('#sidebarS3').html(sideBarS3);
+				$('#sidebarS3').material_select();
+				
 				$('#headT').html(headT);
 			},
 			error: function(){
