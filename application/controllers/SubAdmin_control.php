@@ -9,11 +9,11 @@ class SubAdmin_control extends CI_controller{
 
         $post_data=array(
             'account_type'      => $this->input->post('Sub'),
+            'fname'             => $this->input->post('SAfname'),
             'lname'       		=> $this->input->post('SAlname'),
             'username'      	=> $this->input->post('SAusername'),
-            'password'         	=> $this->input->post('SApassword'),
-            'team'   			=> $this->input->post('Team'),
-            'fname'             => $this->input->post('SAfname')
+            'password'          => $this->input->post('SApassword'),
+            'team'   			=> $this->input->post('Team')
         );
 
         $this->SubAdmin_model->addSubAdmin($post_data);

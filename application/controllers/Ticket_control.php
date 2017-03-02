@@ -128,6 +128,16 @@ class Ticket_control extends CI_controller{
         echo json_encode($rs);
     }
 
+    public function insChat(){
+        $this->load->model('Tickets_model');
+        $data = array(
+           'TID'  => $this->input->post('tick'),
+           'UID'  => $this->session->userdata('userID'),
+           'Chat' => $this->input->post('chat')
+            );
+        $this->Tickets_model->insChat();
+    }
+
      public function ticketGraph()
     {
         $this->load->model('Tickets_model');

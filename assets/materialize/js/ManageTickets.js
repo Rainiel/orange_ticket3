@@ -2,7 +2,7 @@ $(document).ready(function(){
 $('.modal').modal();
 $('select').material_select();
 //Show_SubAdmin();
-//how_tickets();
+Show_tickets();
 TickCountAndSA();
 
 $(document).on('click', '.subAdminView', function(){
@@ -98,11 +98,6 @@ function Show_tickets(){
 				var test = data[i].ticketId;
 				if($Acc_type != 'user'){
 					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
-
-				 			// '<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
-      		// 					'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
-      		// 					'<label for="'+test+'" style="margin-top: 15px;" ></label>' +
-			     //  			'</td>'+
 							'<td class="ticketView">'+
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
@@ -136,10 +131,6 @@ function showSubAdminInfo(id){
 				var SAT='';
 
 					SAT += '<ul class="collection">'+
-					// '<li class="collection-item">'+
-					// 	'<span class="title" style="color: #2d3e50"  style="margin-right: 20px"><b>Issue type: Welcome!</b></span> <span class="title-second" style="font-size: 14px; margin-left: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span><i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i><i class="fa fa-trash" aria-hidden="true"  style="margin-left: 6px;"></i>'+
-					// 	'<p style="font-size: 12px; margin-top: -5px">Created: February 18 2017, 9:00 AM <br></p>'+
-					// '</li>'+
 					'<ul class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none;">'+
 					  '<li class="collection-item avatar" style="border-bottom: none">'+
 						'<img src="assets/images/square.png" alt="" class="circle">'+
