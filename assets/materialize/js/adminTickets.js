@@ -344,6 +344,7 @@ function showTicketInfo(id){
 			dataType: 'JSON',
 			success: function(data){
 				var headT='';
+				var chatTicket='';
 				//var sideBarS1='';
 				var sideBarS2='';
 				var sideBarS3='';
@@ -351,6 +352,33 @@ function showTicketInfo(id){
 					headT += '<div style="font-size: 20px;">'+"Ticket Subject: "+data.Subject+'<button id="backT" style="float: right;" class="btn waves-effect waves-light">dsadasd'+
 		    		'<i class="fa fa-arrow-left" aria-hidden="true"></i>'+
 		  			'</button></div>';
+		  			chatTicket += '<ul class="collection">'+
+					'<li class="collection-item">'+
+						'<span class="title" style="color: #2d3e50"  style="margin-right: 20px"><b>Issue type: '+data.Issue+'</b></span> <span class="title-second" style="font-size: 14px; margin-left: 15px">'+data.Subject+'</span><i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i><i class="fa fa-trash" aria-hidden="true"  style="margin-left: 6px;"></i>'+
+						'<p style="font-size: 12px; margin-top: -5px">Created: February 18 2017, 9:00 AM <br></p>'+
+					'</li>'+
+					'<ul class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none;">'+
+					  '<li class="collection-item avatar" style="border-bottom: none">'+
+						'<img src="assets/images/square.png" alt="" class="circle">'+
+						'<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>'+
+						'<p style="font-size: 12px;	margin-top: -5px;">February 18<br>'+
+						'</p>'+
+						'<span class="title" style="color: #2d3e50; font-size: 12px;">'+
+							
+						'</span>'+
+						'<a href="#!" class="secondary-content"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>'+
+					  '</li>'+
+						'<ul class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">'+
+		  			  		'<li class="collection-header" style="padding: 0px; height: 20px">'+
+								'<p style="margin-left: 20px; margin-bottom: 20px; font-size: 12px">'+
+									'<i class="fa fa-inbox" aria-hidden="true"></i>rainiel@orangeapps.com'+
+								'</p>'+
+							'</li>'+
+							'<li class="collection-item" style="border-bottom: none"><input type="text" name="fname" placeholder="Enter your reply here" style="border-bottom: none"></li>'+
+							'<a class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SAVE</a>'+
+					  	'</ul>'+
+					'</ul>'+
+					'</ul>';
 
 					// sideBarS1 +=
 					// '<option value="'+data.AssignedTo+'" selected>'+data.AssignedTo+'</option>'+
@@ -374,7 +402,7 @@ function showTicketInfo(id){
 				$('#sidebarS2').material_select();
 				$('#sidebarS3').html(sideBarS3);
 				$('#sidebarS3').material_select();
-				
+				$('#chatTicket').html(chatTicket);
 				$('#headT').html(headT);
 			},
 			error: function(){

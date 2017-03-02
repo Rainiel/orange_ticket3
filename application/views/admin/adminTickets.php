@@ -148,8 +148,8 @@
 	      
 	      	<div class="col s12 123" id="headT" style="display: none;"></div>
 		      <hr class="123" style="display: none;">
-		      <div class="col s12 123" style="display: none;">
-				<ul class="collection">
+		      <div class="col s12 123" id="chatTicket" style="display: none;">
+				<!-- <ul class="collection">
 					<li class="collection-item">
 						<span class="title" style="color: #2d3e50"  style="margin-right: 20px"><b>Issue type: Welcome!</b></span> <span class="title-second" style="font-size: 14px; margin-left: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span><i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i><i class="fa fa-trash" aria-hidden="true"  style="margin-left: 6px;"></i>
 						<p style="font-size: 12px; margin-top: -5px">Created: February 18 2017, 9:00 AM <br></p>
@@ -185,6 +185,7 @@
 							<a class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SAVE</a>
 					  	</ul>
 					</ul>
+					</ul> -->
 			  </div>
         </div>
     </div>	
