@@ -1,50 +1,26 @@
 $(document).ready(function(){
 $('.modal').modal();
 $('select').material_select();
-//Show_SubAdmin();
-//how_tickets();
-TickCountAndSA();
+showUser();
 
-$(document).on('click', '.subAdminView', function(){
-	showSubAdminInfo($(this).parent('tr').attr('data-Id3'));
+$(document).on('click', '.UserView', function(){
+	showUserInfo($(this).parent('tr').attr('data-Id3'));
 	$('#ticketTable').hide();
 	$('.123').show();
 });
 
-// $(document).on('click', '#getTick', function(){
-// 	var getTicket = [];
-// 	$(':checkbox:checked').each(function(){
-// 	getTicket.push($(this).attr('id'));
-
-// 	var uAssign 	= $('#GTICK').val();
-
-// 	base_url 		= $('#base').val();
-// 	$.ajax({
-// 		type: 'POST',
-// 		url: 'Ticket_control/getEditTicket',
-// 		data: {'uAssign' : uAssign, 'TID' : getTicket},
-// 		success: function(data){
-// 			Show_tickets();
-// 		},
-// 		error: function(){
-// 			alert('123456789');
-// 		},
-// 	});
-// });
-// });
-
-$(document).on('submit', '#addSubAdmin', function(e){
+$(document).on('submit', '#addUser', function(e){
 	e.preventDefault();
 	base_url = $('#base1').val();
 	$.ajax({
 		type: "POST",
-		url: base_url + 'SubAdmin_control/addSubAdmin',
+		url: base_url + 'User_control/addUser',
 		contentType: false,
 		cache: false,
 		processData: false,
 		data: new FormData(this),
 			success: function(data){
-				Show_SubAdmin();
+				showUser();
 			},
 			error: function(){
 				alert();
@@ -52,41 +28,11 @@ $(document).on('submit', '#addSubAdmin', function(e){
 	});
 });
 
-function TickCountAndSA(){
-		$.ajax({
-			type:'ajax',
-			url: 'Ticket_control/TickCountAndSA',
-			dataType:'json',
-			success: function(data)
-			{
-				var body='';
-				var i;
-
-				for(i=0;i<data.length;i++)
-				{
-					body+=	'<tr data-Id3="'+data[i].userId+'">'+
-								'<td class="subAdminView">'+
-								'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname+'&nbsp;'+data[i].lname+'</p>'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">'+data[i].team+
-								'</td>'+
-								'<td class="subAdminView" style="font-size: 12px; text-align: center;">'+data[i].Tickets+'</td>'+
-							'</tr>';
-				}
-				$('#SubTables').html(body);
-			},
-			error: function()
-			{
-				//alert('dito pumapasok');
-			},
-		});
-	}
-
-function Show_tickets(){
+function showUser(){
 	var $Acc_type = $('#account').val();
 		$.ajax({
 			type:'ajax',
-			url: 'Ticket_control/showTicketsSA',
+			url: 'User_control/showUser',
 			dataType:'json',
 			success: function(data)
 			{
@@ -95,21 +41,17 @@ function Show_tickets(){
 
 				for(i=0;i<data.length;i++)
 				{
-				var test = data[i].ticketId;
 				if($Acc_type != 'user'){
-					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
-							'<td class="ticketView">'+
-							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
-							'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Status+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
-						'</tr>';
+					body+=	'<tr>'+
+					'<td style="width: 50px; padding-left: 20px;" data-id2="28"><input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="28" data-stat="Resolved" data-prio="Low" data-ass="3"><label for="28" style="margin-top: 15px;"></label></td>'+
+	                '<td>'+data[i].userId+'</td>'+
+	                '<td><center>'+data[i].fname+'&nbsp;'+data[i].lname+'</center></td>'+
+	                '<td><center>'+data[i].account_type+'</center></td>'+
+	                '<td><center><a class="waves-effect waves-light btn">Info</a></center></td>'+
+	                '</tr>';
 					}
 				}
-				$('#showTicket').html(body);
+				$('#showUser').html(body);
 			},
 			error: function()
 			{
@@ -119,9 +61,9 @@ function Show_tickets(){
 	}
  });
 
-function showSubAdminInfo(id){
+function showUsernInfo(id){
 	$.ajax({
-			url : 'SubAdmin_control/getSubAdmin',
+			url : 'SubAdmin_control/getUser',
 			type :'POST',
 			data : {
 				'id' : id

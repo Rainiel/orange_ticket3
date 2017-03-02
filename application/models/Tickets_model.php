@@ -142,7 +142,7 @@ class Tickets_model extends CI_Model {
         $this->db->from('tbl_tickets as t');
         $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
         $this->db->join('tbl_user as u1', 't.User=u1.userId');
-        $this->db->where("AssignedTo = '1' AND Issue = '$team'");
+        //$this->db->where("u.team = '$team' AND Issue = '$team'");
         $this->db->order_by("ticketId", "desc");
         $query = $this->db->get();
       } 

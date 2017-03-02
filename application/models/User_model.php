@@ -1,27 +1,27 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class SubAdmin_model extends CI_Model {
+class User_model extends CI_Model {
 
-  public function addSubAdmin($post_data)
+  public function addUser($post_data)
   {
     return $this->db->insert('tbl_user', $post_data);
   }
 
-   public function showAllSubAdmin($Acc_type, $team)
+   public function showAllUser($Acc_type, $team)
    {
    	 if($Acc_type == 'Admin')
       {
          $this->db->select('*');
          $this->db->from('tbl_user');
-         $this->db->where('team !=', 'N/A');
+         $this->db->where('account_type', 'user');
          $query = $this->db->get();
       }
 	   if($Acc_type == 'Sub-Admin')
       {
         $this->db->select('*');
         $this->db->from('tbl_user');
-        $this->db->where('team', $team);
+        $this->db->where('account_type', 'user');
         $query = $this->db->get();
       }
 
@@ -35,7 +35,7 @@ class SubAdmin_model extends CI_Model {
 	    }
    }
 
-  public function getSubAdmin($id)
+  public function getUser($id)
   {
     $sql="SELECT * FROM tbl_user WHERE userId = '$id'";
     return $this->db->query($sql);
