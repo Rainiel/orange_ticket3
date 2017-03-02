@@ -155,9 +155,29 @@ class Tickets_model extends CI_Model {
 
   public function getTicket($id)
   {
-  	$sql="SELECT * FROM tbl_tickets WHERE ticketId = '$id'";
-    $this->db->select('t.*, u.fname, u.lname,');
-  	return $this->db->query($sql);
+  	//$sql="SELECT * FROM tbl_tickets WHERE ticketId = '$id'";
+    $this->db->select('t.*, u.fname, u.lname, u.userId');
+    $this->db->from('tbl_tickets as t');
+    $this->db->join('tbl_user as u', 't.User=u.userId');
+    $this->db->where('ticketId', $id);
+    $query = $this->db->get();
+    return $query;
+  }
+
+  public function insChat(){
+    return $this->db->insert('tbl_chat');
+  }
+
+  public function Chat($TID, $UID){
+    $this->db->select('c.*');
+    $this->db->from('tbl_chat');
+    $this->db->join('tbl_tickets as t', 'c.TID=t.ticketId');
+    $this->db->join('tbl_user as u', 'c.UID=u.userId');
+    $query = $this->db->query();
+    if($query->num_rows()>0){
+      return $query->row_array();
+    }
+    else{return false;}
   }
 
   public function ticketGraph(){
