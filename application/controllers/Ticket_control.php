@@ -35,7 +35,6 @@ class Ticket_control extends CI_controller{
             echo($id[$i]);
             $update = $this->Tickets_model->update_ticket($post_data, $id[$i]);
         }
-
     }
 
     public function getEditTicket()
@@ -133,20 +132,41 @@ class Ticket_control extends CI_controller{
     {
         $this->load->model('Tickets_model');
         $result=$this->Tickets_model->ticketGraph();
-
+  
         echo json_encode($result);
     }
 
-    public function AutoAssign()
+    public function AssignToNewSA(){
+
+    }
+
+    public function TickCountAndSA()
     {   
         $this->load->model('Tickets_model');
-        //$max=$this->Tickets_model->maxID();
+        //$team = $this->input->post('team');
         $id = 1;
 
           for($i=0;$i<$id;$i++){
               echo($id[$i]);
-            $result=$this->Tickets_model->AutoAssign($id[$i]);
           }
+        $result=$this->Tickets_model->TickCountAndSA($id[$i]);
+        echo json_encode($result);
+    }
+
+    public function updateCount(){
+        $this->load->model('Tickets_model');
+        $id=$this->input->post('user');
+        $tick=$this->input->post('tick');
+
+        $update = $this->Tickets_model->updateSAtick($id, $tick);
+    }
+
+    public function AutoAssign(){
+        $this->load->model('Tickets_model');
+        $id=$this->input->post('auto');
+        $team = $this->input->post('team');
+
+        $result=$this->Tickets_model->AutoAssign($id, $team);
         echo json_encode($result);
     }
 

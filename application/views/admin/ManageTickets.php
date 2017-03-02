@@ -109,18 +109,6 @@
 		</div>
 
 		 <div class="col s4">
-
-          <table class="highlight" style="box-shadow: 0px 1px 10px 0px #888888;">
-	        <thead style="background: #2d3e50;">
-	          <tr>
-	            <th data-field="name" style="color: white; text-align: center; border-radius: 0px;">Sub-Admins</th>
-	            <th data-field="price" style="color: white; text-align: center; border-radius: 0px;">Team</th>
-	          </tr>
-	        </thead>
-
-	        <tbody id="SubTable">
-	        </tbody>
-	      </table>
 	      <table class="highlight" style="box-shadow: 0px 1px 10px 0px #888888;">
 	        <thead style="background: #2d3e50;">
 	          <tr>

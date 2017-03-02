@@ -1,21 +1,22 @@
 $(document).ready(function() {
-//ticketGraph();
+ticketGraph();
 
-// function ticketGraph(){
-// 		$.ajax({
-// 			url : 'Ticket_control/ticketGraph',
-// 			type :'POST',
-// 			dataType: 'JSON',
-// 			success: function(data){
-// 				var newG='';
+function ticketGraph(){
+		$.ajax({
+			url : 'Ticket_control/ticketGraph',
+			type :'ajax',
+			dataType: 'JSON',
+			success: function(data){
+				$("#new").append(data.New);
+				$("#prog").append(data.Prog);
+				$("#onhold").append(data.Hold);
+				$("#resolved").append(data.Resolved);
+				// $("#closed").append(data.Closed);
 
-// 					newG+= '<em>New</em>'+
-// 					'<span>'+data+'</span>';
-// 					$('#new').html(newG);
-// 			},
-// 			error: function(){
-
-// 			},
-// 			});
-// 		};
+			},
+			error: function(){
+			alert();
+			},
+			});
+		};
   });

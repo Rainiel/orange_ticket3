@@ -48,7 +48,7 @@ function createPie(dataElement, pieElement) {
   for(var i=0; i<listData.length; i++) {
     var size = sliceSize(listData[i], listTotal);
     iterateSlices(size, pieElement, offset, i, 0, color[i]);
-    $(dataElement+" li:nth-child("+(i+1)+")").css("border-color", color[i]);
+    $(dataElement+" li:nth-child("+(i+3)+")").css("border-color", color[i]);
     offset += size;
   }
 }

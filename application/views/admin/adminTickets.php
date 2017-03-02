@@ -1,12 +1,6 @@
 
 <div class="col s10" style="padding: 10px;">
-      <!-- <div class="row">
-       <h6 style="
-		    margin-top: 20px;
-		    margin-bottom: 0px;
-		    margin-left: 0px;
-		">Dashboard</h6>
-      </div> -->
+
   <div class="row" style="box-shadow: 0px 1px 10px 0px #888888;
      						 margin-left: 0px;
      						 padding-left: 10px;
@@ -22,6 +16,7 @@
 		><i class="fa fa-plus" aria-hidden="true" style="padding-right: 10px;"></i>Ticket</a>
 		  	<?php if ($this->session->userdata('Acc_type') == 'user'){?> <hr> <?php } ?>
 				  <!-- Modal Structure -->
+<<<<<<< HEAD
 				<form id="addTicket">
                       <div id="modal1" class="modal" style="width: 500px">
                         <div class="modal-content" style="padding: 0;">
@@ -78,6 +73,43 @@
     				    <input type="text" style="display: none;" name="Prio" value="Low">
     				    <input type="text" style="display: none;" name="Ass" value="1">
     				    <input type="hidden" id="auto" name="Nauto">
+=======
+				  <form id="addTicket">
+				  <div id="modal1" class="modal" style="width: 35%;">
+				    <div class="modal-content" style="background-color: #2d3e50; padding: 15px;" >
+				      <h5 style="margin: 0px; color: white;">Ticket</h5></div>
+				      <div class="col s12"><p style="padding-top: 20px;">Start Creating Ticket</p></div>
+				      <div class="input-field col s12">
+				          <input id="icon_prefix" type="text" class="validate" name="Subj" required>
+				          <label>Subject</label>
+				      </div>
+				      <div class="input-field col s12">
+					    <select id="selectTeam" name="Iss" required>
+					      <option value="" disabled selected>Choose Issue Type</option>
+					      <option value="Data">Data Issue</option>
+					      <option value="Technical">Technical Issue</option>
+					    </select>
+					    <label>Issue Type</label>
+					    <!-- <input type="hidden" id="Team"> -->
+					  </div>
+					  <div class="input-field col s12">
+				         <textarea id="textarea1" class="materialize-textarea" name="Desc" required></textarea>
+				         <label for="textarea1">Description</label>
+				      </div>
+				    
+				    <div class="modal-footer">
+				      <button id="addForm" class="waves-effect waves-green btn-flat" type="submit">Add
+					    <i class="material-icons right">Update</i>
+					  </button>
+					  <button id="modelclose" class="modal-action modal-close" style="display: none;">
+					  </button>
+				    </div>
+				    
+				    <input type="text" style="display: none;" name="Stat" value="New">
+				    <input type="text" style="display: none;" name="Prio" value="Low">
+				    <input type="text" style="display: none;" name="Ass" value="1">
+				    <input type="hidden" id="auto" name="Nauto">
+>>>>>>> d1a8047240d6add58cbc6abf16c72120b6ced4ff
 				  </div>
 				  </form> -->
 				  <!-- END MODAL -->
@@ -140,8 +172,14 @@
 		  <button style="display: none;" id="sideBar2Btn" class="btn waves-effect waves-light" type="submit"
 		    <i class="material-icons right">send</i>
 		  </button>
+<<<<<<< HEAD
 		<input type="hidden" id="ticket_id2" name="TID[]">
 		<?php if ($this->session->userdata('Acc_type') == 'user'){?>
+=======
+		<input type="hidden" id="tickCount" name="tickCount[]">
+		<input type="hidden" id="tickCount" name="userCount[]">
+		<?php if ($this->session->userdata('Acc_type') == 'user'){?> 
+>>>>>>> d1a8047240d6add58cbc6abf16c72120b6ced4ff
 		<input type="hidden" id="account" value="user"> <?php } ?>
 		  </form>
       	</div>
