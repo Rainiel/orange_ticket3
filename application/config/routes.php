@@ -53,6 +53,7 @@ $route['default_controller'] = 'Welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+//$route['Login'] = 'Welcome/Login';
 $route['Dashboard'] = 'admin/Dashboard';
 $route['Tickets'] = 'admin/Tickets';
 $route['SubAdmin'] = 'admin/SubAdmin';

@@ -1,12 +1,6 @@
 
 <div class="col s10" style="padding: 10px;">
-      <!-- <div class="row">
-       <h6 style="
-		    margin-top: 20px;
-		    margin-bottom: 0px;
-		    margin-left: 0px;
-		">Dashboard</h6>
-      </div> -->
+
   <div class="row" style="box-shadow: 0px 1px 10px 0px #888888;
      						 margin-left: 0px;
      						 padding-left: 10px;
@@ -33,20 +27,23 @@
 				      </div>
 				      <div class="input-field col s12">
 					    <select id="selectTeam" name="Iss" required>
-					      <option value="" disabled selected required>Choose Issue Type</option>
+					      <option value="" disabled selected>Choose Issue Type</option>
 					      <option value="Data">Data Issue</option>
 					      <option value="Technical">Technical Issue</option>
 					    </select>
 					    <label>Issue Type</label>
+					    <!-- <input type="hidden" id="Team"> -->
 					  </div>
 					  <div class="input-field col s12">
-				         <textarea id="textarea1" class="materialize-textarea" name="Desc"></textarea>
+				         <textarea id="textarea1" class="materialize-textarea" name="Desc" required></textarea>
 				         <label for="textarea1">Description</label>
 				      </div>
 				    
 				    <div class="modal-footer">
-				      <button id="addForm" class=" modal-action modal-close waves-effect waves-green btn-flat" type="submit">Add
+				      <button id="addForm" class="waves-effect waves-green btn-flat" type="submit">Add
 					    <i class="material-icons right">Update</i>
+					  </button>
+					  <button id="modelclose" class="modal-action modal-close" style="display: none;">
 					  </button>
 				    </div>
 				    
@@ -114,7 +111,8 @@
 		  <button style="display: none;" id="sideBar2Btn" class="btn waves-effect waves-light" type="submit"
 		    <i class="material-icons right">send</i>
 		  </button>
-		<input type="hidden" id="ticket_id2" name="TID[]">
+		<input type="hidden" id="tickCount" name="tickCount[]">
+		<input type="hidden" id="tickCount" name="userCount[]">
 		<?php if ($this->session->userdata('Acc_type') == 'user'){?> 
 		<input type="hidden" id="account" value="user"> <?php } ?>
 		  </form>

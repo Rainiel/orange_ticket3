@@ -1,8 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function(){
 $('.modal').modal();
 $('select').material_select();
 Show_tickets();
-AutoAssign();
 
 $(document).on('click', '.fill-box', function(){
 		var check = $('.fill-box:checked').length;
@@ -118,8 +117,12 @@ $(document).on('submit', '#addTicket', function(e){
 	processData: false,
 	data: new FormData(this),
 		success: function(data){
+			 $('#modelclose').trigger('click');
 			 Show_tickets();
-			 $('.sideBar2').show();
+			 getCount();
+			 $('#icon_prefix').val('');
+			 //$('#selectTeam').prop('selectedIndex',0);
+			 $('#textarea1').val('');
 		},
 		error: function(){
 			alert()
@@ -130,6 +133,10 @@ $(document).on('submit', '#addTicket', function(e){
 $(document).on('submit', '#editTicket', function(e){
 	e.preventDefault();
 });
+
+$(document).on('change', '#selectTeam', function(){
+ AutoAssign();
+ });
 
 $(document).on('click', '.filt', function(){
 	var $Acc_type = $('#account').val();
@@ -247,12 +254,16 @@ function Show_tickets(){
 				alert('dito pumapasok');
 			},
 		});
-	}
+	};
 
 function AutoAssign(){
+	var team = $('#selectTeam').val();
+	alert(team);
 		$.ajax({
-			type:'ajax',
+			type: 'POST',
+			//method: 'POST',
 			url: 'Ticket_control/AutoAssign',
+			data: {'team' : team},
 			dataType:'json',
 			success: function(data)
 			{
@@ -263,13 +274,12 @@ function AutoAssign(){
 
 				for(i=0;i<data.length;i++)
 				{
-					+data[i].tick+
-				min.push(data[i].tick);
+				min.push(data[i].Tickets);
 				}
 				var a = Math.min.apply(null, min);
 				for(i=0;i<data.length;i++)
 				{
-					if(a == data[i].tick){
+					if(a == data[i].Tickets){
 						b = data[i].userId;
 					}
 				}
@@ -280,8 +290,49 @@ function AutoAssign(){
 				alert('dito pumapasok');
 			},
 		});
-	}
+	};
+
+function getCount(){
+	//var team = $('#selectTeam').val();
+	//alert(team);
+		$.ajax({
+			type: 'POST',
+			//method: 'POST',
+			url:'Ticket_control/TickCount',
+			//data: {'tick' : tickCount, 'user' : userCount},
+			dataType:'json',
+			success: function(data)
+			{
+				var body='';
+				var i;
+				var tickCount = '';
+				var userCount = '';
+				var b;
+				//var a;
+
+				for(i=0;i<data.length;i++)
+				{
+					tickCount = data[i].tick;
+					userCount = data[i].userId;
+				$.ajax({
+					type: 'ajax',
+					url: 'Ticket_control/updateCount',
+					data: {'tick' : tickCount, 'user' : userCount},
+					dataType: 'json',
+					method: 'POST',
+
+				});
+				}
+				
+			},
+			error: function()
+			{
+				alert('dito pumapasok');
+			},
+		});
+	};
  });
+
 
 function showTicketInfo(id){
 		$.ajax({
@@ -297,7 +348,7 @@ function showTicketInfo(id){
 				var sideBarS2='';
 				var sideBarS3='';
 
-					headT += '<div style="font-size: 20px;">'+"Ticket Subject: "+data.Subject+'<button id="backT" style="float: right;" class="btn waves-effect waves-light">Back'+
+					headT += '<div style="font-size: 20px;">'+"Ticket Subject: "+data.Subject+'<button id="backT" style="float: right;" class="btn waves-effect waves-light">dsadasd'+
 		    		'<i class="fa fa-arrow-left" aria-hidden="true"></i>'+
 		  			'</button></div>';
 
@@ -330,4 +381,4 @@ function showTicketInfo(id){
 				alert('error');
 			},
 		});
-}
+};

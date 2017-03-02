@@ -27,12 +27,8 @@ class Welcome extends CI_Controller {
         {
 			if($this->session->userdata('Acc_type') == 'Admin')
                 {redirect('Dashboard');}
-            if($this->session->userdata('Acc_type') == 'Sub-Admin')
+            if($this->session->userdata('Acc_type') != 'Admin')
                 {redirect('Tickets');}
-            if($this->session->userdata('Acc_type') == 'User')
-                {redirect('Tickets');}
-            else{redirect('');}
 		}
-		else{redirect('');}
 	}
 }

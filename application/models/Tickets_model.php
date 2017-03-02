@@ -13,9 +13,7 @@ class Tickets_model extends CI_Model {
 		if($query->num_rows()==1){
 			return $query->row_array();
 		}
-		else{
-			return false;
-		}
+		else{return false;}
 	}
 
 	public function save_ticket($post_data)
@@ -86,10 +84,7 @@ class Tickets_model extends CI_Model {
     {
       return $query->result_array();
     }
-    else
-    {
-      return false;
-    }
+    else{return false;}
   }
 
   public function showAllTickets($Acc_type, $id, $team)
@@ -127,10 +122,7 @@ class Tickets_model extends CI_Model {
         {
           return $query->result_array();
         }
-        else
-        {
-          return false;
-        }
+        else{return false;}
   }
 
   public function showAllTicketsSA($Acc_type, $id, $team)
@@ -158,10 +150,7 @@ class Tickets_model extends CI_Model {
         {
           return $query->result_array();
         }
-        else
-        {
-          return false;
-        }
+        else{return false;}
   }
 
   public function getTicket($id)
@@ -171,43 +160,64 @@ class Tickets_model extends CI_Model {
   }
 
   public function ticketGraph(){
-    $query = $this->db->query("SELECT COUNT(*) FROM tbl_tickets Where Status = 'Closed'");
+    $query = $this->db->query("SELECT
+                                (SELECT Count(*) FROM tbl_tickets WHERE Status = 'New') as New,
+                                (SELECT Count(*) FROM tbl_tickets WHERE Status = 'In-progress') as Prog,
+                                (SELECT Count(*) FROM tbl_tickets WHERE Status = 'On-hold') as Hold,
+                                (SELECT Count(*) FROM tbl_tickets WHERE Status = 'Resolved') as Resolved,
+                                (SELECT Count(*) FROM tbl_tickets WHERE Status = 'Closed') as Closed
+                             ");
 
     if($query->num_rows() > 0){
-      foreach($query->result_array() as $row){
-          //$data[] = $row;
-          $row = $query->row_array();
-          $count = $row['COUNT(*)'];
+      return $query->row_array();
       }
-      return $count;
-      }
+      else{return false;}
   }
 
-  // public function maxID(){
-  //   $query = $this->db->query("SELECT COUNT(*) FROM tbl_user");
-  //   if($query->num_rows() > 0){
-  //     foreach($query->result_array() as $row){
-  //       $row = $query->row_array();
-  //       $count = $row['COUNT(*)'];
-  //     }
-  //     return $count;
-  //   }
-  // }
+  public function AssignToNewSA(){
+        $this->db->select('*');
+        $this->db->from('tbl_user');
+        $this->db->where("account_type = 'Sub-Admin' AND Tickets = 0");
+        $query = $this->db->get();
+        if($query->num_rows()>0){
+          return $query->result_array();
+        }
+        else{return false;}
+    }
 
-  public function AutoAssign($id){
-
-      $this->db->select('t.AssignedTo, u.userId, u.team, u.fname, u.lname, COUNT(t.AssignedTo) as tick');
-      $this->db->from('tbl_tickets as t');
-      $this->db->join('tbl_user as u', 't.AssignedTo=u.userId');
-      $this->db->Group_by('t.AssignedTo');
+  public function TickCountAndSA($id){
+      $this->db->select('t.AssignedTo, u.userId, u.Tickets, u.team, u.fname, u.lname, COUNT(t.AssignedTo) as tick');
+      $this->db->from('tbl_user as u');
+      $this->db->join('tbl_tickets as t', 't.AssignedTo=u.userId');
+      //$this->db->where('team', $team);
       $this->db->where_in('AssignedTo', $id);
+      $this->db->Group_by('t.AssignedTo');
 
       $query = $this->db->get();
       if($query->num_rows() > 0){
           return $query->result_array();
         }
-      else{
-        return false;
-      }
+      else{return false;}
   }
+
+  public function updateSAtick($id, $tick){
+      $this->db->set('Tickets', $tick);
+      $this->db->where('userId', $id);
+      return $this->db->update('tbl_user');
+  }
+
+  public function AutoAssign($id, $team){
+    $this->db->select('*');
+    $this->db->from('tbl_user');
+    $this->db->where("account_type = 'Sub-Admin' AND team = '$team'");
+    $query = $this->db->get();
+    if($query->num_rows() > 0){
+    return $query->result_array();
+    }
+    else{return false;}
+    if($result->num_rows() > 0)
+        {
+            $rs = $result->row_array();
+        }
+}
 }

@@ -1,9 +1,9 @@
 $(document).ready(function(){
 $('.modal').modal();
 $('select').material_select();
-Show_SubAdmin();
+//Show_SubAdmin();
 Show_tickets();
-AutoAssign();
+TickCountAndSA();
 
 $(document).on('click', '.subAdminView', function(){
 	showSubAdminInfo($(this).parent('tr').attr('data-Id3'));
@@ -52,10 +52,10 @@ $(document).on('submit', '#addSubAdmin', function(e){
 	});
 });
 
-function Show_SubAdmin(){
+function TickCountAndSA(){
 		$.ajax({
 			type:'ajax',
-			url: 'SubAdmin_control/showSubAdmin',
+			url: 'Ticket_control/TickCountAndSA',
 			dataType:'json',
 			success: function(data)
 			{
@@ -64,20 +64,16 @@ function Show_SubAdmin(){
 
 				for(i=0;i<data.length;i++)
 				{
-					if(data[i].team != 'N/A')
-					{
 					body+=	'<tr data-Id3="'+data[i].userId+'">'+
 								'<td class="subAdminView">'+
 								'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-								'<p style="margin-top: 7px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname+'&nbsp;'+data[i].lname+'</p>'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname+'&nbsp;'+data[i].lname+'</p>'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">'+data[i].team+
 								'</td>'+
-								'<td class="subAdminView" style="font-size: 12px; text-align: center;">'+data[i].team+'</td>'+
-
+								'<td class="subAdminView" style="font-size: 12px; text-align: center;">'+data[i].Tickets+'</td>'+
 							'</tr>';
-						}
-
 				}
-				$('#SubTable').html(body); 
+				$('#SubTables').html(body); 	
 			},
 			error: function()
 			{
@@ -85,35 +81,6 @@ function Show_SubAdmin(){
 			},
 		});
 	}
-
-// function AutoAssign(){
-// 		$.ajax({
-// 			type:'ajax',
-// 			url: 'Ticket_control/AutoAssign',
-// 			dataType:'json',
-// 			success: function(data)
-// 			{
-// 				var body='';
-// 				var i;
-
-// 				for(i=0;i<data.length;i++)
-// 				{
-// 					body+=	'<tr data-Id3="'+data[i].userId+'">'+
-// 								'<td class="subAdminView">'+
-// 								'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-// 								'<p style="margin-top: 7px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname+'&nbsp;'+data[i].lname+'</p>'+
-// 								'</td>'+
-// 								'<td class="subAdminView" style="font-size: 12px; text-align: center;">'+data[i].tick+'</td>'+
-// 							'</tr>';
-// 				}
-// 				$('#SubTables').html(body); 	
-// 			},
-// 			error: function()
-// 			{
-// 				alert('dito pumapasok');
-// 			},
-// 		});
-// 	}
  
 function Show_tickets(){
 	var $Acc_type = $('#account').val();

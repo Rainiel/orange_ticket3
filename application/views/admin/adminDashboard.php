@@ -75,33 +75,32 @@
             </div>
 
             <div class="col s4" style="padding-left: 0px;">
-              <ul class="pieID legend" >
-                  <li id="new">
+              <ul class="pieID legend">
+                  <li id="New">
                     <em>New</em>
-                    <span>23</span>
+                    <span id="new"></span>
                   </li>
-                  <li>
-                    <em>In-progress</em>
-                    <span>21</span>
+                  <li id="Prog">
+                    <em>On Progress</em>
+                    <span id="prog"></span>
                   </li>
-                  <li>
-                    <em>On-hold</em>
-                    <span>5</span>
+                  <li id="Hold">
+                    <em>On Hold</em>
+                    <span id="onhold"></span>
                   </li>
-                  <li>
-                    <em>Resolve</em>
-                    <span>8</span>
+                  <li id="Resolved">
+                    <em>Resolved</em>
+                    <span id="resolved"></span>
                   </li>
-                  <li>
+                  <li id="Closed">
                     <em>Closed</em>
-                    <span>15</span>
+                    <span id="closed">1</span>
                   </li>
                 </ul>
               </div>
 
             <div class="col s8" style="margin: 0px;padding-right: 0px; margin-top: 20px">
               <div class="pieID pie">
-
               </div>
             </div>
 
