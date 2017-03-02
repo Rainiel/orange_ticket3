@@ -2,7 +2,7 @@ $(document).ready(function(){
 $('.modal').modal();
 $('select').material_select();
 //Show_SubAdmin();
-Show_tickets();
+//how_tickets();
 TickCountAndSA();
 
 $(document).on('click', '.subAdminView', function(){
@@ -73,15 +73,15 @@ function TickCountAndSA(){
 								'<td class="subAdminView" style="font-size: 12px; text-align: center;">'+data[i].Tickets+'</td>'+
 							'</tr>';
 				}
-				$('#SubTables').html(body); 	
+				$('#SubTables').html(body);
 			},
 			error: function()
 			{
-				alert('dito pumapasok');
+				//alert('dito pumapasok');
 			},
 		});
 	}
- 
+
 function Show_tickets(){
 	var $Acc_type = $('#account').val();
 		$.ajax({
@@ -109,7 +109,7 @@ function Show_tickets(){
 						'</tr>';
 					}
 				}
-				$('#showTicket').html(body); 	
+				$('#showTicket').html(body);
 			},
 			error: function()
 			{
@@ -169,4 +169,4 @@ function showSubAdminInfo(id){
 				alert('error');
 			},
 		});
-}		
+}
