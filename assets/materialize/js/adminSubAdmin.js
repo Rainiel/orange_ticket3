@@ -2,7 +2,7 @@ $(document).ready(function(){
 $('.modal').modal();
 $('select').material_select();
 //Show_SubAdmin();
-Show_tickets();
+//how_tickets();
 TickCountAndSA();
 
 $(document).on('click', '.subAdminView', function(){
@@ -73,15 +73,15 @@ function TickCountAndSA(){
 								'<td class="subAdminView" style="font-size: 12px; text-align: center;">'+data[i].Tickets+'</td>'+
 							'</tr>';
 				}
-				$('#SubTables').html(body); 	
+				$('#SubTables').html(body);
 			},
 			error: function()
 			{
-				alert('dito pumapasok');
+				//alert('dito pumapasok');
 			},
 		});
 	}
- 
+
 function Show_tickets(){
 	var $Acc_type = $('#account').val();
 		$.ajax({
@@ -98,7 +98,7 @@ function Show_tickets(){
 				var test = data[i].ticketId;
 				if($Acc_type != 'user'){
 					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
-				
+
 				 			// '<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
       		// 					'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
       		// 					'<label for="'+test+'" style="margin-top: 15px;" ></label>' +
@@ -114,7 +114,7 @@ function Show_tickets(){
 						'</tr>';
 					}
 				}
-				$('#showTicket').html(body); 	
+				$('#showTicket').html(body);
 			},
 			error: function()
 			{
@@ -178,4 +178,4 @@ function showSubAdminInfo(id){
 				alert('error');
 			},
 		});
-}		
+}
