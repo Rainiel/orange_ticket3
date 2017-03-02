@@ -55,4 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['Dashboard'] = 'admin/Dashboard';
 $route['Tickets'] = 'admin/Tickets';
-$route['SubAdmin'] = 'admin/SubAdmin';
+$route['ManageTickets'] = 'admin/ManageTickets';
+$route['SubAdminSA'] = 'admin/SubAdminSA';
+$route['Users'] = 'admin/Users';

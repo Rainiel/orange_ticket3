@@ -31,8 +31,6 @@ class Welcome extends CI_Controller {
                 {redirect('Tickets');}
             if($this->session->userdata('Acc_type') == 'User')
                 {redirect('Tickets');}
-            else{redirect('');}
 		}
-		else{redirect('');}
 	}
 }

@@ -22,40 +22,64 @@
 		><i class="fa fa-plus" aria-hidden="true" style="padding-right: 10px;"></i>Ticket</a>
 		  	<?php if ($this->session->userdata('Acc_type') == 'user'){?> <hr> <?php } ?>
 				  <!-- Modal Structure -->
-				  <form id="addTicket">
-				  <div id="modal1" class="modal" style="width: 35%;">
-				    <div class="modal-content" style="background-color: #2d3e50; padding: 15px;" >
-				      <h5 style="margin: 0px; color: white;">Ticket</h5></div>
-				      <div class="col s12"><p style="padding-top: 20px;">Start Creating Ticket</p></div>
-				      <div class="input-field col s12">
-				          <input id="icon_prefix" type="text" class="validate" name="Subj" required>
-				          <label>Subject</label>
-				      </div>
-				      <div class="input-field col s12">
-					    <select id="selectTeam" name="Iss" required>
-					      <option value="" disabled selected required>Choose Issue Type</option>
-					      <option value="Data">Data Issue</option>
-					      <option value="Technical">Technical Issue</option>
-					    </select>
-					    <label>Issue Type</label>
-					  </div>
-					  <div class="input-field col s12">
-				         <textarea id="textarea1" class="materialize-textarea" name="Desc"></textarea>
-				         <label for="textarea1">Description</label>
-				      </div>
-				    
-				    <div class="modal-footer">
-				      <button id="addForm" class=" modal-action modal-close waves-effect waves-green btn-flat" type="submit">Add
-					    <i class="material-icons right">Update</i>
-					  </button>
-				    </div>
-				    
-				    <input type="text" style="display: none;" name="Stat" value="New">
-				    <input type="text" style="display: none;" name="Prio" value="Low">
-				    <input type="text" style="display: none;" name="Ass" value="1">
-				    <input type="hidden" id="auto" name="Nauto">
+				<form id="addTicket">
+                      <div id="modal1" class="modal" style="width: 500px">
+                        <div class="modal-content" style="padding: 0;">
+                          <h4 class="modal-header" style="background-color: #2d3e50; padding: 10px; color: white">Add New Ticket</h4>
+                                <div class="row" style="margin-left: 70px">
+                                  <div class="input-field col s10">
+                                      <input id="icon_prefix" type="text" class="validate" name="Subj" required>
+                                      <label>Subject</label>
+                                  </div>
+                                  <div class="input-field col s10">
+                                    <select id="selectTeam" name="Iss" required>
+                                      <option value="" disabled selected required>Choose Issue Type</option>
+                                      <option value="Data">Data Issue</option>
+                                      <option value="Technical">Technical Issue</option>
+                                    </select>
+                                    <label>Issue Type</label>
+                                  </div>
+                                  <div class="input-field col s10">
+                                     <textarea id="textarea1" class="materialize-textarea" name="Desc"></textarea>
+                                     <label for="textarea1">Description</label>
+                                  </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="#!" class=" modal-action modal-close waves-effect waves-light btn" style="margin-right: 80px; background-color: #2d3e50"><i class="material-icons right">done_all</i>SAVE</a>
+                        </div>
+                    </div>
+                </form>
+    				    <!-- <div class="modal-content" style="background-color: #2d3e50; padding: 15px;">
+        				      <h5 style="margin: 0px; color: white;">Add New Ticket</h5>
+        				      <div class="input-field col s9">
+        				          <input id="icon_prefix" type="text" class="validate" name="Subj" required>
+        				          <label>Subject</label>
+        				      </div>
+        				      <div class="input-field col s9">
+        					    <select id="selectTeam" name="Iss" required>
+        					      <option value="" disabled selected required>Choose Issue Type</option>
+        					      <option value="Data">Data Issue</option>
+        					      <option value="Technical">Technical Issue</option>
+        					    </select>
+        					    <label>Issue Type</label>
+        					  </div>
+        					  <div class="input-field col s9">
+        				         <textarea id="textarea1" class="materialize-textarea" name="Desc"></textarea>
+        				         <label for="textarea1">Description</label>
+        				      </div>
+                        </div>
+    				    <div class="modal-footer">
+    				      <button id="addForm" class=" modal-action modal-close waves-effect waves-light btn" type="submit" style="margin-top: 20px"><i class="material-icons right">done_all</i>SAVE</a>
+    					  </button>
+    				    </div>
+
+    				    <input type="text" style="display: none;" name="Stat" value="New">
+    				    <input type="text" style="display: none;" name="Prio" value="Low">
+    				    <input type="text" style="display: none;" name="Ass" value="1">
+    				    <input type="hidden" id="auto" name="Nauto">
 				  </div>
-				  </form>
+				  </form> -->
 				  <!-- END MODAL -->
           <div class="tabs-vertical" id="sideBar">
 		        <ul class="tabs" id="statFilt">
@@ -77,9 +101,9 @@
 		           <li class="tab filt">
 		             <a class="waves-effect" data-stat="Closed">Closed</a>
 		           </li>
-		        </ul>    
+		        </ul>
      	  </div>
-     	  <?php if ($this->session->userdata('Acc_type') == 'Admin'){?> 
+     	  <?php if ($this->session->userdata('Acc_type') == 'Admin'){?>
 		 <hr id="hr">
      	  <div class="tabs-vertical" id="sideBar4">
 		        <ul class="tabs" id="assFilt">
@@ -92,8 +116,10 @@
 		           <li class="tab filt">
 		             <a class="waves-effect" data-Ass="Technical">Technical</a>
 		           </li>
-		        </ul>    
+		        </ul>
      	  </div>
+          <hr id="hrtwo">
+          <a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #2d3e50">manage tickets</a>
 		<?php } ?>
      	  <form id="editTicket">
      	  <div class="input-field col s12 sideBar2" style="display: none;">
@@ -115,7 +141,7 @@
 		    <i class="material-icons right">send</i>
 		  </button>
 		<input type="hidden" id="ticket_id2" name="TID[]">
-		<?php if ($this->session->userdata('Acc_type') == 'user'){?> 
+		<?php if ($this->session->userdata('Acc_type') == 'user'){?>
 		<input type="hidden" id="account" value="user"> <?php } ?>
 		  </form>
       	</div>
@@ -124,7 +150,7 @@
           <table class="highlight" id="allTable">
 	        <thead>
 	          <tr>
-	          	  <th data-field="id" style="width: 50px; padding-left: 20px; padding-top: 5px; 
+	          	  <th data-field="id" style="width: 50px; padding-left: 20px; padding-top: 5px;
 	          	  <?php if ($this->session->userdata('Acc_type') == 'user'){?> display: none; <?php } ?>">
 	          	    <input type="checkbox" class="filled-in" id="filled-in-box" />
       				<label for="filled-in-box" style="margin-top: 15px;"></label>
@@ -132,8 +158,8 @@
 	              <th style="padding-top: 5px; padding-bottom: 10px; width: 300px;">Tickets</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Status</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Assignee</th>
-	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Priority</th>        
-	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center; color: #2bbbad">Date Filed</th>
+	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Priority<i class="fa fa-chevron-down" aria-hidden="true" style="margin-left: 7px"></i></th>
+	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Latest Update</th>
 	          </tr>
 	        </thead>
 
@@ -146,8 +172,8 @@
 	          </tr> -->
 	        </tbody>
 	      </table>
-	      
-	      
+
+
 	      	<div class="col s12 123" id="headT" style="display: none;"></div>
 		      <hr class="123" style="display: none;">
 		      <div class="col s12 123" style="display: none;">
@@ -189,9 +215,9 @@
 					</ul>
 			  </div>
         </div>
-    </div>	
-   	
+    </div>
+
 	<!-- <input type="hidden" id="ticket_id" name="TID"> -->
-  </div> 
-</div> 
+  </div>
+</div>
 <script src="assets/materialize/js/adminTickets.js"></script>

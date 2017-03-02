@@ -34,15 +34,15 @@ function createPie(dataElement, pieElement) {
   }
   var offset = 0;
   var color = [
-    "cornflowerblue", 
-    "olivedrab", 
-    "orange", 
-    "tomato", 
-    "crimson", 
-    "purple", 
-    "turquoise", 
-    "forestgreen", 
-    "navy", 
+    "#61d7f1",
+    "#6bd049",
+    "#f0e94b",
+    "#ff826b", 
+    "#ec7172",
+    "purple",
+    "turquoise",
+    "forestgreen",
+    "navy",
     "gray"
   ];
   for(var i=0; i<listData.length; i++) {
