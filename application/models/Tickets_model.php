@@ -156,6 +156,7 @@ class Tickets_model extends CI_Model {
   public function getTicket($id)
   {
   	$sql="SELECT * FROM tbl_tickets WHERE ticketId = '$id'";
+    $this->db->select('t.*, u.fname, u.lname,');
   	return $this->db->query($sql);
   }
 

@@ -13,7 +13,7 @@ $(document).on('click', '.fill-box', function(){
     		$('.sideBar2').show();
     		//$('#sideBar3').show();
     		$('#sideBar2Btn').show();
-			
+
 		}
 		if(check == 0){
 			$('#sideBar').show();
@@ -24,9 +24,9 @@ $(document).on('click', '.fill-box', function(){
         	$('#sideBar2Btn').hide();
 		}
     });
-        	
+
 $(document).on('click', '#filled-in-box', function(){
-	
+
 	if($(this).is(":checked")){
 		$('.fill-box').prop("checked", true);
 	}
@@ -41,7 +41,7 @@ $(document).on('click', '#filled-in-box', function(){
 		$('#hr').hide();
 		$('.sideBar2').show();
 		$('#sideBar2Btn').show();
-		
+
 	}
 	if(check == 0){
 		$('#sideBar').show();
@@ -104,7 +104,7 @@ $(document).on('click', '#sideBar2Btn', function(){
 		},
 	});
 });
- 
+
 $(document).on('submit', '#addTicket', function(e){
 	e.preventDefault();
 	base_url = $('#base').val();
@@ -154,13 +154,13 @@ $(document).on('click', '.filt', function(){
 			{
 				var body='';
 				var i;
-				
+
 				for(i=0;i<data.length;i++)
 				{
 				var test = data[i].ticketId;
 				if($Acc_type != 'user'){
 					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
-				
+
 				 			'<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
       							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
       							'<label for="'+test+'" style="margin-top: 15px;" ></label>' +
@@ -178,7 +178,7 @@ $(document).on('click', '.filt', function(){
 				}
 				else{
 					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
-				
+
 							'<td class="ticketView">'+
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
@@ -191,7 +191,7 @@ $(document).on('click', '.filt', function(){
 						'</tr>';
 				}
 				}
-				$('#showTicket').html(body); 
+				$('#showTicket').html(body);
 			},
 			error: function()
 			{
@@ -216,7 +216,7 @@ function Show_tickets(){
 				var test = data[i].ticketId;
 				if($Acc_type != 'user'){
 					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
-				
+
 				 			'<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
       							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
       							'<label for="'+test+'" style="margin-top: 15px;" ></label>' +
@@ -234,7 +234,7 @@ function Show_tickets(){
 				}
 				else{
 					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
-				
+
 							'<td class="ticketView">'+
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
@@ -247,7 +247,7 @@ function Show_tickets(){
 						'</tr>';
 				}
 				}
-				$('#showTicket').html(body); 	
+				$('#showTicket').html(body);
 			},
 			error: function()
 			{
@@ -349,8 +349,8 @@ function showTicketInfo(id){
 				var sideBarS2='';
 				var sideBarS3='';
 
-					headT += '<div style="font-size: 20px;">'+"Ticket Subject: "+data.Subject+'<button id="backT" style="float: right;" class="btn waves-effect waves-light">dsadasd'+
-		    		'<i class="fa fa-arrow-left" aria-hidden="true"></i>'+
+					headT += '<div style="font-size: 20px;">'+"Ticket Subject: "+data.Subject+'<i class="fa fa-arrow-left" id="backT" aria-hidden="true" style="float:right"></i>'+
+
 		  			'</button></div>';
 		  			chatTicket += '<ul class="collection">'+
 					'<li class="collection-item">'+
@@ -402,7 +402,9 @@ function showTicketInfo(id){
 				$('#sidebarS2').material_select();
 				$('#sidebarS3').html(sideBarS3);
 				$('#sidebarS3').material_select();
+
 				$('#chatTicket').html(chatTicket);
+
 				$('#headT').html(headT);
 			},
 			error: function(){

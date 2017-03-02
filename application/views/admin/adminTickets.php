@@ -16,6 +16,7 @@
 		><i class="fa fa-plus" aria-hidden="true" style="padding-right: 10px;"></i>Ticket</a>
 		  	<?php if ($this->session->userdata('Acc_type') == 'user'){?> <hr> <?php } ?>
 				  <!-- Modal Structure -->
+
 				  <form id="addTicket">
 				  <div id="modal1" class="modal" style="width: 35%;">
 				    <div class="modal-content" style="background-color: #2d3e50; padding: 15px;" >
@@ -32,7 +33,7 @@
 					      <option value="Technical">Technical Issue</option>
 					    </select>
 					    <label>Issue Type</label>
-					    <!-- <input type="hidden" id="Team"> -->
+					    <input type="hidden" id="Team">
 					  </div>
 					  <div class="input-field col s12">
 				         <textarea id="textarea1" class="materialize-textarea" name="Desc" required></textarea>
@@ -51,6 +52,7 @@
 				    <input type="text" style="display: none;" name="Prio" value="Low">
 				    <input type="text" style="display: none;" name="Ass" value="1">
 				    <input type="hidden" id="auto" name="Nauto">
+
 				  </div>
 				  </form>
 				  <!-- END MODAL -->
@@ -74,9 +76,9 @@
 		           <li class="tab filt">
 		             <a class="waves-effect" data-stat="Closed">Closed</a>
 		           </li>
-		        </ul>    
+		        </ul>
      	  </div>
-     	  <?php if ($this->session->userdata('Acc_type') == 'Admin'){?> 
+     	  <?php if ($this->session->userdata('Acc_type') == 'Admin'){?>
 		 <hr id="hr">
      	  <div class="tabs-vertical" id="sideBar4">
 		        <ul class="tabs" id="assFilt">
@@ -89,8 +91,10 @@
 		           <li class="tab filt">
 		             <a class="waves-effect" data-Ass="Technical">Technical</a>
 		           </li>
-		        </ul>    
+		        </ul>
      	  </div>
+          <hr id="hrtwo">
+          <a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #2d3e50">manage tickets</a>
 		<?php } ?>
      	  <form id="editTicket">
      	  <div class="input-field col s12 sideBar2" style="display: none;">
@@ -114,6 +118,7 @@
 		<input type="hidden" id="tickCount" name="tickCount[]">
 		<input type="hidden" id="tickCount" name="userCount[]">
 		<?php if ($this->session->userdata('Acc_type') == 'user'){?> 
+
 		<input type="hidden" id="account" value="user"> <?php } ?>
 		  </form>
       	</div>
@@ -122,7 +127,7 @@
           <table class="highlight" id="allTable">
 	        <thead>
 	          <tr>
-	          	  <th data-field="id" style="width: 50px; padding-left: 20px; padding-top: 5px; 
+	          	  <th data-field="id" style="width: 50px; padding-left: 20px; padding-top: 5px;
 	          	  <?php if ($this->session->userdata('Acc_type') == 'user'){?> display: none; <?php } ?>">
 	          	    <input type="checkbox" class="filled-in" id="filled-in-box" />
       				<label for="filled-in-box" style="margin-top: 15px;"></label>
@@ -130,8 +135,8 @@
 	              <th style="padding-top: 5px; padding-bottom: 10px; width: 300px;">Tickets</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Status</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Assignee</th>
-	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Priority</th>        
-	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center; color: #2bbbad">Date Filed</th>
+	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Priority<i class="fa fa-chevron-down" aria-hidden="true" style="margin-left: 7px"></i></th>
+	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Latest Update</th>
 	          </tr>
 	        </thead>
 
@@ -144,8 +149,8 @@
 	          </tr> -->
 	        </tbody>
 	      </table>
-	      
-	      
+
+
 	      	<div class="col s12 123" id="headT" style="display: none;"></div>
 		      <hr class="123" style="display: none;">
 		      <div class="col s12 123" id="chatTicket" style="display: none;">
@@ -188,9 +193,9 @@
 					</ul> -->
 			  </div>
         </div>
-    </div>	
-   	
+    </div>
+
 	<!-- <input type="hidden" id="ticket_id" name="TID"> -->
-  </div> 
-</div> 
+  </div>
+</div>
 <script src="assets/materialize/js/adminTickets.js"></script>
