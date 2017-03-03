@@ -71,7 +71,7 @@
                 font-size: 18px;
                 font-weight: bold;
             ">
-              <p style="margin-left: 15px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px;">Conversations</p>
+              <p style="margin-left: 15px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px;">Performance</p>
             </div>
 
             <div class="col s4" style="padding-left: 0px;">
@@ -106,11 +106,11 @@
           </div>
         </div>
 
-        <div class="col s7">
+            <div class="col s7">
           <table style="box-shadow: 0px 1px 10px 0px #888888;">
           <thead style="background: #2d3e50;">
             <tr>
-                <th data-field="id" style="color: white; border-radius: 0px">Conversation</th>
+                <th data-field="id" style="color: white; border-radius: 0px">Name</th>
                 <th data-field="name" style="color: white; border-radius: 0px;">Status</th>
                 <th data-field="price" style="color: white; border-radius: 0px">Assignee</th>
                 <th data-field="price" style="color: white; border-radius: 0px">Priority</th>
@@ -120,23 +120,23 @@
           <tbody>
             <tr>
               <td>Alvin</td>
-              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #61d7f1">Open</a></td>
+              <td><label class="openbtn" style="font-size: 12px; background-color: #61d7f1; border-radius: 3px; padding: 5px; color: white">Open</label></td>
               <td>General</td>
-              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #f0e94b">Minor</a></td>
+              <td><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">Minor</label></td>
 
             </tr>
             <tr>
               <td>Alan</td>
-              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #61d7f1">Open</a></td>
+              <td><label class="openbtn" style="font-size: 12px; background-color: #61d7f1; border-radius: 3px; padding: 5px; color: white">Open</label></td>
               <td>General</td>
-              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #ec7172">Major</a></td>
+              <td><label class="majorbtn" style="font-size: 12px; background-color: #ec7172; border-radius: 3px; padding: 5px; color: white">Major</label></td>
 
             </tr>
             <tr>
               <td>Jonathan</td>
-              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #61d7f1">Open</a></td>
+              <td><label class="openbtn" style="font-size: 12px; background-color: #61d7f1; border-radius: 3px; padding: 5px; color: white">Open</label></td>
               <td>General</td>
-              <td><a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #f0e94b">Minor</a></td>
+              <td><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">Minor</label></td>
             </tr>
           </tbody>
         </table>
@@ -147,4 +147,3 @@
 </div>
 
 <script src="assets/materialize/js/dashboard.js"></script>
-<script src="assets/materialize/js/pieGraph.js"></script>

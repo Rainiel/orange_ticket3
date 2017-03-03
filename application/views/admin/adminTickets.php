@@ -1,6 +1,24 @@
 
 <div class="col s10" style="padding: 10px;">
-
+    <div class="row">
+        <h6 style="margin-top: 20px; margin-bottom: 0px; margin-left: 0px; min-width: 40%; width: 40px"> <nav>
+            <div class="nav-wrapper" style="padding: 0; background-color: white; box-shadow: 0px 0px 0px #000">
+              <div class="col s12">
+                <a href="#!" class="breadcrumb" style="color: black">First</a>
+                <a href="#!" class="breadcrumb" style="color: black">Second</a>
+                <a href="#!" class="breadcrumb" style="color: black">Third</a>
+              </div>
+            </div>
+        </nav></h6>
+        <div class="nav-wrapper pull-right" style="min-width: 20%; width: 20px; margin-top: -55px">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" required>
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            </div>
+          </form>
+        </div>
+    </div>
   <div class="row" style="box-shadow: 0px 1px 10px 0px #888888;
      						 margin-left: 0px;
      						 padding-left: 10px;
@@ -39,7 +57,7 @@
 				         <textarea id="textarea1" class="materialize-textarea" name="Desc" required></textarea>
 				         <label for="textarea1">Description</label>
 				      </div>
-				    
+
 				    <div class="modal-footer">
 				      <button id="addForm" class="waves-effect waves-green btn-flat" type="submit">Add
 					    <i class="material-icons right">Update</i>
@@ -47,7 +65,7 @@
 					  <button id="modelclose" class="modal-action modal-close" style="display: none;">
 					  </button>
 				    </div>
-				    
+
 				    <input type="text" style="display: none;" name="Stat" value="New">
 				    <input type="text" style="display: none;" name="Prio" value="Low">
 				    <input type="text" style="display: none;" name="Ass" value="1">
@@ -56,42 +74,44 @@
 				  </div>
 				  </form>
 				  <!-- END MODAL -->
-          <div class="tabs-vertical" id="sideBar">
-		        <ul class="tabs" id="statFilt">
-		        	<li class="tab filt">
-		              <a class="waves-effect" data-stat="">All</a>
-		           </li>
-		           <li class="tab filt" >
-		              <a class="waves-effect" data-stat="New">New</a>
-		           </li>
-		           <li class="tab filt">
-		             <a class="waves-effect" data-stat="In-progress">In-progress</a>
-		           </li>
-		           <li class="tab filt">
-		             <a class="waves-effect" data-stat="On-hold">On-hold</a>
-		           </li>
-		           <li class="tab filt">
-		             <a class="waves-effect" data-stat="Resolved">Resolved</a>
-		           </li>
-		           <li class="tab filt">
-		             <a class="waves-effect" data-stat="Closed">Closed</a>
-		           </li>
-		        </ul>
-     	  </div>
+            <div class="tabs-vertical" id="sideBar">
+                <div class="header" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>My Conversations</center></div>
+    		        <ul class="tabs" id="statFilt">
+    		        	<li class="tab filt">
+    		              <a class="waves-effect" data-stat="">All</a>
+    		           </li>
+    		           <li class="tab filt" >
+    		              <a class="waves-effect" data-stat="New">New</a>
+    		           </li>
+    		           <li class="tab filt">
+    		             <a class="waves-effect" data-stat="In-progress">In-progress</a>
+    		           </li>
+    		           <li class="tab filt">
+    		             <a class="waves-effect" data-stat="On-hold">On-hold</a>
+    		           </li>
+    		           <li class="tab filt">
+    		             <a class="waves-effect" data-stat="Resolved">Resolved</a>
+    		           </li>
+    		           <li class="tab filt">
+    		             <a class="waves-effect" data-stat="Closed">Closed</a>
+    		           </li>
+    		        </ul>
+     	    </div>
      	  <?php if ($this->session->userdata('Acc_type') == 'Admin'){?>
 		 <hr id="hr">
      	  <div class="tabs-vertical" id="sideBar4">
-		        <ul class="tabs" id="assFilt">
-		        	<li class="tab filt">
-		              <a class="waves-effect" data-Ass="">All</a>
-		           </li>
-		           <li class="tab filt">
-		              <a class="waves-effect" data-Ass="Data">Data</a>
-		           </li>
-		           <li class="tab filt">
-		             <a class="waves-effect" data-Ass="Technical">Technical</a>
-		           </li>
-		        </ul>
+                <div class="headertwo" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>Team Conversations</center></div>
+    		        <ul class="tabs" id="assFilt">
+    		        	<li class="tab filt">
+    		              <a class="waves-effect" data-Ass="">All</a>
+    		           </li>
+    		           <li class="tab filt">
+    		              <a class="waves-effect" data-Ass="Data">Data</a>
+    		           </li>
+    		           <li class="tab filt">
+    		             <a class="waves-effect" data-Ass="Technical">Technical</a>
+    		           </li>
+    		        </ul>
      	  </div>
           <hr id="hrtwo">
           <a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #2d3e50">manage tickets</a>
@@ -117,7 +137,7 @@
 		  </button>
 		<input type="hidden" id="tickCount" name="tickCount[]">
 		<input type="hidden" id="tickCount" name="userCount[]">
-		<?php if ($this->session->userdata('Acc_type') == 'user'){?> 
+		<?php if ($this->session->userdata('Acc_type') == 'user'){?>
 
 		<input type="hidden" id="account" value="user"> <?php } ?>
 		  </form>
@@ -151,16 +171,18 @@
 	      </table>
 
 
+
 	      	<div class="col s12 123" id="headT" style="display: none;"></div>
-		      <hr class="123" style="display: none;">
-		      <div class="col s12 123" id="chatTicket" style="display: none;">
-				<ul class="collection">
-					<li class="collection-item">
+		        <hr class="123" style="display: none;">
+		        <div class="col s12 123" id="chatTicket" style="display: none;">
+				    <div class="collection">
+    					<div class="collection-item">
 						<span class="title" style="color: #2d3e50"  style="margin-right: 20px"><b>Issue type: Welcome!</b></span> <span class="title-second" style="font-size: 14px; margin-left: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span><i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i><i class="fa fa-trash" aria-hidden="true"  style="margin-left: 6px;"></i>
 						<p style="font-size: 12px; margin-top: -5px">Created: February 18 2017, 9:00 AM <br></p>
 					</li>
-					<ul class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none;">
-					  <li class="collection-item avatar" style="border-bottom: none">
+                    <a href="#!" class="secondary-content pull-right" style="margin-top: 15px; margin-right: 20px"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
+					<div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
+					  <div class="collection-item avatar" style="border-bottom: none">
 						<img src="assets/images/square.png" alt="" class="circle">
 						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
 						<p style="font-size: 12px;	margin-top: -5px;">February 18<br>
@@ -171,27 +193,39 @@
 							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
 							sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
 							<br>
-							<br>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
+						</span>
+                    </div>
+                  </div>
+
+
+                    <ul class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
+					  <li class="collection-item avatar pull-right" style="border-bottom: none">
+						<img src="assets/images/square.png" alt="" class="circle">
+						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
+						<p style="font-size: 12px;	margin-top: -5px;">February 18<br>
+						</p>
+						<span class="title" style="color: #2d3e50; font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
 							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
 							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
 							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
 							sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+							<br>
 						</span>
-						<a href="#!" class="secondary-content"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
 					  </li>
-						<ul class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">
-		  			  		<li class="collection-header" style="padding: 0px; height: 20px">
-								<p style="margin-left: 20px; margin-bottom: 20px; font-size: 12px">
-									<i class="fa fa-inbox" aria-hidden="true"></i>rainiel@orangeapps.com
-								</p>
-							</li>
-							<li class="collection-item" style="border-bottom: none"><input type="text" name="fname" placeholder="Enter your reply here" style="border-bottom: none"></li>
-							<a class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SAVE</a>
-					  	</ul>
 					</ul>
+                    <a href="#!" class="secondary-content"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
 				</ul>
-			  </div>
+
+                <ul class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">
+                    <li class="collection-header" style="padding: 0px; height: 20px">
+                        <p style="margin-left: 20px; margin-bottom: 20px; font-size: 12px">
+                            <i class="fa fa-inbox" aria-hidden="true"></i>rainiel@orangeapps.com
+                        </p>
+                    </li>
+                    <li class="collection-item" style="border-bottom: none"><input type="text" name="fname" placeholder="Enter your reply here" style="border-bottom: none"></li>
+                    <a class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SAVE</a>
+                </ul>
+			</div>
         </div>
     </div>
 
