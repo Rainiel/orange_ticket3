@@ -82,15 +82,15 @@
                   </li>
                   <li id="Prog">
                     <em>On Progress</em>
-                    <span id="prog"></span>
+                    <span id="prog">2</span>
                   </li>
                   <li id="Hold">
                     <em>On Hold</em>
-                    <span id="onhold"></span>
+                    <span id="onhold">1</span>
                   </li>
                   <li id="Resolved">
                     <em>Resolved</em>
-                    <span id="resolved"></span>
+                    <span id="resolved">1</span>
                   </li>
                   <li id="Closed">
                     <em>Closed</em>
@@ -143,7 +143,7 @@
         </div>
 
     </div>
-  </div> 
+  </div>
 </div>
 
 <script src="assets/materialize/js/dashboard.js"></script>
