@@ -37,16 +37,8 @@ class Tickets_model extends CI_Model {
         $this->db->join('tbl_user as u1', 't.User=u1.userId');
         $this->db->order_by('ticketId', 'desc');
         //$this->db->where("Status = '$stat' AND AssignedTo = '$Ass'");
-         if($stat == NULL && $Ass == NULL){
-         }
-         if($stat != NULL && $Ass == NULL){
+         if($stat != NULL){
           $this->db->where("Status = '$stat'");
-         }
-         if($stat == NULL && $Ass != NULL){
-          $this->db->where("Issue = '$Ass'");
-         }
-         if($stat != NULL && $Ass != NULL){
-          $this->db->where("Status = '$stat' AND Issue = '$Ass'");
           }
           $query = $this->db->get();
       }
@@ -57,12 +49,15 @@ class Tickets_model extends CI_Model {
         $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
         $this->db->join('tbl_user as u1', 't.User=u1.userId');
         $this->db->order_by('ticketId', 'desc');
-        if($stat == NULL){
+        if($stat == NULL && $Ass == NULL){
           $this->db->where("AssignedTo = '$id'");
-          }
+        }
         if($stat != NULL){
           $this->db->where("AssignedTo = '$id' AND Status = '$stat'");
           }
+        if($Ass != NULL){
+          $this->db->where("Issue = '$Ass' AND AssignedTo != '$id'");
+        }
         $query = $this->db->get();
       }
       if($Acc_type == 'user')

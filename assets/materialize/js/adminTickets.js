@@ -8,7 +8,7 @@ $(document).on('click', '.fill-box', function(){
 		if(check > 0){
 			showTicketInfo($(this).parent('td').attr('data-Id2'));
     		$('#sideBar').hide();
-    		$('#sideBar4').hide();
+    		//$('#sideBar4').hide();
     		$('#hr').hide();
     		$('.sideBar2').show();
     		//$('#sideBar3').show();
@@ -17,7 +17,7 @@ $(document).on('click', '.fill-box', function(){
 		}
 		if(check == 0){
 			$('#sideBar').show();
-			$('#sideBar4').show();
+			//$('#sideBar4').show();
 			$('#hr').show();
         	$('.sideBar2').hide();
         	//$('#sideBar3').hide();
@@ -37,7 +37,7 @@ $(document).on('click', '#filled-in-box', function(){
 	if(check > 0){
 		// showTicketInfo();
 		$('#sideBar').hide();
-		$('#sideBar4').hide();
+		//$('#sideBar4').hide();
 		$('#hr').hide();
 		$('.sideBar2').show();
 		$('#sideBar2Btn').show();
@@ -45,7 +45,7 @@ $(document).on('click', '#filled-in-box', function(){
 	}
 	if(check == 0){
 		$('#sideBar').show();
-		$('#sideBar4').show();
+		//$('#sideBar4').show();
 		$('#hr').show();
     	$('.sideBar2').hide();
     	$('#sideBar2Btn').hide();
@@ -57,7 +57,7 @@ $(document).on('click', '.ticketView', function(){
 	$('#allTable').hide();
 	$('.123').show();
 	$('#sideBar').hide();
-	$('#sideBar4').hide();
+	//$('#sideBar4').hide();
 	$('#hr').hide();
 	$('.sideBar2').show();
 	//$('#sideBar3').show();
@@ -68,7 +68,7 @@ $(document).on('click', '#backT', function(){
 	$('#allTable').show();
 	$('.123').hide();
 	$('#sideBar').show();
-	$('#sideBar4').show();
+	//$('#sideBar4').show();
 	$('#hr').show();
 	$('.sideBar2').hide();
 	//$('#sideBar3').hide();
@@ -94,7 +94,7 @@ $(document).on('click', '#sideBar2Btn', function(){
 			Show_tickets();
 			$('#filled-in-box').prop('checked',false);
 			$('#sideBar').show();
-			$('#sideBar4').show();
+			//$('#sideBar4').show();
 			$('#hr').show();
 	    	$('.sideBar2').hide();
 	    	$('#sideBar2Btn').hide();
@@ -141,7 +141,7 @@ $(document).on('change', '#selectTeam', function(){
 $(document).on('click', '.filt', function(){
 	var $Acc_type = $('#account').val();
 	var Status = $('#statFilt a.active').attr('data-stat');
-	var Assign = $('#assFilt a.active').attr('data-Ass');
+	var Assign = $('#statFilt a.active').attr('data-Ass');
 
 		$.ajax({
 			type : 'POST',
@@ -174,6 +174,7 @@ $(document).on('click', '.filt', function(){
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
 				}
 				else{
@@ -188,6 +189,7 @@ $(document).on('click', '.filt', function(){
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
 				}
 				}
@@ -230,6 +232,7 @@ function Show_tickets(){
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
 				}
 				else{
@@ -244,6 +247,7 @@ function Show_tickets(){
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
+							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
 				}
 				}
@@ -298,7 +302,7 @@ function getCount(){
 		$.ajax({
 			type: 'POST',
 			//method: 'POST',
-			url:'Ticket_control/TickCount',
+			url:'Ticket_control/TickCountAndSA',
 			//data: {'tick' : tickCount, 'user' : userCount},
 			dataType:'json',
 			success: function(data)

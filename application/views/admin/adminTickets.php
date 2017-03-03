@@ -62,8 +62,6 @@
 				      <button id="addForm" class="waves-effect waves-green btn-flat" type="submit">Add
 					    <i class="material-icons right">Update</i>
 					  </button>
-					  <button id="modelclose" class="modal-action modal-close" style="display: none;">
-					  </button>
 				    </div>
 
 				    <input type="text" style="display: none;" name="Stat" value="New">
@@ -95,27 +93,37 @@
     		           <li class="tab filt">
     		             <a class="waves-effect" data-stat="Closed">Closed</a>
     		           </li>
-    		        </ul>
-     	    </div>
-     	  <?php if ($this->session->userdata('Acc_type') == 'Admin'){?>
+    		        <!-- </ul> -->
+     	    <!-- </div> -->
 		 <hr id="hr">
-     	  <div class="tabs-vertical" id="sideBar4">
-                <div class="headertwo" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>Team Conversations</center></div>
-    		        <ul class="tabs" id="assFilt">
-    		        	<li class="tab filt">
+     	  <!-- <div class="tabs-vertical" id="sideBar4"> -->
+                <div class="headertwo" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>Team Conversation</center></div>
+    		        <!-- <ul class="tabs" id="assFilt"> -->
+    		        <!-- <?php if($accts == 'Admin'){ ?>
+    		        	<li class="tab Tfilt">
     		              <a class="waves-effect" data-Ass="">All</a>
-    		           </li>
-    		           <li class="tab filt">
+    		           	</li>
+    		           	<li class="tab Tfilt">
     		              <a class="waves-effect" data-Ass="Data">Data</a>
-    		           </li>
-    		           <li class="tab filt">
+    		           	</li>
+    		           	<li class="tab Tfilt">
     		             <a class="waves-effect" data-Ass="Technical">Technical</a>
-    		           </li>
+    		           	</li>
+    		        <?php } ?> -->
+    		        <?php if($tim == 'Data'){ ?>
+    		           	<li class="tab filt">
+    		              <a class="waves-effect" data-Ass="Data">Data</a>
+    		           	</li>
+    		        <?php } ?>
+    		        <?php if($tim == 'Technical'){ ?>
+    		           	<li class="tab filt">
+    		             <a class="waves-effect" data-Ass="Technical">Technical</a>
+    		           	</li>
+    		        <?php } ?>
     		        </ul>
      	  </div>
-          <hr id="hrtwo">
-          <a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #2d3e50">manage tickets</a>
-		<?php } ?>
+          <!-- <hr id="hrtwo">
+          <a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #2d3e50">manage tickets</a> -->
      	  <form id="editTicket">
      	  <div class="input-field col s12 sideBar2" style="display: none;">
 		    <!-- <select name="uAssign" id="sidebarS1">
@@ -157,6 +165,7 @@
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Assignee</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Priority<i class="fa fa-chevron-down" aria-hidden="true" style="margin-left: 7px"></i></th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Latest Update</th>
+	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Date Filed</th>
 	          </tr>
 	        </thead>
 
@@ -179,7 +188,7 @@
     					<div class="collection-item">
 						<span class="title" style="color: #2d3e50"  style="margin-right: 20px"><b>Issue type: Welcome!</b></span> <span class="title-second" style="font-size: 14px; margin-left: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span><i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i><i class="fa fa-trash" aria-hidden="true"  style="margin-left: 6px;"></i>
 						<p style="font-size: 12px; margin-top: -5px">Created: February 18 2017, 9:00 AM <br></p>
-					</li>
+					</div>
                     <a href="#!" class="secondary-content pull-right" style="margin-top: 15px; margin-right: 20px"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
 					<div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
 					  <div class="collection-item avatar" style="border-bottom: none">
@@ -198,8 +207,8 @@
                   </div>
 
 
-                    <ul class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
-					  <li class="collection-item avatar pull-right" style="border-bottom: none">
+                    <div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
+					  <div class="collection-item avatar pull-right" style="border-bottom: none">
 						<img src="assets/images/square.png" alt="" class="circle">
 						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
 						<p style="font-size: 12px;	margin-top: -5px;">February 18<br>
@@ -211,20 +220,20 @@
 							sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
 							<br>
 						</span>
-					  </li>
-					</ul>
+					  </div>
+					</div>
                     <a href="#!" class="secondary-content"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
-				</ul>
+				</div>
 
-                <ul class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">
-                    <li class="collection-header" style="padding: 0px; height: 20px">
+                <div class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">
+                    <div class="collection-header" style="padding: 0px; height: 20px">
                         <p style="margin-left: 20px; margin-bottom: 20px; font-size: 12px">
                             <i class="fa fa-inbox" aria-hidden="true"></i>rainiel@orangeapps.com
                         </p>
-                    </li>
-                    <li class="collection-item" style="border-bottom: none"><input type="text" name="fname" placeholder="Enter your reply here" style="border-bottom: none"></li>
+                    </div>
+                    <div class="collection-item" style="border-bottom: none"><input type="text" name="fname" placeholder="Enter your reply here" style="border-bottom: none"></div>
                     <a class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SAVE</a>
-                </ul>
+                </div>
 			</div>
         </div>
     </div>

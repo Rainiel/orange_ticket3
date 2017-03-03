@@ -33,10 +33,12 @@ class admin extends CI_Controller{
 	{
 		if($this->session->userdata('is_logged_in'))
         {
+        		$arr['tim'] = $this->session->userdata('Team');
+        		$arr['accts'] = $this->session->userdata('Acc_type');
 				$this->load->view('includes/header');
 				$this->load->view('includes/navBar');
 				$this->load->view('includes/sidebar');
-				$this->load->view('admin/adminTickets');
+				$this->load->view('admin/adminTickets', $arr);
 				$this->load->view('includes/footer');
 		}
 		else

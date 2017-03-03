@@ -7,11 +7,14 @@ class Ticket_control extends CI_controller{
     {
         $this->load->model('Tickets_model');
 
+        date_default_timezone_set('Asia/Manila');
+        $date = new DateTime();
         $post_data=array(
             'Status'        => $this->input->post('Stat'),
             'AssignedTo'    => $this->input->post('Nauto'),
             'Subject'       => $this->input->post('Subj'),
             'Priority'      => $this->input->post('Prio'),
+            'DateFiled'     => $date->format('Y-m-d H:i:s'),
             'Issue'         => $this->input->post('Iss'),
             'Description'   => $this->input->post('Desc'),
             'User'          => $this->session->userdata('userID')
@@ -68,8 +71,10 @@ class Ticket_control extends CI_controller{
          { 
             foreach($result as $Tickets )
              {          
-                $Time = date("F j, Y", strtotime($Tickets['Stamp'])); 
+                $Time = date("g:i a, F j, Y", strtotime($Tickets['Stamp']));
+                $date = date("F j, Y", strtotime($Tickets['DateFiled']));
                 $Tickets['Stamp'] = $Time;
+                $Tickets['DateFiled'] = $date;
                 $return[] = $Tickets;
              }
         }      
@@ -89,8 +94,10 @@ class Ticket_control extends CI_controller{
          { 
             foreach($result as $Tickets )
              {          
-                $Time = date("F j, Y", strtotime($Tickets['Stamp'])); 
-                $Tickets['Stamp'] = $Time;  
+                $Time = date("g:i a, F j, Y", strtotime($Tickets['Stamp']));
+                $date = date("F j, Y", strtotime($Tickets['DateFiled']));
+                $Tickets['Stamp'] = $Time;
+                $Tickets['DateFiled'] = $date;
                 $return[] = $Tickets;
              }
         }
