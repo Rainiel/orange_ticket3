@@ -100,8 +100,7 @@
               </div>
 
             <div class="col s8" style="margin: 0px;padding-right: 0px; margin-top: 20px">
-              <div class="pieID pie">
-              </div>
+            
             </div>
 
           </div>

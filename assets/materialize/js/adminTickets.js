@@ -377,7 +377,7 @@ function showTicketInfo(id){
 				//$('#chatTicket').html(chatTicket);
 
 				$('#headT').html(headT);
-				getChat(data.ticketId, data.userId);
+				//getChat(data.ticketId, data.userId);
 			},
 			error: function(){
 				alert('error');
