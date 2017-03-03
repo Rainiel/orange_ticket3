@@ -182,48 +182,52 @@
 
 
 	      	<div class="col s12 123" id="headT" style="display: none;"></div>
-		        <hr class="123" style="display: none;">
+		        <!-- <hr class="123" style="display: none;"> -->
 		        <div class="col s12 123" id="chatTicket" style="display: none;">
-				    <div class="collection">
-    					<div class="collection-item">
-						<span class="title" style="color: #2d3e50"  style="margin-right: 20px"><b>Issue type: Welcome!</b></span> <span class="title-second" style="font-size: 14px; margin-left: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span><i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i><i class="fa fa-trash" aria-hidden="true"  style="margin-left: 6px;"></i>
-						<p style="font-size: 12px; margin-top: -5px">Created: February 18 2017, 9:00 AM <br></p>
-					</div>
-                    <a href="#!" class="secondary-content pull-right" style="margin-top: 15px; margin-right: 20px"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
-					<div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
-					  <div class="collection-item avatar" style="border-bottom: none">
-						<img src="assets/images/square.png" alt="" class="circle">
-						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
-						<p style="font-size: 12px;	margin-top: -5px;">February 18<br>
-						</p>
-						<span class="title" style="color: #2d3e50; font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
-							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
-							sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-							<br>
-						</span>
+                    <div class="collection">
+        				<div class="collection-item">
+    						<span class="title" style="color: #2d3e50"  style="margin-right: 20px"><b>Issue type: Welcome!</b></span>
+                            <span class="title-second" style="font-size: 14px; margin-left: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                            <i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i><i class="fa fa-trash" aria-hidden="true"  style="margin-left: 6px;"></i>
+                            <a class="waves-effect waves-light btn pull-right" id="backT">Back</a>
+    						<p style="font-size: 12px; margin-top: -5px">Created: February 18 2017, 9:00 AM <br></p>
+    					</div>
                     </div>
+
+                    <div class="collection" style="min-height: 100%; height: 400px; max-height: 1000px; overflow: scroll; overflow-x: hidden">
+                        <a href="#!" class="secondary-content pull-right" style="margin-top: 15px; margin-right: 20px"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
+    					<div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
+    					  <div class="collection-item avatar" style="border-bottom: none">
+    						<img src="assets/images/square.png" alt="" class="circle">
+    						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
+    						<p style="font-size: 12px;	margin-top: -5px;">February 18<br>
+    						</p>
+    						<span class="title" style="color: #2d3e50; font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
+    							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
+    							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
+    							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
+    							sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+    							<br>
+    						</span>
+                        </div>
+                      </div>
+
+                      <div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px float:right">
+                        <div class="collection-item avatar" style="border-bottom: none">
+                          <img src="assets/images/square.png" alt="" class="circle">
+                          <span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
+                          <p style="font-size: 12px;margin-top: -5px;">February 18<br>
+                          </p>
+                          <span class="title" style="color: #2d3e50; font-size: 12px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
+                              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
+                              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
+                              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
+                              sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                              <br>
+                          </span>
+                        </div>
+                      </div>
                   </div>
-
-
-                    <div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
-					  <div class="collection-item avatar pull-right" style="border-bottom: none">
-						<img src="assets/images/square.png" alt="" class="circle">
-						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
-						<p style="font-size: 12px;	margin-top: -5px;">February 18<br>
-						</p>
-						<span class="title" style="color: #2d3e50; font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
-							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
-							sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-							<br>
-						</span>
-					  </div>
-					</div>
-                    <a href="#!" class="secondary-content"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
-				</div>
 
                 <div class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">
                     <div class="collection-header" style="padding: 0px; height: 20px">
@@ -234,6 +238,7 @@
                     <div class="collection-item" style="border-bottom: none"><input type="text" name="fname" placeholder="Enter your reply here" style="border-bottom: none"></div>
                     <a class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SAVE</a>
                 </div>
+
 			</div>
         </div>
     </div>

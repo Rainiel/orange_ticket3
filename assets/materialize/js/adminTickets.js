@@ -327,7 +327,7 @@ function getCount(){
 
 				});
 				}
-				
+
 			},
 			error: function()
 			{
@@ -347,14 +347,14 @@ function showTicketInfo(id){
 			},
 			dataType: 'JSON',
 			success: function(data){
-				var headT='';
+				//var headT='';
 				//var chatTicket='';
 				var sideBarS1='';
 				var sideBarS2='';
 				var sideBarS3='';
 
-					headT += '<div style="font-size: 20px;">'+"Ticket Subject: "+data.Subject+'<i class="fa fa-arrow-left" id="backT" aria-hidden="true" style="float:right"></i>'+
-		  			'</button></div>';
+					//headT += '<div style="font-size: 20px;">'+"Ticket Subject: "+data.Subject+'<i class="fa fa-arrow-left" id="backT" aria-hidden="true" style="float:right"></i>'+
+		  			//'</button></div>';
 
 					// sideBarS1 +=
 					// '<option value="'+data.AssignedTo+'" selected>'+data.AssignedTo+'</option>'+
@@ -372,7 +372,7 @@ function showTicketInfo(id){
 					 '<option value="High">High</option>';
 
 
-				
+
 				$('#sidebarS2').html(sideBarS2);
 				$('#sidebarS2').material_select();
 				$('#sidebarS3').html(sideBarS3);
@@ -380,7 +380,7 @@ function showTicketInfo(id){
 
 				//$('#chatTicket').html(chatTicket);
 
-				$('#headT').html(headT);
+				//$('#headT').html(headT);
 				//getChat(data.ticketId, data.userId);
 			},
 			error: function(){
