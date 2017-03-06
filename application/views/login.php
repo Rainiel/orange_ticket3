@@ -1,4 +1,4 @@
- <div class="row">
+<div class="row">
      <div class="row" style="padding-top: 7em;">
         <div class="col s12 m4 offset-m4  animated fadeIn">
             <div class="card horizontal">
@@ -28,4 +28,4 @@
         </div>
     </div>
     <!-- </form> -->
-  </div>
+</div>
