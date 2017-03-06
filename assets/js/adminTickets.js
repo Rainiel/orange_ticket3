@@ -170,11 +170,30 @@ $(document).on('click', '.filt', function(){
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
-							'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Status+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
+							'</td>';
+							if(data[i].Status == 'New'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'On-progress'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'On-hold'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'Resolved'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'Closed'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>';
+							if(data[i].Priority == 'Low'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							}
+							if(data[i].Priority == 'High'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="majorbtn" style="font-size: 12px; background-color: #ec7172; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							}
+							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
 				}
@@ -185,11 +204,30 @@ $(document).on('click', '.filt', function(){
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
-							'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Status+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
+							'</td>';
+							if(data[i].Status == 'New'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'On-progress'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'On-hold'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'Resolved'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'Closed'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>';
+							if(data[i].Priority == 'Low'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							}
+							if(data[i].Priority == 'High'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="majorbtn" style="font-size: 12px; background-color: #ec7172; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							}
+							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
 				}
@@ -228,11 +266,31 @@ function Show_tickets(){
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
-							'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Status+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
+							'</td>';
+
+							if(data[i].Status == 'New'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'On-progress'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'On-hold'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'Resolved'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'Closed'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>';
+							if(data[i].Priority == 'Low'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							}
+							if(data[i].Priority == 'High'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="majorbtn" style="font-size: 12px; background-color: #ec7172; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							}
+							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
 				}
@@ -243,10 +301,29 @@ function Show_tickets(){
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
-							'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Status+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Priority+'</td>'+
+							'</td>';
+							if(data[i].Status == 'New'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'On-progress'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'On-hold'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'Resolved'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							if(data[i].Status == 'Closed'){
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							}
+							body+='<td class="ticketView"  style="text-align: center;">'+data[i].fname2+data[i].lname2+'</td>';
+							if(data[i].Priority == 'Low'){
+							body+='<td class="ticketView"  style="text-align: center;"><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							}
+							if(data[i].Priority == 'High'){
+							body+='<td class="ticketView"  style="text-align: center;"><label class="majorbtn" style="font-size: 12px; background-color: #ec7172; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							}
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';

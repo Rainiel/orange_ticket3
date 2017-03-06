@@ -72,7 +72,7 @@ class Ticket_control extends CI_controller{
          { 
             foreach($result as $DateAndTime)
              {          
-                $Time = date("g:i a, F j, Y", strtotime($DateAndTime['Stamp']));
+                $Time = date("g:i a", strtotime($DateAndTime['Stamp']));
                 $date = date("F j, Y", strtotime($DateAndTime['DateFiled']));
                 $DateAndTime['Stamp'] = $Time;
                 $DateAndTime['DateFiled'] = $date;
@@ -95,7 +95,7 @@ class Ticket_control extends CI_controller{
          { 
             foreach($result as $DateAndTime)
              {          
-                $Time = date("g:i a, F j, Y", strtotime($DateAndTime['Stamp']));
+                $Time = date("g:i a", strtotime($DateAndTime['Stamp']));
                 $date = date("F j, Y", strtotime($DateAndTime['DateFiled']));
                 $DateAndTime['Stamp'] = $Time;
                 $DateAndTime['DateFiled'] = $date;
