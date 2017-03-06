@@ -437,17 +437,30 @@ function showTicketInfo(id){
 		    						  '<span class="title" style="color: #2d3e50"  style="margin-right: 20px"><b>Issue type: '+data.Issue+'</b></span>'+
 		                            	'<span class="title-second" style="font-size: 14px; margin-left: 15px">'+data.Subject+'</span>'+
 		                            	'<i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i><i class="fa fa-trash" aria-hidden="true"  style="margin-left: 6px;"></i>'+
-		                            	'<a class="waves-effect waves-light btn pull-right" id="backT">Back</a>'+
+		                            	'<a class="waves-effect waves-light btn pull-right" id="backT" style="background-color: #2d3e50">Back</a>'+
 		    						  '<p style="font-size: 12px; margin-top: -5px">Created: '+data.DateFiled+'</p>'+
 		    						'</div>';
 
-		    		messages += '<div class="collection-item avatar" style="border-bottom: none;">'+
- 						'<img src="assets/images/square.png" alt="" class="circle">'+
- 						'<span class="title" style="font-size: 14px; color: #2d3e50"><b>'+data.fname+'&nbsp;'+data.lname+'</b></span>'+
- 						'<p style="font-size: 12px;	margin-top: -5px;">'+data.DateFiled+'<br>'+
- 						'</p>'+
- 						'<span class="title" id="msg" style="color: #2d3e50; font-size: 12px;">'+data.Description+'</span>'+
- 					'</div>';
+		    		messages += '<div class="collection-item avatar" style="border-bottom: none; float: left; padding: 0">'+
+ 									'<img src="assets/images/square.png" alt="" class="circle">'+
+								'</div>'+
+								'<div class="row">'+
+									'<div class="flex-container" style="display: flex; justify-content: flex-start; text-align: left; padding: 10px; margin-left: 20px">'+
+										'<div class="flex-item">'+
+										 	'<div class="sender-wrap" style="margin-left: 50px; margin-top: -12px">'+
+												'<div class="namedate">'+
+							 						'<span class="title" style="font-size: 14px; color: #2d3e50"><b>'+data.fname+'&nbsp;'+data.lname+'</b></span>'+
+							 						'<p style="font-size: 12px;	margin-top: -2px;">'+data.DateFiled+'<br>'+
+							 						'</p>'+
+												'</div>'+
+												'<div class="convo-msg">'+
+	 												'<span class="title" id="msg" style="color: black; background-color: white; font-size: 12px; border-radius: 7px; padding: 10px; margin-left: -12px">'+data.Description+'</span>'+
+	 											'</div>'+
+											'</div>'+
+										'</div>'+
+									'</div>'+
+								'</div>';
+
 
 					// sideBarS1 +=
 					// '<option value="'+data.AssignedTo+'" selected>'+data.AssignedTo+'</option>'+
@@ -502,11 +515,11 @@ function chat(){
 										'<div class="sender-wrap">'+
 											'<div class="namedate">'+
 												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: right"><b>'+data[i].fname+''+data[i].lname+'</b></span>'+
-												'<p style="font-size: 12px;	margin-top: -5px">'+data[i].Stamp+'<br>'+
+												'<p style="font-size: 12px;	margin-top: -2px">'+data[i].Stamp+'<br>'+
 												'</p>'+
 											'</div>'+
 											'<div class="convo-msg">'+
-											'<span class="title" id="msg" style="color: white; background-color: #557291; font-size: 12px; box-shadow: 1px 1px 1px #C5C5C5; border-radius: 7px; padding: 10px">'+data[i].Message+'</span>'+
+											'<span class="title" id="msg" style="color: black; background-color: white; font-size: 12px; border-radius: 7px; padding: 10px">'+data[i].Message+'</span>'+
 											'</div>'+
 										'</div>'+
 									'</div>'+
