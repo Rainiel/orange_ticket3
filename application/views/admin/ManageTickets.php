@@ -107,4 +107,4 @@
   </div>
 </div>
 
-<script src="assets/materialize/js/ManageTickets.js"></script>
+<script src="assets/js/ManageTickets.js"></script>

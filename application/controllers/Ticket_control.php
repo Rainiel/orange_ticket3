@@ -59,13 +59,14 @@ class Ticket_control extends CI_controller{
         $return=array();
         $stat=$this->input->post('stat');
         $Ass=$this->input->post('Ass');
+        $Ass2=$this->input->post('Ass2');
  
         $id = $this->session->userdata('userID');
         $Acc_type = $this->session->userdata('Acc_type');
         $team = $this->session->userdata('Team');
         $this->load->model('Tickets_model');
 
-        $result=$this->Tickets_model->filterTicket($stat, $Ass, $Acc_type, $id, $team);
+        $result=$this->Tickets_model->filterTicket($stat, $Ass, $Ass2, $Acc_type, $id, $team);
 
         if($result != false)
          { 
@@ -128,21 +129,34 @@ class Ticket_control extends CI_controller{
         {
             $rs = $result->row_array();
 
-            $kahitano = new DateTime($rs['Stamp']);
-            $Time = $kahitano->format('F j, Y');
+            $Stamp = new DateTime($rs['Stamp']);
+            $Date = new DateTime($rs['DateFiled']);
+            $Time = $Stamp->format('F j, Y');
+            $Time = $Date->format('F j, Y');
             $rs['Stamp'] = $Time;
+            $rs['DateFiled'] = $Time;
         }
         echo json_encode($rs);
     }
 
     public function insChat(){
         $this->load->model('Tickets_model');
-        $data = array(
-           'TID'  => $this->input->post('tick'),
-           'UID'  => $this->session->userdata('userID'),
-           'Chat' => $this->input->post('chat')
+        $post_data=array(
+           'TID'     => $this->input->post('TID'),
+           'UID'     => $this->session->userdata('userID'),
+           'Message' => $this->input->post('msg')
             );
-        $this->Tickets_model->insChat();
+        $this->Tickets_model->insChat($post_data);
+    }
+
+    public function Chat(){
+        $this->load->model('Tickets_model');
+        $UID=$this->session->userdata('userID');
+        $TID=$this->input->post('tick');
+
+        $result=$this->Tickets_model->Chat($TID, $UID);
+
+        echo json_encode($result);
     }
 
      public function ticketGraph()

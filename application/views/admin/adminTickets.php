@@ -1,7 +1,13 @@
 
 <div class="col s10" style="padding: 10px;">
     <div class="row">
-        <h6 style="margin-top: 20px; margin-bottom: 0px; margin-left: 0px; min-width: 40%; width: 40px"> <nav>
+    <!-- <h6 style="
+        margin-top: 20px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+    ">Dashboard</h6> -->
+        <!-- <h6 style="margin-top: 20px; margin-bottom: 0px; margin-left: 0px; min-width: 40%; width: 40px">
+        <nav>
             <div class="nav-wrapper" style="padding: 0; background-color: white; box-shadow: 0px 0px 0px #000">
               <div class="col s12">
                 <a href="#!" class="breadcrumb" style="color: black">First</a>
@@ -9,15 +15,16 @@
                 <a href="#!" class="breadcrumb" style="color: black">Third</a>
               </div>
             </div>
-        </nav></h6>
-        <div class="nav-wrapper pull-right" style="min-width: 20%; width: 20px; margin-top: -55px">
+        </nav>
+        </h6> -->
+        <!-- <div class="nav-wrapper pull-right" style="min-width: 20%; width: 20px; margin-top: -55px">
           <form>
             <div class="input-field">
               <input id="search" type="search" required>
               <label class="label-icon" for="search"><i class="material-icons">search</i></label>
             </div>
           </form>
-        </div>
+        </div> -->
     </div>
   <div class="row" style="box-shadow: 0px 1px 10px 0px #888888;
      						 margin-left: 0px;
@@ -95,21 +102,10 @@
     		           </li>
     		        <!-- </ul> -->
      	    <!-- </div> -->
+     	   
 		 <hr id="hr">
      	  <!-- <div class="tabs-vertical" id="sideBar4"> -->
                 <div class="headertwo" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>Team Conversation</center></div>
-    		        <!-- <ul class="tabs" id="assFilt"> -->
-    		        <!-- <?php if($accts == 'Admin'){ ?>
-    		        	<li class="tab Tfilt">
-    		              <a class="waves-effect" data-Ass="">All</a>
-    		           	</li>
-    		           	<li class="tab Tfilt">
-    		              <a class="waves-effect" data-Ass="Data">Data</a>
-    		           	</li>
-    		           	<li class="tab Tfilt">
-    		             <a class="waves-effect" data-Ass="Technical">Technical</a>
-    		           	</li>
-    		        <?php } ?> -->
     		        <?php if($tim == 'Data'){ ?>
     		           	<li class="tab filt">
     		              <a class="waves-effect" data-Ass="Data">Data</a>
@@ -121,6 +117,19 @@
     		           	</li>
     		        <?php } ?>
     		        </ul>
+    		        <?php if($accts == 'Admin'){ ?>
+    		        <ul class="tabs" id="AssFilt">
+    		        	<li class="tab filt">
+    		              <a class="waves-effect" data-Ass2="">All</a>
+    		           	</li>
+    		           	<li class="tab filt">
+    		              <a class="waves-effect" data-Ass2="Data">Data</a>
+    		           	</li>
+    		           	<li class="tab filt">
+    		             <a class="waves-effect" data-Ass2="Technical">Technical</a>
+    		           	</li>
+    		        </ul>
+    		        <?php } ?>
      	  </div>
           <!-- <hr id="hrtwo">
           <a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #2d3e50">manage tickets</a> -->
@@ -141,7 +150,7 @@
 		    <label>Priority</label>
 		  </div>
 		  <button style="display: none;" id="sideBar2Btn" class="btn waves-effect waves-light" type="submit"
-		    <i class="material-icons right">send</i>
+		    <i class="material-icons right">Update</i>
 		  </button>
 		<input type="hidden" id="tickCount" name="tickCount[]">
 		<input type="hidden" id="tickCount" name="userCount[]">
@@ -184,61 +193,43 @@
 	      	<div class="col s12 123" id="headT" style="display: none;"></div>
 		        <!-- <hr class="123" style="display: none;"> -->
 		        <div class="col s12 123" id="chatTicket" style="display: none;">
-                    <div class="collection">
-        				<div class="collection-item">
-    						<span class="title" style="color: #2d3e50"  style="margin-right: 20px"><b>Issue type: Welcome!</b></span>
-                            <span class="title-second" style="font-size: 14px; margin-left: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                            <i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i><i class="fa fa-trash" aria-hidden="true"  style="margin-left: 6px;"></i>
-                            <a class="waves-effect waves-light btn pull-right" id="backT">Back</a>
-    						<p style="font-size: 12px; margin-top: -5px">Created: February 18 2017, 9:00 AM <br></p>
-    					</div>
-                    </div>
+              <div class="collection"  id="ticketHead">
+        				
+              </div>
 
-                    <div class="collection" style="min-height: 100%; height: 400px; max-height: 1000px; overflow: scroll; overflow-x: hidden">
+            <div class="collection" style="min-height: 100%; height: 400px; max-height: 1000px; overflow: scroll; overflow-x: hidden">
                         <a href="#!" class="secondary-content pull-right" style="margin-top: 15px; margin-right: 20px"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
-    					<div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
-    					  <div class="collection-item avatar" style="border-bottom: none">
+    					<div class="collection" id="messages" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
+    					  <!-- <div class="collection-item avatar" style="border-bottom: none;">
     						<img src="assets/images/square.png" alt="" class="circle">
     						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
     						<p style="font-size: 12px;	margin-top: -5px;">February 18<br>
     						</p>
-    						<span class="title" style="color: #2d3e50; font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
-    							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-    							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
-    							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
-    							sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-    							<br>
+    						<span class="title" id="msg" style="color: #2d3e50; font-size: 12px;">
     						</span>
-                        </div>
-                      </div>
+                </div> -->
+              </div>
+            </div>
 
-                      <div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px float:right">
-                        <div class="collection-item avatar" style="border-bottom: none">
-                          <img src="assets/images/square.png" alt="" class="circle">
-                          <span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
-                          <p style="font-size: 12px;margin-top: -5px;">February 18<br>
-                          </p>
-                          <span class="title" style="color: #2d3e50; font-size: 12px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
-                              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-                              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
-                              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
-                              sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-                              <br>
-                          </span>
-                        </div>
-                      </div>
-                  </div>
-
+              <form id="insChat">
                 <div class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">
                     <div class="collection-header" style="padding: 0px; height: 20px">
                         <p style="margin-left: 20px; margin-bottom: 20px; font-size: 12px">
-                            <i class="fa fa-inbox" aria-hidden="true"></i>rainiel@orangeapps.com
+                            <i class="fa fa-inbox" aria-hidden="true"></i>Rainiel@orangeapps.com
                         </p>
                     </div>
-                    <div class="collection-item" style="border-bottom: none"><input type="text" name="fname" placeholder="Enter your reply here" style="border-bottom: none"></div>
-                    <a class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SAVE</a>
+                    <div class="collection-item" style="border-bottom: none">
+                    
+                      <div class="input-field col s12" style="margin-top: 0px;">
+                        <textarea id="textarea2" class="materialize-textarea"  style="margin-bottom: 0px;" required></textarea>
+                        <label for="textarea2">Textarea</label>
+                      </div>
+                    
+                    </div>
+                    <button type="submit" class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SEND
+                    </button>
                 </div>
-
+              </form>
 			</div>
         </div>
     </div>
@@ -246,4 +237,5 @@
 	<!-- <input type="hidden" id="ticket_id" name="TID"> -->
   </div>
 </div>
-<script src="assets/materialize/js/adminTickets.js"></script>
+<script src="assets/js/adminTickets.js"></script>
+

@@ -72,4 +72,4 @@
     </div>
   </div>
 </div>
-<script src="assets/materialize/js/User.js"></script>
+<script src="assets/js/User.js"></script>

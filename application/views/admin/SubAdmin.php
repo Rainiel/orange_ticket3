@@ -128,4 +128,4 @@
     </div>
   </div>
 </div>
-<script src="assets/materialize/js/SubAdmin.js"></script>
+<script src="assets/js/SubAdmin.js"></script>

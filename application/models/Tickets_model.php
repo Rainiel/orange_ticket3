@@ -27,24 +27,32 @@ class Tickets_model extends CI_Model {
     return $this->db->update('tbl_tickets', $post_data);
   }
 
-  public function filterTicket($stat, $Ass, $Acc_type, $id, $team)
+  public function filterTicket($stat, $Ass, $Ass2, $Acc_type, $id, $team)
   {
       if($Acc_type == 'Admin')
       {
-        $this->db->select('t.ticketId, t.Subject, t.Issue, t.Description, t.Priority, t.User, t.Stamp, t.AssignedTo, t.Status, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
+        $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
         $this->db->from('tbl_tickets as t');
         $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
         $this->db->join('tbl_user as u1', 't.User=u1.userId');
         $this->db->order_by('ticketId', 'desc');
         //$this->db->where("Status = '$stat' AND AssignedTo = '$Ass'");
-         if($stat != NULL){
+         if($stat == NULL && $Ass2 == NULL){}
+         if($stat != NULL && $Ass2 == NULL){
           $this->db->where("Status = '$stat'");
-          }
+         }
+         if($Ass2 != NULL && $stat == NULL){
+          $this->db->where("Issue = '$Ass2'");
+         }
+         if($stat != NULL && $Ass2 != NULL){
+          $this->db->where("Status = '$stat' AND Issue = '$Ass2'");
+         }
+
           $query = $this->db->get();
       }
       if($Acc_type == 'Sub-Admin')
       {
-        $this->db->select('t.ticketId, t.Subject, t.Issue, t.Description, t.Priority, t.User, t.Stamp, t.AssignedTo, t.Status, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
+        $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
         $this->db->from('tbl_tickets as t');
         $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
         $this->db->join('tbl_user as u1', 't.User=u1.userId');
@@ -62,7 +70,7 @@ class Tickets_model extends CI_Model {
       }
       if($Acc_type == 'user')
       {
-        $this->db->select('t.ticketId, t.Subject, t.Issue, t.Description, t.Priority, t.User, t.Stamp, t.AssignedTo, t.Status, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
+        $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
         $this->db->from('tbl_tickets as t');
         $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
         $this->db->join('tbl_user as u1', 't.User=u1.userId');
@@ -150,7 +158,6 @@ class Tickets_model extends CI_Model {
 
   public function getTicket($id)
   {
-  	//$sql="SELECT * FROM tbl_tickets WHERE ticketId = '$id'";
     $this->db->select('t.*, u.fname, u.lname, u.userId');
     $this->db->from('tbl_tickets as t');
     $this->db->join('tbl_user as u', 't.User=u.userId');
@@ -159,18 +166,20 @@ class Tickets_model extends CI_Model {
     return $query;
   }
 
-  public function insChat(){
-    return $this->db->insert('tbl_chat');
+  public function insChat($post_data)
+  {
+    return $this->db->insert('tbl_chat', $post_data);
   }
 
   public function Chat($TID, $UID){
-    $this->db->select('c.*');
-    $this->db->from('tbl_chat');
+    $this->db->select('c.*, u.fname, u.lname');
+    $this->db->from('tbl_chat as c');
     $this->db->join('tbl_tickets as t', 'c.TID=t.ticketId');
     $this->db->join('tbl_user as u', 'c.UID=u.userId');
-    $query = $this->db->query();
+    $this->db->where('ticketId', $TID);
+    $query = $this->db->get();
     if($query->num_rows()>0){
-      return $query->row_array();
+      return $query->result_array();
     }
     else{return false;}
   }
