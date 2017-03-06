@@ -510,9 +510,8 @@ function chat(){
 											'</div>'+
 										'</div>'+
 									'</div>'+
-								'</div>';
+								'</div>'+
 							'</div>';
-
 			}
 
 			$('#messages').append(chat);
