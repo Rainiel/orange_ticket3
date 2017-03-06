@@ -149,7 +149,7 @@
 		    </select>
 		    <label>Priority</label>
 		  </div>
-		  <button style="display: none;" id="sideBar2Btn" class="btn waves-effect waves-light" type="submit"
+		  <button style="display: none; background-color: #2d3e50" id="sideBar2Btn" class="btn waves-effect waves-light" type="submit"
 		    <i class="material-icons right">Update</i>
 		  </button>
 		<input type="hidden" id="tickCount" name="tickCount[]">
@@ -193,12 +193,12 @@
 	      	<div class="col s12 123" id="headT" style="display: none;"></div>
 		        <!-- <hr class="123" style="display: none;"> -->
 		        <div class="col s12 123" id="chatTicket" style="display: none;">
-              <div class="collection"  id="ticketHead">
+              <div class="collection"  id="ticketHead" style="border-left: none; border-right: none">
 
               </div>
 
-            <div class="collection" style="min-height: 100%; height: 400px; max-height: 1000px; overflow: scroll; overflow-x: hidden">
-                        <a href="#!" class="secondary-content pull-right" style="margin-top: 15px; margin-right: 20px"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
+            <div class="collection" style="min-height: 100%; height: 400px; max-height: 1000px; overflow: scroll; overflow-x: hidden; border:none;">
+                        <!-- <a href="#!" class="secondary-content pull-right" style="margin-top: 15px; margin-right: 20px"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a> -->
     					<div class="collection" id="messages" style="border-top:none; border-left: none; border-right: none; border-bottom: none">
     					  <!-- <div class="collection-item avatar" style="border-bottom: none;">
     						<img src="assets/images/square.png" alt="" class="circle">
