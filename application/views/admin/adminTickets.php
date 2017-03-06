@@ -199,7 +199,7 @@
 
             <div class="collection" style="min-height: 100%; height: 400px; max-height: 1000px; overflow: scroll; overflow-x: hidden">
                         <a href="#!" class="secondary-content pull-right" style="margin-top: 15px; margin-right: 20px"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
-    					<div class="collection" id="messages" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
+    					<div class="collection" id="messages" style="border-top:none; border-left: none; border-right: none; border-bottom: none">
     					  <!-- <div class="collection-item avatar" style="border-bottom: none;">
     						<img src="assets/images/square.png" alt="" class="circle">
     						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>

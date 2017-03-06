@@ -416,16 +416,26 @@ function chat(){
 			var chat='';
 
 			for(i=0;i<data.length;i++){
-					chat += '<div class="convo-item" style="display: block; overflow: hidden;">'+
-					'<div class="collection-item avatar" style="border-bottom: none">'+
-								'<img src="assets/images/square.png" alt="" class="circle" style="margin-left: 10px; float: right">'+
-								'<span class="title" style="font-size: 14px; color: #2d3e50"><b>'+data[i].fname+''+data[i].lname+'</b></span>'+
-								'<p style="font-size: 12px;	margin-top: -5px;">'+data[i].Stamp+'<br>'+
-								'</p>'+
-								'<div class="convo-msg" style="float: right">'+
-								'<span class="title" id="msg" style="color: #2d3e50; font-size: 12px;">'+data[i].Message+'</span>'+
+					chat += '<div class="collection-item avatar" style="border-bottom: none; float: right">'+
+		 						'<img src="assets/images/square.png" alt="" class="circle">'+
 							'</div>'+
+							'<div class="row">'+
+								'<div class="flex-container" style="display: flex; justify-content: flex-end;  text-align: right; padding: 10px">'+
+									'<div class="flex-item">'+
+										'<div class="sender-wrap">'+
+											'<div class="namedate">'+
+												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: right"><b>'+data[i].fname+''+data[i].lname+'</b></span>'+
+												'<p style="font-size: 12px;	margin-top: -5px">'+data[i].Stamp+'<br>'+
+												'</p>'+
+											'</div>'+
+											'<div class="convo-msg">'+
+											'<span class="title" id="msg" style="color: white; background-color: #557291; font-size: 12px; box-shadow: 1px 1px 1px #C5C5C5; border-radius: 7px; padding: 10px">'+data[i].Message+'</span>'+
+											'</div>'+
+										'</div>'+
+									'</div>'+
+								'</div>';
 							'</div>';
+
 			}
 
 			$('#messages').append(chat);
