@@ -89,7 +89,7 @@
     		              <a class="waves-effect" data-stat="New">New <span class="new badge" data-badge-caption="4" style="margin-top: 4px"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="In-progress">In-progress</a>
+    		             <a class="waves-effect" data-stat="On-progress">On-progress</a>
     		           </li>
     		           <li class="tab filt">
     		             <a class="waves-effect" data-stat="On-hold">On-hold</a>
