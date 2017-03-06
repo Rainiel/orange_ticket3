@@ -100,7 +100,7 @@
               </div>
 
             <div class="col s8" style="margin: 0px;padding-right: 0px; margin-top: 20px">
-            
+
             </div>
 
           </div>
@@ -127,26 +127,26 @@
             </tr>
             <tr>
               <td>Alan</td>
-              <td><label class="openbtn" style="font-size: 12px; background-color: #61d7f1; border-radius: 3px; padding: 5px; color: white">In-Progress</label></td>
+              <td><label class="openbtn" style="font-size: 12px; background-color: #C9FC07; border-radius: 3px; padding: 5px; color: white">In-Progress</label></td>
               <td>General</td>
               <td><label class="majorbtn" style="font-size: 12px; background-color: #ec7172; border-radius: 3px; padding: 5px; color: white">Major</label></td>
 
             </tr>
             <tr>
               <td>Jonathan</td>
-              <td><label class="openbtn" style="font-size: 12px; background-color: #61d7f1; border-radius: 3px; padding: 5px; color: white">On-hold</label></td>
+              <td><label class="openbtn" style="font-size: 12px; background-color: #FF875A; border-radius: 3px; padding: 5px; color: white">On-hold</label></td>
               <td>General</td>
               <td><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">Minor</label></td>
             </tr>
             <tr>
               <td>Jonathan</td>
-              <td><label class="openbtn" style="font-size: 12px; background-color: #61d7f1; border-radius: 3px; padding: 5px; color: white">Resolved</label></td>
+              <td><label class="openbtn" style="font-size: 12px; background-color: #FCCF27; border-radius: 3px; padding: 5px; color: white">Resolved</label></td>
               <td>General</td>
               <td><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">Minor</label></td>
             </tr>
             <tr>
               <td>Jonathan</td>
-              <td><label class="openbtn" style="font-size: 12px; background-color: #61d7f1; border-radius: 3px; padding: 5px; color: white">Closed</label></td>
+              <td><label class="openbtn" style="font-size: 12px; background-color: #5995FF; border-radius: 3px; padding: 5px; color: white">Closed</label></td>
               <td>General</td>
               <td><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">Minor</label></td>
             </tr>
