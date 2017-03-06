@@ -226,7 +226,7 @@ function Show_tickets(){
 			      			'</td>'+
 							'<td class="ticketView">'+
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
 							'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Status+'</td>'+
@@ -416,12 +416,15 @@ function chat(){
 			var chat='';
 
 			for(i=0;i<data.length;i++){
-					chat += '<div class="collection-item avatar" style="border-bottom: none;">'+
-								'<img src="assets/images/square.png" alt="" class="circle">'+
+					chat += '<div class="convo-item" style="display: block; overflow: hidden;">'+
+					'<div class="collection-item avatar" style="border-bottom: none">'+
+								'<img src="assets/images/square.png" alt="" class="circle" style="margin-left: 10px; float: right">'+
 								'<span class="title" style="font-size: 14px; color: #2d3e50"><b>'+data[i].fname+''+data[i].lname+'</b></span>'+
 								'<p style="font-size: 12px;	margin-top: -5px;">'+data[i].Stamp+'<br>'+
 								'</p>'+
+								'<div class="convo-msg" style="float: right">'+
 								'<span class="title" id="msg" style="color: #2d3e50; font-size: 12px;">'+data[i].Message+'</span>'+
+							'</div>'+
 							'</div>';
 			}
 
@@ -446,4 +449,3 @@ $(document).on('submit', '#insChat', function(e){
 			}
 		});
 });
-

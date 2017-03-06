@@ -86,7 +86,7 @@
     		              <a class="waves-effect" data-stat="">All</a>
     		           </li>
     		           <li class="tab filt" >
-    		              <a class="waves-effect" data-stat="New">New</a>
+    		              <a class="waves-effect" data-stat="New">New <span class="new badge" data-badge-caption="4" style="margin-top: 4px"></span></a>
     		           </li>
     		           <li class="tab filt">
     		             <a class="waves-effect" data-stat="On-progress">On-progress</a>
@@ -102,7 +102,7 @@
     		           </li>
     		        <!-- </ul> -->
      	    <!-- </div> -->
-     	   
+
 		 <hr id="hr">
      	  <!-- <div class="tabs-vertical" id="sideBar4"> -->
                 <div class="headertwo" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>Team Conversation</center></div>
@@ -194,7 +194,7 @@
 		        <!-- <hr class="123" style="display: none;"> -->
 		        <div class="col s12 123" id="chatTicket" style="display: none;">
               <div class="collection"  id="ticketHead">
-        				
+
               </div>
 
             <div class="collection" style="min-height: 100%; height: 400px; max-height: 1000px; overflow: scroll; overflow-x: hidden">
@@ -219,12 +219,12 @@
                         </p>
                     </div>
                     <div class="collection-item" style="border-bottom: none">
-                    
+
                       <div class="input-field col s12" style="margin-top: 0px;">
                         <textarea id="textarea2" class="materialize-textarea"  style="margin-bottom: 0px;" required></textarea>
                         <label for="textarea2">Textarea</label>
                       </div>
-                    
+
                     </div>
                     <button type="submit" class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SEND
                     </button>
@@ -238,4 +238,3 @@
   </div>
 </div>
 <script src="assets/js/adminTickets.js"></script>
-
