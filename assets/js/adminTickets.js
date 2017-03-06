@@ -377,8 +377,8 @@ function showTicketInfo(id){
 					// '<option value="Data">Data Team</option>'+
 					// '<option value="Technical">Technical Team</option>';
 					sideBarS2 +=
-					'<option value="'+data.Status+'"  selected>'+data.Status+'</option>'+
-					'<option value="In-progress">In-progress</option>'+
+					'<option value="'+data.Status+'" selected>'+data.Status+'</option>'+
+					'<option value="On-progress">On-progress</option>'+
 					'<option value="On-hold">On-hold</option>'+
 					'<option value="Resolved">Resolved</option>'+
 					'<option value="Closed">Closed</option>';

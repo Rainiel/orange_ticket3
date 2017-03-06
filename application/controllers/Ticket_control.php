@@ -70,13 +70,13 @@ class Ticket_control extends CI_controller{
 
         if($result != false)
          { 
-            foreach($result as $Tickets )
+            foreach($result as $DateAndTime)
              {          
-                $Time = date("g:i a, F j, Y", strtotime($Tickets['Stamp']));
-                $date = date("F j, Y", strtotime($Tickets['DateFiled']));
-                $Tickets['Stamp'] = $Time;
-                $Tickets['DateFiled'] = $date;
-                $return[] = $Tickets;
+                $Time = date("g:i a, F j, Y", strtotime($DateAndTime['Stamp']));
+                $date = date("F j, Y", strtotime($DateAndTime['DateFiled']));
+                $DateAndTime['Stamp'] = $Time;
+                $DateAndTime['DateFiled'] = $date;
+                $return[] = $DateAndTime;
              }
         }      
         echo json_encode($return);
@@ -93,13 +93,13 @@ class Ticket_control extends CI_controller{
         $result=$this->Tickets_model->showAllTickets($Acc_type, $id, $team);
          if($result != false)
          { 
-            foreach($result as $Tickets )
+            foreach($result as $DateAndTime)
              {          
-                $Time = date("g:i a, F j, Y", strtotime($Tickets['Stamp']));
-                $date = date("F j, Y", strtotime($Tickets['DateFiled']));
-                $Tickets['Stamp'] = $Time;
-                $Tickets['DateFiled'] = $date;
-                $return[] = $Tickets;
+                $Time = date("g:i a, F j, Y", strtotime($DateAndTime['Stamp']));
+                $date = date("F j, Y", strtotime($DateAndTime['DateFiled']));
+                $DateAndTime['Stamp'] = $Time;
+                $DateAndTime['DateFiled'] = $date;
+                $return[] = $DateAndTime;
              }
         }
       echo json_encode($return);
@@ -150,13 +150,22 @@ class Ticket_control extends CI_controller{
     }
 
     public function Chat(){
+        $return=array();
         $this->load->model('Tickets_model');
         $UID=$this->session->userdata('userID');
         $TID=$this->input->post('tick');
 
         $result=$this->Tickets_model->Chat($TID, $UID);
 
-        echo json_encode($result);
+        if($result != false){
+            foreach($result as $DateAndTime){
+                $Time = date("F j, Y", strtotime($DateAndTime['Stamp']));
+                $DateAndTime['Stamp'] = $Time;
+                $return[] = $DateAndTime;
+            }
+        }
+
+        echo json_encode($return);
     }
 
      public function ticketGraph()
