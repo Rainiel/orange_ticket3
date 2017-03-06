@@ -197,37 +197,37 @@
                     <div class="collection" style="min-height: 100%; height: 400px; max-height: 1000px; overflow: scroll; overflow-x: hidden">
                         <a href="#!" class="secondary-content pull-right" style="margin-top: 15px; margin-right: 20px"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>
     					<div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px">
-    					  <div class="collection-item avatar" style="border-bottom: none">
-    						<img src="assets/images/square.png" alt="" class="circle">
-    						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
-    						<p style="font-size: 12px;	margin-top: -5px;">February 18<br>
-    						</p>
-    						<span class="title" style="color: #2d3e50; font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
-    							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-    							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
-    							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
-    							sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-    							<br>
-    						</span>
+    					    <div class="collection-item avatar" style="border-bottom: none">
+        						<img src="assets/images/square.png" alt="" class="circle">
+        						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
+        						<p style="font-size: 12px;	margin-top: -5px;">February 18<br>
+        						</p>
+        						<span class="title" style="color: #2d3e50; font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
+        							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
+        							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
+        							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
+        							sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+        							<br>
+        						</span>
+                            </div>
                         </div>
-                      </div>
 
-                      <div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; margin-right: 300px float:right">
-                        <div class="collection-item avatar" style="border-bottom: none">
-                          <img src="assets/images/square.png" alt="" class="circle">
-                          <span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
-                          <p style="font-size: 12px;margin-top: -5px;">February 18<br>
-                          </p>
-                          <span class="title" style="color: #2d3e50; font-size: 12px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
-                              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-                              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
-                              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
-                              sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-                              <br>
-                          </span>
+                        <div class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none; float:right">
+                            <div class="collection-item avatar pull-right" style="border-bottom: none; float: right">
+                                  <img src="assets/images/square.png" alt="" class="circle pull-right">
+                                  <span class="title" style="font-size: 14px; color: #2d3e50; float: right"><b>Rainiel</b></span>
+                                  <p style="font-size: 12px;margin-top: -5px; float: right">February 18<br>
+                                  </p>
+                                  <span class="title" style="color: #2d3e50; font-size: 12px; margin-right: -20px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>
+                                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
+                                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
+                                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>
+                                      sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                                      <br>
+                                  </span>
+                            </div>
                         </div>
-                      </div>
-                  </div>
+                    </div>
 
                 <div class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">
                     <div class="collection-header" style="padding: 0px; height: 20px">
