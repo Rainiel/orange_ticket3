@@ -19,5 +19,13 @@ function ticketGraph(){
 			},
 			});
 		};
+
+// function dashboardTick(){
+// 	$.ajax({
+		
+// 	})
+// }
+
   });
+
 

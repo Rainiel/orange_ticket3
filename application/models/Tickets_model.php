@@ -104,7 +104,7 @@ class Tickets_model extends CI_Model {
         $query = $this->db->query("SELECT t.*, 
                             u1.fname AS fname1, u1.lname AS lname1, 
                             u2.fname AS fname2, u2.lname AS lname2,
-                            (SELECT COUNT(*) FROM tbl_notifchat where TID = t.ticketId AND UID = ?) AS noticount
+                            (SELECT notif FROM tbl_notifchat where TID = t.ticketId AND UID = ?) AS notif
                           FROM tbl_tickets AS t 
                           INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
                           INNER JOIN tbl_user as u1 on t.User=u1.userId
@@ -176,27 +176,37 @@ class Tickets_model extends CI_Model {
     return $query;
   }
 
-  public function delNotifChat($TID)
+  public function updNotifChat($TID)
   {
+    $this->db->set('notif', '0');
     $this->db->where('TID', $TID);
-    return $this->db->delete('tbl_notifchat');
+    return $this->db->update('tbl_notifchat');
   }
 
-  public function insNotifChat($post_data)
+  public function insNotifChat($TID, $UID)
   {
-    return $this->db->insert('tbl_notifchat', $post_data);
+    $query = $this->db->query("SELECT * FROM tbl_notifchat WHERE TID = '$TID' AND UID = '$UID'");
+    if ($query->num_rows()==0){
+      $this->db->set('TID', $TID);
+      $this->db->set('UID', $UID);
+      $this->db->set('notif', '1');
+      return $this->db->insert('tbl_notifchat');
+    }
+    if($query->num_rows()>0){
+      $this->db->set('notif', '1');
+      $this->db->where("TID = '$TID' AND UID = '$UID'");
+      return $this->db->update('tbl_notifchat');
+      # $this->db->affected_rows();
+    }
   }
 
   public function notifChat($TID, $UID)
   {
-    $this->db->select('n.*, t.ticketId');
-    $this->db->from('tbl_notifchat as n');
-    $this->db->join('tbl_tickets as t', 'n.TID=t.ticketId');
-    $this->db->where("TID != '$TID' AND UID = '$UID'");
-    $this->db->order_by('TID', 'desc');
-    $this->db->Group_by('TID');
+    $this->db->select('notif');
+    $this->db->from('tbl_notifchat');
+    $this->db->affected_rows();
     $query = $this->db->get();
-    if($query->num_rows()>0){
+    if( $this->db->affected_rows()>0){
       return $query->result_array();
     }
     else{return false;}
