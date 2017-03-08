@@ -94,12 +94,22 @@ class Tickets_model extends CI_Model {
   {
       if($Acc_type == 'Admin')
       {
-        $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
-        $this->db->from('tbl_tickets as t');
-        $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
-        $this->db->join('tbl_user as u1 ', 't.User=u1.userId');
-        $this->db->order_by("ticketId", "desc");
-        $query = $this->db->get();
+        // $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
+        // $this->db->from('tbl_tickets as t');
+        // $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
+        // $this->db->join('tbl_user as u1 ', 't.User=u1.userId');
+        // $this->db->order_by("ticketId", "desc");
+        // $query = $this->db->get();
+
+        $query = $this->db->query("SELECT t.*, 
+                            u1.fname AS fname1, u1.lname AS lname1, 
+                            u2.fname AS fname2, u2.lname AS lname2,
+                            (SELECT COUNT(*) FROM tbl_notifchat where TID = t.ticketId AND UID = ?) AS noticount
+                          FROM tbl_tickets AS t 
+                          INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
+                          INNER JOIN tbl_user as u1 on t.User=u1.userId
+                          ORDER BY t.ticketId DESC
+          ", array($id));
       }
       if($Acc_type == 'Sub-Admin')
       {
@@ -166,6 +176,32 @@ class Tickets_model extends CI_Model {
     return $query;
   }
 
+  public function delNotifChat($TID)
+  {
+    $this->db->where('TID', $TID);
+    return $this->db->delete('tbl_notifchat');
+  }
+
+  public function insNotifChat($post_data)
+  {
+    return $this->db->insert('tbl_notifchat', $post_data);
+  }
+
+  public function notifChat($TID, $UID)
+  {
+    $this->db->select('n.*, t.ticketId');
+    $this->db->from('tbl_notifchat as n');
+    $this->db->join('tbl_tickets as t', 'n.TID=t.ticketId');
+    $this->db->where("TID != '$TID' AND UID = '$UID'");
+    $this->db->order_by('TID', 'desc');
+    $this->db->Group_by('TID');
+    $query = $this->db->get();
+    if($query->num_rows()>0){
+      return $query->result_array();
+    }
+    else{return false;}
+  }
+
   public function insChat($post_data)
   {
     return $this->db->insert('tbl_chat', $post_data);
@@ -211,11 +247,11 @@ class Tickets_model extends CI_Model {
     }
 
   public function TickCountAndSA($id){
-      $this->db->select('t.AssignedTo, u.userId, u.Tickets, u.team, u.fname, u.lname, COUNT(t.AssignedTo) as tick');
+      $this->db->select('t.AssignedTo, t.Status, u.userId, u.Tickets, u.team, u.fname, u.lname, COUNT(t.AssignedTo) as tick');
       $this->db->from('tbl_user as u');
       $this->db->join('tbl_tickets as t', 't.AssignedTo=u.userId');
-      //$this->db->where('team', $team);
-      $this->db->where_in('AssignedTo', $id);
+      $this->db->where('Status !=', 'Closed');
+      $this->db->where_in("AssignedTo = '$id'");
       $this->db->Group_by('t.AssignedTo');
 
       $query = $this->db->get();

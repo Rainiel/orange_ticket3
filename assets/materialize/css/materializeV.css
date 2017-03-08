@@ -24,7 +24,7 @@
   -webkit-transition: border-color .5s ease;
   transition: border-color .5s ease;
   border-left: 3px solid #5a5a5a;
-  background-color: rgba(128, 128, 128, 0.32); 
+  background-color: #ddd; 
   color: #5a5a5a; }
 .tabs-vertical .tab a {
   color: #5a5a5a;

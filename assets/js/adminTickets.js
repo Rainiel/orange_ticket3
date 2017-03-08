@@ -2,6 +2,10 @@ $(document).ready(function(){
 $('.modal').modal();
 $('select').material_select();
 Show_tickets();
+notifChat();
+setTimeout(function(){
+Show_tickets();
+}, 3000);
 
 $(document).on('click', '.fill-box', function(){
 		var check = $('.fill-box:checked').length;
@@ -53,7 +57,8 @@ $(document).on('click', '#filled-in-box', function(){
     });
 
 $(document).on('click', '.ticketView', function(){
-	showTicketInfo($(this).parent('tr').attr('data-Id'));
+	var ticketId = $(this).parent('tr').attr('data-Id');
+	showTicketInfo(ticketId);
 	$('#allTable').hide();
 	$('.123').show();
 	$('#sideBar').hide();
@@ -73,6 +78,7 @@ $(document).on('click', '#backT', function(){
 	$('.sideBar2').hide();
 	//$('#sideBar3').hide();
 	$('#sideBar2Btn').hide();
+	notifChat();
 });
 
 $(document).on('click', '#sideBar2Btn', function(){
@@ -138,15 +144,17 @@ $(document).on('change', '#selectTeam', function(){
  AutoAssign();
  });
 
+
+
 $(document).on('click', '.filt', function(){
 	var $Acc_type = $('#account').val();
 	var Status  = $('#statFilt a.active').attr('data-stat');
 	var Assign  = $('#statFilt a.active').attr('data-Ass');
 	var Assign2 = $('#AssFilt a.active').attr('data-Ass2');
-
+		base_url 		= $('#base').val();
 		$.ajax({
 			type : 'POST',
-			url: 'Ticket_control/filterTicket',
+			url: base_url + 'Ticket_control/filterTicket',
 			data: {
 				 'stat' : Status, 'Ass' : Assign, 'Ass2' : Assign2
 			},
@@ -159,16 +167,16 @@ $(document).on('click', '.filt', function(){
 				for(i=0;i<data.length;i++)
 				{
 				var test = data[i].ticketId;
-				if($Acc_type != 'user'){
-					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
-
-				 			'<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
+					body+=	'<tr data-Id="'+data[i].ticketId+'">';
+							if($Acc_type != 'user'){
+				 			body+= '<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
       							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
       							'<label for="'+test+'" style="margin-top: 15px;" ></label>' +
-			      			'</td>'+
-							'<td class="ticketView">'+
+			      			'</td>';
+			      			}
+							body+= '<td class="ticketView">'+
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
 							'</td>';
 							if(data[i].Status == 'New'){
@@ -196,44 +204,9 @@ $(document).on('click', '.filt', function(){
 							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
-				}
-				else{
-					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
-
-							'<td class="ticketView">'+
-							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
-							'</td>';
-							if(data[i].Status == 'New'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'On-progress'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'On-hold'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'Resolved'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'Closed'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
-							}
-							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>';
-							if(data[i].Priority == 'Low'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
-							}
-							if(data[i].Priority == 'High'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="majorbtn" style="font-size: 12px; background-color: #ec7172; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
-							}
-							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
-						'</tr>';
-				}
 				}
 				$('#showTicket').html(body);
-			},
+				},
 			error: function()
 			{
 				alert('dito pumapasok');
@@ -243,31 +216,35 @@ $(document).on('click', '.filt', function(){
 
 function Show_tickets(){
 	var $Acc_type = $('#account').val();
+	base_url 		= $('#base').val();
 		$.ajax({
 			type:'ajax',
-			url: 'Ticket_control/showTickets',
+			url: base_url + 'Ticket_control/showTickets',
 			dataType:'json',
 			success: function(data)
 			{
 				var body='';
 				var i;
-
 				for(i=0;i<data.length;i++)
 				{
 				var test = data[i].ticketId;
-				if($Acc_type != 'user'){
-					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
-
-				 			'<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
+				var bcolor = "#fff";
+				if(data[i].noticount == 0){
+					bcolor = "#ddd";
+				}
+				
+					body+=	'<tr data-Id="'+data[i].ticketId+'" style="background-color: '+ bcolor +'">';
+							if($Acc_type != 'user'){
+				 			body+= '<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
       							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
       							'<label for="'+test+'" style="margin-top: 15px;" ></label>' +
-			      			'</td>'+
-							'<td class="ticketView">'+
+			      			'</td>';
+			      			}
+							body+= '<td class="ticketView">'+
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
 							'</td>';
-
 							if(data[i].Status == 'New'){
 							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
 							}
@@ -293,43 +270,10 @@ function Show_tickets(){
 							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
-				}
-				else{
-					body+=	'<tr data-Id="'+data[i].ticketId+'">'+
 
-							'<td class="ticketView">'+
-							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'</p>'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
-							'</td>';
-							if(data[i].Status == 'New'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'On-progress'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'On-hold'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'Resolved'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'Closed'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
-							}
-							body+='<td class="ticketView"  style="text-align: center;">'+data[i].fname2+data[i].lname2+'</td>';
-							if(data[i].Priority == 'Low'){
-							body+='<td class="ticketView"  style="text-align: center;"><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
-							}
-							if(data[i].Priority == 'High'){
-							body+='<td class="ticketView"  style="text-align: center;"><label class="majorbtn" style="font-size: 12px; background-color: #ec7172; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
-							}
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
-						'</tr>';
-				}
 				}
 				$('#showTicket').html(body);
+			
 			},
 			error: function()
 			{
@@ -338,13 +282,28 @@ function Show_tickets(){
 		});
 	};
 
+function notifChat(){
+	base_url 		= $('#base').val();
+	$.ajax({
+		type: 'ajax',
+		url: base_url + 'Ticket_control/notifChat',
+		dataType: 'json',
+		success: function(data)
+		{
+			for(i=0;i<data.length;i++){
+				$("[data-Id="+data[i].TID+"]").css('background-color', '#fff');
+			}
+		}
+	})
+}
+
 function AutoAssign(){
 	var team = $('#selectTeam').val();
-	//alert(team);
+	base_url 		= $('#base').val();
 		$.ajax({
 			type: 'POST',
 			//method: 'POST',
-			url: 'Ticket_control/AutoAssign',
+			url: base_url + 'Ticket_control/AutoAssign',
 			data: {'team' : team},
 			dataType:'json',
 			success: function(data)
@@ -376,11 +335,11 @@ function AutoAssign(){
 
 function getCount(){
 	//var team = $('#selectTeam').val();
-	//alert(team);
+	base_url 		= $('#base').val();
 		$.ajax({
 			type: 'POST',
 			//method: 'POST',
-			url:'Ticket_control/TickCountAndSA',
+			url: base_url + 'Ticket_control/TickCountAndSA',
 			//data: {'tick' : tickCount, 'user' : userCount},
 			dataType:'json',
 			success: function(data)
@@ -417,14 +376,17 @@ function getCount(){
 
 var ticketId;
 function showTicketInfo(id){
+	var ID = $('#userId').val();
+	base_url 		= $('#base').val();
 		$.ajax({
-			url : 'Ticket_control/getTicket',
+			url : base_url + 'Ticket_control/getTicket',
 			type :'POST',
 			data : {
 				'id' : id
 			},
 			dataType: 'JSON',
 			success: function(data){
+
 				var ticketHead='';
 				var messages='';
 				var message='';
@@ -436,32 +398,52 @@ function showTicketInfo(id){
 					ticketHead += '<div class="collection-item">'+
 		    						  '<span class="title" style="color: #2d3e50"  style="margin-right: 20px"><b>Issue type: '+data.Issue+'</b></span>'+
 		                            	'<span class="title-second" style="font-size: 14px; margin-left: 15px">'+data.Subject+'</span>'+
-		                            	'<i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i><i class="fa fa-trash" aria-hidden="true"  style="margin-left: 6px;"></i>'+
-		                            	'<a class="waves-effect waves-light btn pull-right" id="backT" style="background-color: #2d3e50">Back</a>'+
+		                            	'<i class="fa fa-pencil" aria-hidden="true" style="margin-left: 6px;"></i>'+
+		                            	'<a class="waves-effect waves-light btn pull-right" style="background-color: #2d3e50;" id="backT">Back</a>'+
 		    						  '<p style="font-size: 12px; margin-top: -5px">Created: '+data.DateFiled+'</p>'+
 		    						'</div>';
-
-		    		messages += '<div class="collection-item avatar" style="border-bottom: none; float: left; padding: 0">'+
- 									'<img src="assets/images/square.png" alt="" class="circle">'+
+		    		if(ID == data.userId){
+	    			messages += '<div class="collection-item avatar" style="border-bottom: none; float: right">'+
+	 							'<img src="assets/images/square.png" alt="" class="circle">'+
+							'</div>'+
+							'<div class="row">'+
+								'<div class="flex-container" style="display: flex; justify-content: flex-end;  text-align: right; padding: 10px">'+
+									'<div class="flex-item">'+
+										'<div class="sender-wrap">'+
+											'<div class="namedate">'+
+												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: right"><b>'+data.fname+''+data.lname+'</b></span>'+
+												'<p style="font-size: 12px;	margin-top: -5px">'+data.DateFiled+'<br>'+
+												'</p>'+
+											'</div>'+
+											'<div class="convo-msg">'+
+											'<span class="title" id="msg" style="color: black; background-color: white; font-size: 12px; border-radius: 7px; padding: 10px">'+data.Description+'</span>'+
+											'</div>'+
+										'</div>'+
+									'</div>'+
+								'</div>'+
+							'</div>';
+					}
+					else{
+					messages += '<div class="collection-item avatar" style="border-bottom: none; float: left; padding-right: 0px;">'+
+		 							'<img src="assets/images/square.png" alt="" class="circle">'+
 								'</div>'+
 								'<div class="row">'+
-									'<div class="flex-container" style="display: flex; justify-content: flex-start; text-align: left; padding: 10px; margin-left: 20px">'+
+									'<div class="flex-container" style="display: flex; justify-content: flex;  text-align: left; padding: 10px">'+
 										'<div class="flex-item">'+
-										 	'<div class="sender-wrap" style="margin-left: 50px; margin-top: -12px">'+
+											'<div class="sender-wrap">'+
 												'<div class="namedate">'+
-							 						'<span class="title" style="font-size: 14px; color: #2d3e50"><b>'+data.fname+'&nbsp;'+data.lname+'</b></span>'+
-							 						'<p style="font-size: 12px;	margin-top: -2px;">'+data.DateFiled+'<br>'+
-							 						'</p>'+
+													'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: left"><b>'+data.fname+''+data.lname+'</b></span>'+
+													'<p style="font-size: 12px;	margin-top: -5px">'+data.DateFiled+'<br>'+
+													'</p>'+
 												'</div>'+
 												'<div class="convo-msg">'+
-	 												'<span class="title" id="msg" style="color: black; background-color: white; font-size: 12px; border-radius: 7px; padding: 10px; margin-left: -12px">'+data.Description+'</span>'+
-	 											'</div>'+
+												'<span class="title" id="msg" style="color: black; background-color: white; font-size: 12px; border-radius: 7px; padding: 10px">'+data.Description+'</span>'+
+												'</div>'+
 											'</div>'+
 										'</div>'+
 									'</div>'+
 								'</div>';
-
-
+					}
 					// sideBarS1 +=
 					// '<option value="'+data.AssignedTo+'" selected>'+data.AssignedTo+'</option>'+
 					// '<option value="Data">Data Team</option>'+
@@ -487,6 +469,7 @@ function showTicketInfo(id){
 				$('#ticketHead').html(ticketHead);
 				$('#messages').html(messages);
 				chat();
+				insNotifChat();
 			},
 			error: function(){
 				alert('error');
@@ -494,10 +477,30 @@ function showTicketInfo(id){
 		});
 };
 
+function delNotifChat(){
+	$.ajax({
+		type: 'POST',
+		url: base_url + 'Ticket_control/delNotifChat',
+		data: {'TID' : ticketId}
+	})
+}
+
+function insNotifChat(){
+		$.ajax({
+		type: 'POST',
+		url: base_url + 'Ticket_control/insNotifChat',
+		data: {'TID' : ticketId},
+	});
+};
+
+
+
 function chat(){
 	var TID = ticketId;
+	var ID = $('#userId').val();
+	base_url 		= $('#base').val();
 	$.ajax({
-		url: 'Ticket_control/Chat',
+		url: base_url + 'Ticket_control/Chat',
 		type: 'POST',
 		data: {'tick' : ticketId},
 		dataType: 'JSON',
@@ -506,6 +509,7 @@ function chat(){
 			var chat='';
 
 			for(i=0;i<data.length;i++){
+				if(ID == data[i].UID){
 					chat += '<div class="collection-item avatar" style="border-bottom: none; float: right">'+
 		 						'<img src="assets/images/square.png" alt="" class="circle">'+
 							'</div>'+
@@ -515,7 +519,30 @@ function chat(){
 										'<div class="sender-wrap">'+
 											'<div class="namedate">'+
 												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: right"><b>'+data[i].fname+''+data[i].lname+'</b></span>'+
-												'<p style="font-size: 12px;	margin-top: -2px">'+data[i].Stamp+'<br>'+
+												'<p style="font-size: 12px;	margin-top: -5px">'+data[i].Stamp+'<br>'+
+												'</p>'+
+											'</div>'+
+
+											'<div class="convo-msg">'+
+											'<span class="title" id="msg" style="color: black; background-color: white; font-size: 12px; border-radius: 7px; padding: 10px">'+data[i].Message+'</span>'+
+											'</div>'+
+
+										'</div>'+
+									'</div>'+
+								'</div>'+
+							'</div>';
+				}
+				else{
+					chat += '<div class="collection-item avatar" style="border-bottom: none; float: left; padding-right: 0px;">'+
+	 							'<img src="assets/images/square.png" alt="" class="circle">'+
+							'</div>'+
+							'<div class="row">'+
+								'<div class="flex-container" style="display: flex; justify-content: flex;  text-align: left; padding: 10px">'+
+									'<div class="flex-item">'+
+										'<div class="sender-wrap">'+
+											'<div class="namedate">'+
+												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: left"><b>'+data[i].fname+''+data[i].lname+'</b></span>'+
+												'<p style="font-size: 12px;	margin-top: -5px">'+data[i].Stamp+'<br>'+
 												'</p>'+
 											'</div>'+
 											'<div class="convo-msg">'+
@@ -524,11 +551,10 @@ function chat(){
 										'</div>'+
 									'</div>'+
 								'</div>'+
-							'</div>';
+							'</div>';	
+				}
 			}
-
 			$('#messages').append(chat);
-
 		}
 	})
 }
@@ -543,6 +569,7 @@ $(document).on('submit', '#insChat', function(e){
 			url: base_url + 'Ticket_control/insChat',
 			data: {'TID' : ticketId, 'msg' : MSG},
 			success: function(){
+				delNotifChat();
 				showTicketInfo(TID);
 				$('#textarea2').val('');
 			}

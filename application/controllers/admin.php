@@ -35,6 +35,7 @@ class admin extends CI_Controller{
         {
         		$arr['tim'] = $this->session->userdata('Team');
         		$arr['accts'] = $this->session->userdata('Acc_type');
+        		$arr['uid'] = $this->session->userdata('userID');
 				$this->load->view('includes/header');
 				$this->load->view('includes/navBar');
 				$this->load->view('includes/sidebar');

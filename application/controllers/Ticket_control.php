@@ -139,7 +139,34 @@ class Ticket_control extends CI_controller{
         echo json_encode($rs);
     }
 
-    public function insChat(){
+    public function delNotifChat()
+    {
+        $this->load->model('Tickets_model');
+        $TID=$this->input->post('TID');
+        $this->Tickets_model->delNotifChat($TID);
+    }
+
+    public function insNotifChat()
+    {
+        $this->load->model('Tickets_model');
+        $post_data=array(
+            'TID'       => $this->input->post('TID'),
+            'UID'       => $this->session->userdata('userID')
+            );
+        $this->Tickets_model->insNotifChat($post_data);
+    }
+
+    public function notifChat()
+    {
+        $this->load->model('Tickets_model');
+        $UID = $this->session->userdata('userID');
+        $TID = $this->input->post('TID');
+        $result=$this->Tickets_model->notifChat($TID, $UID);
+        echo json_encode($result);
+    }
+
+    public function insChat()
+    {
         $this->load->model('Tickets_model');
         $post_data=array(
            'TID'     => $this->input->post('TID'),
@@ -149,7 +176,8 @@ class Ticket_control extends CI_controller{
         $this->Tickets_model->insChat($post_data);
     }
 
-    public function Chat(){
+    public function Chat()
+    {
         $return=array();
         $this->load->model('Tickets_model');
         $UID=$this->session->userdata('userID');
@@ -164,7 +192,6 @@ class Ticket_control extends CI_controller{
                 $return[] = $DateAndTime;
             }
         }
-
         echo json_encode($return);
     }
 
