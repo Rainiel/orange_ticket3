@@ -402,16 +402,21 @@ function showTicketInfo(id){
 		                            	'<a class="waves-effect waves-light btn pull-right" style="background-color: #2d3e50;" id="backT">Back</a>'+
 		    						  '<p style="font-size: 12px; margin-top: -5px">Created: '+data.DateFiled+'</p>'+
 		    						'</div>';
+		    		var float = 'left';
+		    		var flex = '';
 		    		if(ID == data.userId){
-	    			messages += '<div class="collection-item avatar" style="border-bottom: none; float: right">'+
+		    			float = 'right';
+		    			flex = 'end';
+		    		}
+	    			messages += '<div class="collection-item avatar" style="border-bottom: none; float: '+float+';">'+
 	 							'<img src="assets/images/square.png" alt="" class="circle">'+
 							'</div>'+
 							'<div class="row">'+
-								'<div class="flex-container" style="display: flex; justify-content: flex-end;  text-align: right; padding: 10px">'+
+								'<div class="flex-container" style="display: flex; justify-content: flex-'+flex+';  text-align: '+float+'; padding: 10px">'+
 									'<div class="flex-item">'+
 										'<div class="sender-wrap">'+
 											'<div class="namedate">'+
-												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: right"><b>'+data.fname+''+data.lname+'</b></span>'+
+												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: '+float+';"><b>'+data.fname+''+data.lname+'</b></span>'+
 												'<p style="font-size: 12px;	margin-top: -5px">'+data.DateFiled+'<br>'+
 												'</p>'+
 											'</div>'+
@@ -422,28 +427,7 @@ function showTicketInfo(id){
 									'</div>'+
 								'</div>'+
 							'</div>';
-					}
-					else{
-					messages += '<div class="collection-item avatar" style="border-bottom: none; float: left; padding-right: 0px;">'+
-		 							'<img src="assets/images/square.png" alt="" class="circle">'+
-								'</div>'+
-								'<div class="row">'+
-									'<div class="flex-container" style="display: flex; justify-content: flex;  text-align: left; padding: 10px">'+
-										'<div class="flex-item">'+
-											'<div class="sender-wrap">'+
-												'<div class="namedate">'+
-													'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: left"><b>'+data.fname+''+data.lname+'</b></span>'+
-													'<p style="font-size: 12px;	margin-top: -5px">'+data.DateFiled+'<br>'+
-													'</p>'+
-												'</div>'+
-												'<div class="convo-msg">'+
-												'<span class="title" id="msg" style="color: black; background-color: white; font-size: 12px; border-radius: 7px; padding: 10px">'+data.Description+'</span>'+
-												'</div>'+
-											'</div>'+
-										'</div>'+
-									'</div>'+
-								'</div>';
-					}
+					
 					// sideBarS1 +=
 					// '<option value="'+data.AssignedTo+'" selected>'+data.AssignedTo+'</option>'+
 					// '<option value="Data">Data Team</option>'+
@@ -509,16 +493,21 @@ function chat(){
 			var chat='';
 
 			for(i=0;i<data.length;i++){
+				var float = 'left';
+				var flex = '';
 				if(ID == data[i].UID){
-					chat += '<div class="collection-item avatar" style="border-bottom: none; float: right">'+
+					float = 'right';
+					flex = 'end';
+				}
+					chat += '<div class="collection-item avatar" style="border-bottom: none; float: '+float+';">'+
 		 						'<img src="assets/images/square.png" alt="" class="circle">'+
 							'</div>'+
 							'<div class="row">'+
-								'<div class="flex-container" style="display: flex; justify-content: flex-end;  text-align: right; padding: 10px">'+
+								'<div class="flex-container" style="display: flex; justify-content: flex-'+flex+';  text-align: '+float+'; padding: 10px">'+
 									'<div class="flex-item">'+
 										'<div class="sender-wrap">'+
 											'<div class="namedate">'+
-												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: right"><b>'+data[i].fname+''+data[i].lname+'</b></span>'+
+												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: '+float+';"><b>'+data[i].fname+''+data[i].lname+'</b></span>'+
 												'<p style="font-size: 12px;	margin-top: -5px">'+data[i].Stamp+'<br>'+
 												'</p>'+
 											'</div>'+
@@ -531,28 +520,6 @@ function chat(){
 									'</div>'+
 								'</div>'+
 							'</div>';
-				}
-				else{
-					chat += '<div class="collection-item avatar" style="border-bottom: none; float: left; padding-right: 0px;">'+
-	 							'<img src="assets/images/square.png" alt="" class="circle">'+
-							'</div>'+
-							'<div class="row">'+
-								'<div class="flex-container" style="display: flex; justify-content: flex;  text-align: left; padding: 10px">'+
-									'<div class="flex-item">'+
-										'<div class="sender-wrap">'+
-											'<div class="namedate">'+
-												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: left"><b>'+data[i].fname+''+data[i].lname+'</b></span>'+
-												'<p style="font-size: 12px;	margin-top: -5px">'+data[i].Stamp+'<br>'+
-												'</p>'+
-											'</div>'+
-											'<div class="convo-msg">'+
-											'<span class="title" id="msg" style="color: black; background-color: white; font-size: 12px; border-radius: 7px; padding: 10px">'+data[i].Message+'</span>'+
-											'</div>'+
-										'</div>'+
-									'</div>'+
-								'</div>'+
-							'</div>';	
-				}
 			}
 			$('#messages').append(chat);
 		}
