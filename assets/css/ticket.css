@@ -6,7 +6,7 @@ nav .ticketing-header {
 
 nav .ticketing-logo {
     font-size: 20px;
-    margin-left: 20px;
+    margin-left: 250px;
     color: #2d3e50;
 }
 
@@ -17,4 +17,143 @@ nav ul a {
     display: block;
     padding: 0 15px;
     cursor: pointer;
+}
+
+.ticket-container {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.ticket-row {
+    box-shadow: 0px 1px 10px 0px #888888;
+    margin-left: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+}
+
+.cardone {
+    background: #61d7f1;
+}
+
+.cardtwo {
+    background: #ec7172;
+}
+
+.cardthree {
+    background: #6bd049;
+}
+
+.cardfour {
+    background: #f0e94b;
+}
+
+.fa-paper-plane-o {
+    font-size: 65px;
+}
+
+.fa-envelope-o {
+    font-size: 65px;
+}
+
+.fa-list-alt {
+    font-size: 65px;
+}
+
+.fa-users {
+    font-size: 65px;
+}
+
+.dash-num {
+    border: 1px solid #7C7C7C;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    height: 70px;
+    margin-left: 110px;
+    margin-top: -65px;
+}
+
+.ticketNum {
+    font-size: 45px;
+    margin-right: 20px;
+    margin-top: -12px;
+}
+
+.urgentNum {
+    font-size: 45px;
+    margin-right: 20px;
+    margin-top: -12px;
+}
+
+.comNum {
+    font-size: 45px;
+    margin-right: 20px;
+    margin-top: -12px;
+}
+
+.onlineNum {
+    font-size: 45px;
+    margin-right: 20px;
+    margin-top: -12px;
+}
+
+.ticketName {
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+
+.urgentName {
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.comName {
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+
+.onlineName {
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+
+.performance-row {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background: #2d3e50;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.txtperf {
+    margin-left: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+
+.filter-month {
+    margin-top: -30px;
+}
+
+.tbl-dash {
+    box-shadow: 0px 1px 1px 0px #888888;
+}
+
+.thead-dash {
+    background: #2d3e50;
+}
+
+.th-dash{
+    color: white;
+    border-radius: 0px;
 }
