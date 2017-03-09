@@ -5,7 +5,7 @@ class Tickets_model extends CI_Model {
 
 	public function checklogin()
 	{
-		$this->db->where('username', $this->input->post('username'));
+		$this->db->where('username',$this->input->post('username'));
 		$this->db->where('password',$this->input->post('password'));
 
 		$query=$this->db->get('tbl_user');
@@ -15,6 +15,20 @@ class Tickets_model extends CI_Model {
 		}
 		else{return false;}
 	}
+
+  public function checkOnline($UserId)
+  {
+    $this->db->set('Online', '1');
+    $this->db->where('userId', $UserId); 
+    return $this->db->update('tbl_user');
+  }
+
+  public function checkOffline($UserId)
+  {
+    $this->db->set('Online', '0');
+    $this->db->where('userId', $UserId);
+    return $this->db->update('tbl_user');
+  }
 
 	public function save_ticket($post_data)
 	{
@@ -38,57 +52,82 @@ class Tickets_model extends CI_Model {
           $Where = "WHERE t.Status = '$stat'";
          }
          if($Ass2 != NULL && $stat == NULL){
-          $Where = "WHERE t.Status = '$Ass2'";
+          $Where = "WHERE t.Issue = '$Ass2'";
          }
          if($stat != NULL && $Ass2 != NULL){
           $Where = "WHERE t.Status = '$stat' AND t.Issue = '$Ass2'";
          }
-         $query = $this->db->query("SELECT t.*, 
-                            u1.fname AS fname1, u1.lname AS lname1, 
-                            u2.fname AS fname2, u2.lname AS lname2,
-                            (SELECT notif FROM tbl_notifchat where TID = t.ticketId AND UID = $id) AS notif,
-                            (SELECT COUNT(*) FROM tbl_notifchat WHERE TID = t.ticketId AND UID = $id) AS noticount
-                          FROM tbl_tickets AS t
-                          INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
-                          INNER JOIN tbl_user as u1 on t.User=u1.userId
-                          $Where
-                          ORDER BY t.ticketId DESC
-                          
-          ");
+        $query = $this->db->query("SELECT t.*, 
+                                u1.fname AS fname1, u1.lname AS lname1, 
+                                u2.fname AS fname2, u2.lname AS lname2,
+                                u1.Online AS Online, u1.TimeLog AS TimeLog,
+                                (SELECT notif FROM tbl_notifchat where TID = t.ticketId AND UID = $id) AS notif,
+                                (SELECT COUNT(*) FROM tbl_notifchat WHERE TID = t.ticketId AND UID = $id) AS noticount
+                                FROM tbl_tickets AS t
+                                INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
+                                INNER JOIN tbl_user as u1 on t.User=u1.userId
+                                $Where
+                                ORDER BY t.ticketId DESC
+                  ");
           //$query = $this->db->get();
       }
       if($Acc_type == 'Sub-Admin')
       {
-        $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
-        $this->db->from('tbl_tickets as t');
-        $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
-        $this->db->join('tbl_user as u1', 't.User=u1.userId');
-        $this->db->order_by('ticketId', 'desc');
+        // $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
+        // $this->db->from('tbl_tickets as t');
+        // $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
+        // $this->db->join('tbl_user as u1', 't.User=u1.userId');
+        // $this->db->order_by('ticketId', 'desc');
+        $Where = '';
         if($stat == NULL && $Ass == NULL){
-          $this->db->where("AssignedTo = '$id'");
+          $Where = "WHERE t.AssignedTo = '$id'";
         }
         if($stat != NULL){
-          $this->db->where("AssignedTo = '$id' AND Status = '$stat'");
+          $Where = "WHERE t.AssignedTo = '$id' AND Status = '$stat'";
           }
         if($Ass != NULL){
-          $this->db->where("Issue = '$Ass' AND AssignedTo != '$id'");
+          $Where = "WHERE t.Issue = '$Ass' AND t.AssignedTo != '$id'";
         }
-        $query = $this->db->get();
+        
+        $query = $this->db->query("SELECT t.*, 
+                                u1.fname AS fname1, u1.lname AS lname1, 
+                                u2.fname AS fname2, u2.lname AS lname2,
+                                u1.Online AS Online, u1.TimeLog AS TimeLog,
+                                (SELECT notif FROM tbl_notifchat where TID = t.ticketId AND UID = $id) AS notif,
+                                (SELECT COUNT(*) FROM tbl_notifchat WHERE TID = t.ticketId AND UID = $id) AS noticount
+                                FROM tbl_tickets AS t
+                                INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
+                                INNER JOIN tbl_user as u1 on t.User=u1.userId
+                                $Where
+                                ORDER BY t.ticketId DESC
+                                ");
       }
       if($Acc_type == 'user')
       {
-        $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
-        $this->db->from('tbl_tickets as t');
-        $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
-        $this->db->join('tbl_user as u1', 't.User=u1.userId');
-        $this->db->order_by('ticketId', 'desc');
+        // $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
+        // $this->db->from('tbl_tickets as t');
+        // $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
+        // $this->db->join('tbl_user as u1', 't.User=u1.userId');
+        // $this->db->order_by('ticketId', 'desc');
+        $Where = '';
         if($stat == NULL){
-          $this->db->where("User = '$id'");
+          $Where = "WHERE t.User = '$id'";
           }
         if($stat != NULL){
-          $this->db->where("User = '$id' AND Status = '$stat'");
+          $Where = "WHERE t.User = '$id' AND t.Status = '$stat'";
           }
-        $query = $this->db->get();
+        $query = $this->db->query("SELECT t.*, 
+                                u1.fname AS fname1, u1.lname AS lname1, 
+                                u2.fname AS fname2, u2.lname AS lname2,
+                                u1.Online AS Online, u1.TimeLog AS TimeLog,
+                                (SELECT notif FROM tbl_notifchat where TID = t.ticketId AND UID = $id) AS notif,
+                                (SELECT COUNT(*) FROM tbl_notifchat WHERE TID = t.ticketId AND UID = $id) AS noticount
+                                FROM tbl_tickets AS t
+                                INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
+                                INNER JOIN tbl_user as u1 on t.User=u1.userId
+                                $Where
+                                ORDER BY t.ticketId DESC 
+                                  ");
       }
     if($query->num_rows()>0)
     {
@@ -111,6 +150,7 @@ class Tickets_model extends CI_Model {
         $query = $this->db->query("SELECT t.*, 
                             u1.fname AS fname1, u1.lname AS lname1, 
                             u2.fname AS fname2, u2.lname AS lname2,
+                            u1.Online AS Online, u1.TimeLog AS TimeLog,
                             (SELECT notif FROM tbl_notifchat where TID = t.ticketId AND UID = $id) AS notif,
                             (SELECT COUNT(*) FROM tbl_notifchat WHERE TID = t.ticketId AND UID = $id) AS noticount
                           FROM tbl_tickets AS t
@@ -121,23 +161,33 @@ class Tickets_model extends CI_Model {
       }
       if($Acc_type == 'Sub-Admin')
       {
-        $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
-        $this->db->from('tbl_tickets as t');
-        $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
-        $this->db->join('tbl_user as u1 ', 't.User=u1.userId');
-        $this->db->where('AssignedTo', $id);
-        $this->db->order_by("ticketId", "desc");
-        $query = $this->db->get();
+        $query = $this->db->query("SELECT t.*, 
+                            u1.fname AS fname1, u1.lname AS lname1, 
+                            u2.fname AS fname2, u2.lname AS lname2,
+                            u1.Online AS Online, u1.TimeLog AS TimeLog,
+                            (SELECT notif FROM tbl_notifchat where TID = t.ticketId AND UID = $id) AS notif,
+                            (SELECT COUNT(*) FROM tbl_notifchat WHERE TID = t.ticketId AND UID = $id) AS noticount
+                          FROM tbl_tickets AS t
+                          INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
+                          INNER JOIN tbl_user as u1 on t.User=u1.userId
+                          Where t.AssignedTo = $id
+                          ORDER BY t.ticketId DESC
+          ");
       }
       if($Acc_type == 'user')
       {
-        $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
-        $this->db->from('tbl_tickets as t');
-        $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
-        $this->db->join('tbl_user as u1', 't.User=u1.userId');
-        $this->db->where('t.User', $id);
-        $this->db->order_by("ticketId", "desc");
-        $query = $this->db->get();
+        $query = $this->db->query("SELECT t.*, 
+                            u1.fname AS fname1, u1.lname AS lname1, 
+                            u2.fname AS fname2, u2.lname AS lname2,
+                            u1.Online AS Online, u1.TimeLog AS TimeLog,
+                            (SELECT notif FROM tbl_notifchat where TID = t.ticketId AND UID = $id) AS notif,
+                            (SELECT COUNT(*) FROM tbl_notifchat WHERE TID = t.ticketId AND UID = $id) AS noticount
+                          FROM tbl_tickets AS t
+                          INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
+                          INNER JOIN tbl_user as u1 on t.User=u1.userId
+                          Where t.User = $id
+                          ORDER BY t.ticketId DESC
+          ");
       }   
       if($query->num_rows()>0)
         {

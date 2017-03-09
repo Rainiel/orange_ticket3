@@ -49,6 +49,8 @@ class Login extends CI_Controller {
             'is_logged_in'  =>      TRUE
           );
           $this->session->set_userdata($data_ses);
+          $UserId = $this->session->userdata('userID');
+          $this->Tickets_model->checkOnline($UserId);
          return true;
         }
         else
@@ -72,6 +74,9 @@ class Login extends CI_Controller {
 
     public function logout()
     {
+        $this->load->model('Tickets_model');
+        $UserId = $this->session->userdata('userID');
+        $this->Tickets_model->checkOffline($UserId);
         $this->session->sess_destroy();  
         redirect('');
     }
