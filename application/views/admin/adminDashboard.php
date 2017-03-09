@@ -19,8 +19,8 @@
              <i class="fa fa-paper-plane-o" aria-hidden="true" style="font-size: 65px"></i>
                  <div class="dash-num" style="border: 1px solid #7C7C7C; border-top: none; border-bottom: none; border-right: none; height: 70px;
                  margin-left: 110px; margin-top: -65px">
-                <p class="ticketNum pull-right" style="font-size: 45px; margin-right: 20px; margin-top: -12px" >9</p>
-                <p class="ticketNum pull-right" style="font-size: 14px; margin-right: 10px; margin-top: -5px" >Tickets</p>
+                <p class="ticketNum pull-right" style="font-size: 45px; margin-right: 20px; margin-top: -12px" id="AllTicket"></p>
+                <p class="ticketNum pull-right" style="font-size: 14px; margin-right: 10px; margin-top: -5px">Tickets</p>
                 </div>
             </div>
           </div>
@@ -32,7 +32,7 @@
               <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 65px"></i>
               <div class="dash-num" style="border: 1px solid #7C7C7C; border-top: none; border-bottom: none; border-right: none; height: 70px;
               margin-left: 110px; margin-top: -65px">
-             <p class="urgentNum pull-right" style="font-size: 45px; margin-right: 20px; margin-top: -12px">10</p>
+             <p class="urgentNum pull-right" style="font-size: 45px; margin-right: 20px; margin-top: -12px" id="HighTicket"></p>
              <p class="urgentNum pull-right" style="font-size: 14px; margin-right: 20px; margin-top: -5px">Urgent</p>
              </div>
             </div>
@@ -45,7 +45,7 @@
               <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 65px"></i>
               <div class="dash-num" style="border: 1px solid #7C7C7C; border-top: none; border-bottom: none; border-right: none; height: 70px;
               margin-left: 110px; margin-top: -65px">
-              <p class="comNum pull-right" style="font-size: 45px; margin-right: 20px; margin-top: -12px">4</p>
+              <p class="comNum pull-right" style="font-size: 45px; margin-right: 20px; margin-top: -12px" id="ClosedTicket"></p>
               <p class="comNum pull-right" style="font-size: 14px; margin-right: 2px; margin-top: -5px">Completed</p>
               </div>
             </div>
@@ -114,39 +114,8 @@
             </tr>
           </thead>
 
-          <tbody>
-            <tr>
-              <td><center>Alvin</td>
-              <td><center><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 5px; padding: 4px; color: white">New</label></td>
-              <td><center>General</td>
-              <td><center><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 5px; padding: 4px; color: white">Minor</label></td>
-
-            </tr>
-            <tr>
-              <td><center>Alan</td>
-              <td><center><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 5px; padding: 4px; color: white">In-Progress</label></td>
-              <td><center>General</td>
-              <td><center><label class="majorbtn" style="font-size: 12px; background-color: #ec7172; border-radius: 5px; padding: 4px; color: white">Major</label></td>
-
-            </tr>
-            <tr>
-              <td><center>Jonathan</td>
-              <td><center><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 5px; padding: 4px; color: white">On-hold</label></td>
-              <td><center>General</td>
-              <td><center><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 5px; padding: 4px; color: white">Minor</label></td>
-            </tr>
-            <tr>
-              <td><center>Jonathan</td>
-              <td><center><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 5px; padding: 4px; color: white">Resolved</label></td>
-              <td><center>General</td>
-              <td><center><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 5px; padding: 4px; color: white">Minor</label></td>
-            </tr>
-            <tr>
-              <td><center>Jonathan</td>
-              <td><center><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 5px; padding: 4px; color: white">Closed</label></td>
-              <td><center>General</td>
-              <td><center><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 5px; padding: 4px; color: white">Minor</label></td>
-            </tr>
+          <tbody id='dashboardTickets'>
+            
           </tbody>
         </table>
         </div>

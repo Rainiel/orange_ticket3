@@ -105,6 +105,20 @@ class Ticket_control extends CI_controller{
       echo json_encode($return);
     }
 
+    public function dashboardTicks()
+    {
+        $this->load->model('Tickets_model');
+        $result=$this->Tickets_model->dashboardTicks();
+        echo json_encode($result);
+    }
+
+    public function dashboardCounts()
+    {
+        $this->load->model('Tickets_model');
+        $result=$this->Tickets_model->dashboardCounts();
+        echo json_encode($result);
+    }
+
     public function showTicketsSA()
     {
         $this->load->model('Tickets_model');
@@ -139,21 +153,21 @@ class Ticket_control extends CI_controller{
         echo json_encode($rs);
     }
 
-    public function delNotifChat()
+    public function updNotifChat()
     {
         $this->load->model('Tickets_model');
         $TID=$this->input->post('TID');
-        $this->Tickets_model->delNotifChat($TID);
+        $this->Tickets_model->updNotifChat($TID);
     }
 
     public function insNotifChat()
     {
         $this->load->model('Tickets_model');
-        $post_data=array(
-            'TID'       => $this->input->post('TID'),
-            'UID'       => $this->session->userdata('userID')
-            );
-        $this->Tickets_model->insNotifChat($post_data);
+        
+            $TID = $this->input->post('TID');
+            $UID = $this->session->userdata('userID');
+            
+        $this->Tickets_model->insNotifChat($TID, $UID);
     }
 
     public function notifChat()
@@ -195,7 +209,7 @@ class Ticket_control extends CI_controller{
         echo json_encode($return);
     }
 
-     public function ticketGraph()
+    public function ticketGraph()
     {
         $this->load->model('Tickets_model');
         $result=$this->Tickets_model->ticketGraph();

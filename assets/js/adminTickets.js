@@ -3,9 +3,10 @@ $('.modal').modal();
 $('select').material_select();
 Show_tickets();
 notifChat();
-setTimeout(function(){
-Show_tickets();
-}, 3000);
+
+// setTimeout(function(){
+// 	notifChat();
+// }, 3000);
 
 $(document).on('click', '.fill-box', function(){
 		var check = $('.fill-box:checked').length;
@@ -78,7 +79,8 @@ $(document).on('click', '#backT', function(){
 	$('.sideBar2').hide();
 	//$('#sideBar3').hide();
 	$('#sideBar2Btn').hide();
-	notifChat();
+	Show_tickets();
+	//notifChat();
 });
 
 $(document).on('click', '#sideBar2Btn', function(){
@@ -147,6 +149,9 @@ $(document).on('change', '#selectTeam', function(){
 
 
 $(document).on('click', '.filt', function(){
+
+});
+function FiletTicket(){
 	var $Acc_type = $('#account').val();
 	var Status  = $('#statFilt a.active').attr('data-stat');
 	var Assign  = $('#statFilt a.active').attr('data-Ass');
@@ -167,7 +172,11 @@ $(document).on('click', '.filt', function(){
 				for(i=0;i<data.length;i++)
 				{
 				var test = data[i].ticketId;
-					body+=	'<tr data-Id="'+data[i].ticketId+'">';
+				var bcolor = "#fff";
+				if(data[i].notif == 0 || data[i].noticount == 0){
+					bcolor = "#ddd";
+				}
+					body+=	'<tr data-Id="'+data[i].ticketId+'" style="background-color: '+bcolor+'">';
 							if($Acc_type != 'user'){
 				 			body+= '<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
       							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
@@ -212,7 +221,7 @@ $(document).on('click', '.filt', function(){
 				alert('dito pumapasok');
 			},
 		});
- });
+ };
 
 function Show_tickets(){
 	var $Acc_type = $('#account').val();
@@ -229,11 +238,10 @@ function Show_tickets(){
 				{
 				var test = data[i].ticketId;
 				var bcolor = "#fff";
-				if(data[i].noticount == 0){
+				if(data[i].notif == 0 || data[i].noticount == 0){
 					bcolor = "#ddd";
 				}
-
-					body+=	'<tr data-Id="'+data[i].ticketId+'" style="background-color: '+ bcolor +'">';
+					body+=	'<tr data-Id="'+data[i].ticketId+'" style="background-color: '+bcolor+'">';
 							if($Acc_type != 'user'){
 				 			body+= '<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
       							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
@@ -270,8 +278,8 @@ function Show_tickets(){
 							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
-
 				}
+
 				$('#showTicket').html(body);
 
 			},
@@ -284,17 +292,16 @@ function Show_tickets(){
 
 function notifChat(){
 	base_url 		= $('#base').val();
+	setTimeout(function(){
 	$.ajax({
-		type: 'ajax',
 		url: base_url + 'Ticket_control/notifChat',
-		dataType: 'json',
 		success: function(data)
-		{
-			for(i=0;i<data.length;i++){
-				$("[data-Id="+data[i].TID+"]").css('background-color', '#fff');
-			}
+		{	
+			notifChat();
+			Show_tickets();
 		}
 	})
+	}, 3000);
 }
 
 function AutoAssign(){
@@ -461,11 +468,14 @@ function showTicketInfo(id){
 		});
 };
 
-function delNotifChat(){
+function updNotifChat(){
 	$.ajax({
 		type: 'POST',
-		url: base_url + 'Ticket_control/delNotifChat',
-		data: {'TID' : ticketId}
+		url: base_url + 'Ticket_control/updNotifChat',
+		data: {'TID' : ticketId},
+		success:function(){
+			//notifChat();
+		}
 	})
 }
 
@@ -474,6 +484,9 @@ function insNotifChat(){
 		type: 'POST',
 		url: base_url + 'Ticket_control/insNotifChat',
 		data: {'TID' : ticketId},
+		success:function(){
+			//notifChat();
+		}
 	});
 };
 
@@ -536,7 +549,7 @@ $(document).on('submit', '#insChat', function(e){
 			url: base_url + 'Ticket_control/insChat',
 			data: {'TID' : ticketId, 'msg' : MSG},
 			success: function(){
-				delNotifChat();
+				updNotifChat();
 				showTicketInfo(TID);
 				$('#textarea2').val('');
 			}
