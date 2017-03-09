@@ -12,13 +12,13 @@
 	<link rel="stylesheet" type="text/css" href="assets/materialize/css/materializeV.css">
 	<link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/ticket.css">
-	<script src="assets/tinymce/tinymce.min.js"></script>
+	<!-- <script src="assets/tinymce/tinymce.min.js"></script> -->
 	<script src="assets/canvas/canvasjs.min.js"></script>
 
 	 <script>
-     tinymce.init({
-         selector: "textarea"
-     });
+     // tinymce.init({
+     //     selector: "textarea"
+     // });
 
 
 

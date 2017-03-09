@@ -1,8 +1,8 @@
 $(document).ready(function(){
 $('.modal').modal();
 $('select').material_select();
-Show_tickets();
-notifChat();
+filetTicket();
+//notifChat();
 
 // setTimeout(function(){
 // 	notifChat();
@@ -99,7 +99,7 @@ $(document).on('click', '#sideBar2Btn', function(){
 		url: base_url + 'Ticket_control/editTicket',
 		data: {'uAssign' : uAssign, 'uStatus' : uStatus, 'uPriority' : uPriority, 'TID' : getTicket},
 		success: function(data){
-			Show_tickets();
+			filetTicket();
 			$('#filled-in-box').prop('checked',false);
 			$('#sideBar').show();
 			//$('#sideBar4').show();
@@ -149,9 +149,9 @@ $(document).on('change', '#selectTeam', function(){
 
 
 $(document).on('click', '.filt', function(){
-
+filetTicket();
 });
-function FiletTicket(){
+function filetTicket(){
 	var $Acc_type = $('#account').val();
 	var Status  = $('#statFilt a.active').attr('data-stat');
 	var Assign  = $('#statFilt a.active').attr('data-Ass');
@@ -176,6 +176,10 @@ function FiletTicket(){
 				if(data[i].notif == 0 || data[i].noticount == 0){
 					bcolor = "#ddd";
 				}
+				var Log = 'Online';
+				if(data[i].Online == 0){
+					Log = data[i].TimeLog;
+				}
 					body+=	'<tr data-Id="'+data[i].ticketId+'" style="background-color: '+bcolor+'">';
 							if($Acc_type != 'user'){
 				 			body+= '<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
@@ -185,7 +189,7 @@ function FiletTicket(){
 			      			}
 							body+= '<td class="ticketView">'+
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'<span style="float: right;">'+Log+'</span>'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 11px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
 							'</td>';
 							if(data[i].Status == 'New'){
@@ -223,82 +227,85 @@ function FiletTicket(){
 		});
  };
 
-function Show_tickets(){
-	var $Acc_type = $('#account').val();
-	base_url 		= $('#base').val();
-		$.ajax({
-			type:'ajax',
-			url: base_url + 'Ticket_control/showTickets',
-			dataType:'json',
-			success: function(data)
-			{
-				var body='';
-				var i;
-				for(i=0;i<data.length;i++)
-				{
-				var test = data[i].ticketId;
-				var bcolor = "#fff";
-				if(data[i].notif == 0 || data[i].noticount == 0){
-					bcolor = "#ddd";
-				}
-					body+=	'<tr data-Id="'+data[i].ticketId+'" style="background-color: '+bcolor+'">';
-							if($Acc_type != 'user'){
-				 			body+= '<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
-      							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
-      							'<label for="'+test+'" style="margin-top: 15px;" ></label>' +
-			      			'</td>';
-			      			}
-							body+= '<td class="ticketView">'+
-							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
-							'</td>';
-							if(data[i].Status == 'New'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'On-progress'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'On-hold'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'Resolved'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
-							}
-							if(data[i].Status == 'Closed'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
-							}
-							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>';
-							if(data[i].Priority == 'Low'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="minorbtn" style="font-size: 11px; background-color: #f0e94b; border-radius: 5px; padding: 4px; color: white">'+data[i].Priority+'</label></td>';
-							}
-							if(data[i].Priority == 'High'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="majorbtn" style="font-size: 11px; background-color: #ec7172; border-radius: 5px; padding: 4px; color: white">'+data[i].Priority+'</label></td>';
-							}
-							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
-						'</tr>';
-				}
-
-				$('#showTicket').html(body);
-
-			},
-			error: function()
-			{
-				alert('dito pumapasok');
-			},
-		});
-	};
+// function Show_tickets(){
+// 	var $Acc_type = $('#account').val();
+// 	base_url 		= $('#base').val();
+// 		$.ajax({
+// 			type:'ajax',
+// 			url: base_url + 'Ticket_control/showTickets',
+// 			dataType:'json',
+// 			success: function(data)
+// 			{
+// 				var body='';
+// 				var i;
+// 				for(i=0;i<data.length;i++)
+// 				{
+// 				var test = data[i].ticketId;
+// 				var bcolor = "#fff";
+// 				if(data[i].notif == 0 || data[i].noticount == 0){
+// 					bcolor = "#ddd";
+// 				}
+// 				var Log = 'Online';
+// 				if(data[i].Online == 0){
+// 					Log = data[i].TimeLog;
+// 				}
+// 					body+=	'<tr data-Id="'+data[i].ticketId+'" style="background-color: '+bcolor+'">';
+// 							if($Acc_type != 'user'){
+// 				 			body+= '<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
+//       							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
+//       							'<label for="'+test+'" style="margin-top: 15px;" ></label>' +
+// 			      			'</td>';
+// 			      			}
+// 							body+= '<td class="ticketView">'+
+// 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
+// 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'<span style="float: right;">'+Log+'</span>'+
+// 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
+// 							'</td>';
+// 							if(data[i].Status == 'New'){
+// 							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
+// 							}
+// 							if(data[i].Status == 'On-progress'){
+// 							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
+// 							}
+// 							if(data[i].Status == 'On-hold'){
+// 							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
+// 							}
+// 							if(data[i].Status == 'Resolved'){
+// 							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
+// 							}
+// 							if(data[i].Status == 'Closed'){
+// 							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
+// 							}
+// 							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>';
+// 							if(data[i].Priority == 'Low'){
+// 							body+='<td class="ticketView" style="text-align: center;"><label class="minorbtn" style="font-size: 11px; background-color: #f0e94b; border-radius: 5px; padding: 4px; color: white">'+data[i].Priority+'</label></td>';
+// 							}
+// 							if(data[i].Priority == 'High'){
+// 							body+='<td class="ticketView" style="text-align: center;"><label class="majorbtn" style="font-size: 11px; background-color: #ec7172; border-radius: 5px; padding: 4px; color: white">'+data[i].Priority+'</label></td>';
+// 							}
+// 							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
+// 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
+// 						'</tr>';
+				
+// 				}
+// 				$('#showTicket').html(body);
+// 			},
+// 			error: function()
+// 			{
+// 				alert('dito pumapasok');
+// 			},
+// 		});
+// 	};
 
 function notifChat(){
-	base_url 		= $('#base').val();
-	setTimeout(function(){
+	//base_url 		= $('#base').val();
+	var Time = setTimeout(function(){
 	$.ajax({
 		url: base_url + 'Ticket_control/notifChat',
 		success: function(data)
 		{	
 			notifChat();
-			Show_tickets();
+			filetTicket();
 		}
 	})
 	}, 3000);

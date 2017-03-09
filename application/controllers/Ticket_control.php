@@ -74,8 +74,11 @@ class Ticket_control extends CI_controller{
              {          
                 $Time = date("g:i a", strtotime($DateAndTime['Stamp']));
                 $date = date("F j, Y", strtotime($DateAndTime['DateFiled']));
+                $TimeLog = date("g:i a", strtotime($DateAndTime['TimeLog']));
                 $DateAndTime['Stamp'] = $Time;
                 $DateAndTime['DateFiled'] = $date;
+                $DateAndTime['TimeLog'] = $TimeLog;
+
                 $return[] = $DateAndTime;
              }
         }      
@@ -97,8 +100,11 @@ class Ticket_control extends CI_controller{
              {          
                 $Time = date("g:i a", strtotime($DateAndTime['Stamp']));
                 $date = date("F j, Y", strtotime($DateAndTime['DateFiled']));
+                $TimeLog = date("g:i a", strtotime($DateAndTime['TimeLog']));
                 $DateAndTime['Stamp'] = $Time;
                 $DateAndTime['DateFiled'] = $date;
+                $DateAndTime['TimeLog'] = $TimeLog;
+
                 $return[] = $DateAndTime;
              }
         }

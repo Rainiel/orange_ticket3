@@ -57,7 +57,7 @@
 		<p style="margin-left: 5px; margin-top: 0px; padding-right: 10px; margin-left: 15px">SUB-ADMIN
             <a class="waves-effect waves-light btn modal-trigger pull-right" href="#modal1" style="background-color: #53D530; float: right; padding-left: 20px; margin-left: 15px">
     	    <i class="fa fa-plus" aria-hidden="true" style="padding-right: 10px;"></i>Sub-Admin</a>
-		<a class="waves-effect waves-light btn active pull-right" style="background-color: #DF3D3D"><i class="fa fa-trash-o" aria-hidden="true"></i>  Trash</a>
+	<!-- 	<a class="waves-effect waves-light btn active pull-right" style="background-color: #DF3D3D"><i class="fa fa-trash-o" aria-hidden="true"></i>  Trash</a> -->
 
 
 		<input type="hidden" id='SAradio'>
@@ -103,10 +103,7 @@
           <table style="box-shadow: 0px 1px 10px 0px #888888;">
 	        <thead style="background: #2d3e50;">
 	          <tr>
-                  <th data-field="id" style="width: 50px; padding-left: 20px; padding-top: 5px; border-radius: 0px">
-                    <input type="checkbox" class="filled-in" id="filled-in-box">
-      				<label for="filled-in-box" style="margin-top: 15px; border-color: white"></label></th>
-                  <th data-field="id" style="color: white; border-radius: 0px;">User ID</th>
+                <th data-field="id" style="color: white; border-radius: 0px;">User ID</th>
 	              <th data-field="id" style="color: white; border-radius: 0px;"><center>Name</center></th>
 	              <th data-field="id" style="color: white; text-align: center; border-radius: 0px;">Team</th>
 	              <th data-field="name" style="color: white; text-align: center; border-radius: 0px;">Action</th>
@@ -119,8 +116,6 @@
       	</div>
       	<input type="hidden" id="subadmin_id">
 
-      	<!-- <div class="col s8 123" id="SAT" style="display: none;"></div>
-		      <hr class="123" style="display: none;"> -->
 		      <div class="col s8 123" id="SAT" style="display: none;">
 
 			  </div>
