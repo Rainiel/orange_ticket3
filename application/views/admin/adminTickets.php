@@ -210,9 +210,11 @@
                 </div> -->
               </div>
             </div>
-            <input type="hidden" id="userId" value="<?php echo $uid; ?>">
-              <form id="insChat">
-                <div class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">
+            <form id="insChat">
+             <textarea id="textarea2" placeholder="Your Reply xD"></textarea>
+
+
+                <!-- <div class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">
                     <div class="collection-header" style="padding: 0px; height: 20px">
                         <p style="margin-left: 20px; margin-bottom: 20px; font-size: 12px">
                             <i class="fa fa-inbox" aria-hidden="true"></i>Rainiel@orangeapps.com
@@ -225,7 +227,7 @@
                         <label for="textarea2">Textarea</label>
                       </div>
 
-                    </div>
+                    </div> -->
                     <button type="submit" class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SEND
                     </button>
                 </div>
@@ -233,7 +235,7 @@
 			</div>
         </div>
     </div>
-
+    <input type="hidden" id="userId" value="<?php echo $uid; ?>">
 	<!-- <input type="hidden" id="ticket_id" name="TID"> -->
   </div>
 </div>
