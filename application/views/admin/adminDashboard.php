@@ -70,8 +70,7 @@
    <div class="row">
 
         <div class="col s5">
-          <div class="row">
-            <div style="
+          <div class="row" style="
                 margin-top: 0px;
                 margin-bottom: 0px;
                 margin-left: 0px;
@@ -83,31 +82,18 @@
                 font-weight: bold;
             ">
               <p style="margin-left: 15px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px;">Performance</p>
-            </div>
+                <div class="filter-month">
+                    <div class="row pull-right" style="margin-top: -25px; margin-right: 2px">
+                      <div class="col s1" style="background-color: #1F2A37; width: 70px; margin-right: 5px; font-weight: normal; font-size: 18px">Days</div>
+                      <div class="col s1" style="background-color: #1F2A37; width: 70px; margin-right: 5px; font-weight: normal">Week</div>
+                      <div class="col s1" style="background-color: #1F2A37; width: 70px; margin-right: 5px; font-weight: normal">Month</div>
+                    </div>
+                </div>
+
+        </div>
 
             <div class="col s4" style="padding-left: 0px;">
-              <ul class="pieID legend">
-                  <li id="New">
-                    <em>New</em>
-                    <span id="new"></span>
-                  </li>
-                  <li id="Prog">
-                    <em>On Progress</em>
-                    <span id="prog">2</span>
-                  </li>
-                  <li id="Hold">
-                    <em>On Hold</em>
-                    <span id="onhold">1</span>
-                  </li>
-                  <li id="Resolved">
-                    <em>Resolved</em>
-                    <span id="resolved">1</span>
-                  </li>
-                  <li id="Closed">
-                    <em>Closed</em>
-                    <span id="closed">1</span>
-                  </li>
-                </ul>
+             <div id="chartContainer" style="height: 300px; width: 100%;"></div>
               </div>
 
             <div class="col s8" style="margin: 0px;padding-right: 0px; margin-top: 20px">

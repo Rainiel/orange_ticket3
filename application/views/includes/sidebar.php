@@ -3,7 +3,7 @@
 <div class="row">
 
   <div class="ui fluid vertical menu collapse"></div>
-    <ul id="slide-out" class="side-nav fixed" style="margin-top: 0px;">
+    <ul id="slide-out" class="side-nav fixed" style="margin-top: 95px;">
       <li <?php if ($this->session->userdata('Acc_type') != 'Admin'){?> style="display: none;" <?php } ?> ><a href="Dashboard" class="active" style="color: white;" >
       <i class="fa fa-home" aria-hidden="true"  style="color: white; font-size: 22px"></i>Home</a>
       </li>

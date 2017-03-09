@@ -1,0 +1,10 @@
+/**dashboard**/
+
+nav .ticketing-header {
+    background-color: white !important;
+}
+
+.ticketing-logo {
+    font-size: 15px;
+    color: black;
+}
