@@ -2,11 +2,11 @@ $(document).ready(function(){
 $('.modal').modal();
 $('select').material_select();
 Show_tickets();
-//notifChat();
+notifChat();
 
-setTimeout(function(){
-	notifChat();
-}, 3000);
+// setTimeout(function(){
+// 	notifChat();
+// }, 3000);
 
 $(document).on('click', '.fill-box', function(){
 		var check = $('.fill-box:checked').length;
@@ -149,6 +149,9 @@ $(document).on('change', '#selectTeam', function(){
 
 
 $(document).on('click', '.filt', function(){
+
+});
+function FiletTicket(){
 	var $Acc_type = $('#account').val();
 	var Status  = $('#statFilt a.active').attr('data-stat');
 	var Assign  = $('#statFilt a.active').attr('data-Ass');
@@ -169,7 +172,11 @@ $(document).on('click', '.filt', function(){
 				for(i=0;i<data.length;i++)
 				{
 				var test = data[i].ticketId;
-					body+=	'<tr data-Id="'+data[i].ticketId+'">';
+				var bcolor = "#fff";
+				if(data[i].notif == 0 || data[i].noticount == 0){
+					bcolor = "#ddd";
+				}
+					body+=	'<tr data-Id="'+data[i].ticketId+'" style="background-color: '+bcolor+'">';
 							if($Acc_type != 'user'){
 				 			body+= '<td style="width: 50px; padding-left: 20px;" data-Id2="'+data[i].ticketId+'">'+
       							'<input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="'+test+'" data-stat="'+data[i].Status+'" data-prio="'+data[i].Priority+'" data-Ass="'+data[i].AssignedTo+'" />'+
@@ -179,32 +186,32 @@ $(document).on('click', '.filt', function(){
 							body+= '<td class="ticketView">'+
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 11px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
 							'</td>';
 							if(data[i].Status == 'New'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
 							}
 							if(data[i].Status == 'On-progress'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
 							}
 							if(data[i].Status == 'On-hold'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
 							}
 							if(data[i].Status == 'Resolved'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
 							}
 							if(data[i].Status == 'Closed'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
 							}
-							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>';
+							body+='<td class="ticketView" style="font-size: 11px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>';
 							if(data[i].Priority == 'Low'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="minorbtn" style="font-size: 11px; background-color: #f0e94b; border-radius: 5px; padding: 4px; color: white">'+data[i].Priority+'</label></td>';
 							}
 							if(data[i].Priority == 'High'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="majorbtn" style="font-size: 12px; background-color: #ec7172; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="majorbtn" style="font-size: 11px; background-color: #ec7172; border-radius: 5px; padding: 4px; color: white">'+data[i].Priority+'</label></td>';
 							}
-							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
-							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
+							body+='<td class="ticketView" style="font-size: 11px; text-align: center;">'+data[i].Stamp+'</td>'+
+							'<td class="ticketView" style="font-size: 11px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
 				}
 				$('#showTicket').html(body);
@@ -214,7 +221,7 @@ $(document).on('click', '.filt', function(){
 				alert('dito pumapasok');
 			},
 		});
- });
+ };
 
 function Show_tickets(){
 	var $Acc_type = $('#account').val();
@@ -231,7 +238,7 @@ function Show_tickets(){
 				{
 				var test = data[i].ticketId;
 				var bcolor = "#fff";
-				if(data[i].notif == 0){
+				if(data[i].notif == 0 || data[i].noticount == 0){
 					bcolor = "#ddd";
 				}
 					body+=	'<tr data-Id="'+data[i].ticketId+'" style="background-color: '+bcolor+'">';
@@ -247,34 +254,34 @@ function Show_tickets(){
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 12px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
 							'</td>';
 							if(data[i].Status == 'New'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #61d7f1; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
 							}
 							if(data[i].Status == 'On-progress'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #C9FC07; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
 							}
 							if(data[i].Status == 'On-hold'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FF875A; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
 							}
 							if(data[i].Status == 'Resolved'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #FCCF27; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
 							}
 							if(data[i].Status == 'Closed'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 3px; padding: 2px; color: white">'+data[i].Status+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="openbtn" style="font-size: 11px; background-color: #5995FF; border-radius: 5px; padding: 4px; color: white">'+data[i].Status+'</label></td>';
 							}
 							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].fname2+data[i].lname2+'</td>';
 							if(data[i].Priority == 'Low'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="minorbtn" style="font-size: 12px; background-color: #f0e94b; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="minorbtn" style="font-size: 11px; background-color: #f0e94b; border-radius: 5px; padding: 4px; color: white">'+data[i].Priority+'</label></td>';
 							}
 							if(data[i].Priority == 'High'){
-							body+='<td class="ticketView" style="text-align: center;"><label class="majorbtn" style="font-size: 12px; background-color: #ec7172; border-radius: 3px; padding: 5px; color: white">'+data[i].Priority+'</label></td>';
+							body+='<td class="ticketView" style="text-align: center;"><label class="majorbtn" style="font-size: 11px; background-color: #ec7172; border-radius: 5px; padding: 4px; color: white">'+data[i].Priority+'</label></td>';
 							}
 							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 						'</tr>';
-
 				}
+
 				$('#showTicket').html(body);
-			
+
 			},
 			error: function()
 			{
@@ -290,8 +297,8 @@ function notifChat(){
 		url: base_url + 'Ticket_control/notifChat',
 		success: function(data)
 		{	
-				notifChat();
-				Show_tickets();
+			notifChat();
+			Show_tickets();
 		}
 	})
 	}, 3000);
@@ -427,7 +434,7 @@ function showTicketInfo(id){
 									'</div>'+
 								'</div>'+
 							'</div>';
-					
+
 					// sideBarS1 +=
 					// '<option value="'+data.AssignedTo+'" selected>'+data.AssignedTo+'</option>'+
 					// '<option value="Data">Data Team</option>'+

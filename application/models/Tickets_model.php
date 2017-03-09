@@ -31,24 +31,31 @@ class Tickets_model extends CI_Model {
   {
       if($Acc_type == 'Admin')
       {
-        $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
-        $this->db->from('tbl_tickets as t');
-        $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
-        $this->db->join('tbl_user as u1', 't.User=u1.userId');
-        $this->db->order_by('ticketId', 'desc');
-        //$this->db->where("Status = '$stat' AND AssignedTo = '$Ass'");
+        
+        $Where = '';
          if($stat == NULL && $Ass2 == NULL){}
          if($stat != NULL && $Ass2 == NULL){
-          $this->db->where("Status = '$stat'");
+          $Where = "WHERE t.Status = '$stat'";
          }
          if($Ass2 != NULL && $stat == NULL){
-          $this->db->where("Issue = '$Ass2'");
+          $Where = "WHERE t.Status = '$Ass2'";
          }
          if($stat != NULL && $Ass2 != NULL){
-          $this->db->where("Status = '$stat' AND Issue = '$Ass2'");
+          $Where = "WHERE t.Status = '$stat' AND t.Issue = '$Ass2'";
          }
-
-          $query = $this->db->get();
+         $query = $this->db->query("SELECT t.*, 
+                            u1.fname AS fname1, u1.lname AS lname1, 
+                            u2.fname AS fname2, u2.lname AS lname2,
+                            (SELECT notif FROM tbl_notifchat where TID = t.ticketId AND UID = $id) AS notif,
+                            (SELECT COUNT(*) FROM tbl_notifchat WHERE TID = t.ticketId AND UID = $id) AS noticount
+                          FROM tbl_tickets AS t
+                          INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
+                          INNER JOIN tbl_user as u1 on t.User=u1.userId
+                          $Where
+                          ORDER BY t.ticketId DESC
+                          
+          ");
+          //$query = $this->db->get();
       }
       if($Acc_type == 'Sub-Admin')
       {
@@ -104,12 +111,13 @@ class Tickets_model extends CI_Model {
         $query = $this->db->query("SELECT t.*, 
                             u1.fname AS fname1, u1.lname AS lname1, 
                             u2.fname AS fname2, u2.lname AS lname2,
-                            (SELECT notif FROM tbl_notifchat where TID = t.ticketId AND UID = ?) AS notif
-                          FROM tbl_tickets AS t 
+                            (SELECT notif FROM tbl_notifchat where TID = t.ticketId AND UID = $id) AS notif,
+                            (SELECT COUNT(*) FROM tbl_notifchat WHERE TID = t.ticketId AND UID = $id) AS noticount
+                          FROM tbl_tickets AS t
                           INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
                           INNER JOIN tbl_user as u1 on t.User=u1.userId
                           ORDER BY t.ticketId DESC
-          ", array($id));
+          ");
       }
       if($Acc_type == 'Sub-Admin')
       {
@@ -164,6 +172,39 @@ class Tickets_model extends CI_Model {
           return $query->result_array();
         }
         else{return false;}
+  }
+
+  public function dashboardTicks()
+  {
+    $query = $this->db->query("SELECT t.*, 
+                              u1.fname as fname1, u1.lname as lname1, 
+                              u2.fname as fname2, u2.lname as lname2
+                              FROM tbl_tickets AS t
+                              INNER JOIN tbl_user AS u2 ON t.AssignedTo=u2.userId
+                              INNER JOIN tbl_user AS u1 on t.User=u1.userId
+                              WHERE Status = 'New'
+                              ORDER BY t.ticketId DESC
+                              ");
+    //$query = $this->db->get();
+    if($query->num_rows()>0)
+    {
+      return $query->result_array();
+    }
+    else{return false;}
+  }
+
+  public function dashboardCounts()
+  {
+    $query = $this->db->query("SELECT
+                                (SELECT COUNT(*) FROM tbl_tickets) AS AllTicket,
+                                (SELECT COUNT(*) FROM tbl_tickets WHERE Priority = 'High') AS HighTicket,
+                                (SELECT COUNT(*) FROM tbl_tickets WHERE Status = 'Closed') AS ClosedTicket
+      ");
+    if($query->num_rows()>0)
+    {
+      return $query->row_array();
+    }
+    else{return false;}
   }
 
   public function getTicket($id)

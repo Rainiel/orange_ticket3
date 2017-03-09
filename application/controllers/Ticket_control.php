@@ -108,6 +108,15 @@ class Ticket_control extends CI_controller{
     public function dashboardTicks()
     {
         $this->load->model('Tickets_model');
+        $result=$this->Tickets_model->dashboardTicks();
+        echo json_encode($result);
+    }
+
+    public function dashboardCounts()
+    {
+        $this->load->model('Tickets_model');
+        $result=$this->Tickets_model->dashboardCounts();
+        echo json_encode($result);
     }
 
     public function showTicketsSA()
@@ -200,7 +209,7 @@ class Ticket_control extends CI_controller{
         echo json_encode($return);
     }
 
-     public function ticketGraph()
+    public function ticketGraph()
     {
         $this->load->model('Tickets_model');
         $result=$this->Tickets_model->ticketGraph();
