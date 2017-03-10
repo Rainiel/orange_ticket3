@@ -9,7 +9,17 @@
     <div class="row">
 
 		<div class="row cols s12">
-		<p style="margin-left: 5px; margin-top: 0px; padding-right: 10px; margin-left: 15px">Users
+            <div class=" col s6" style="box-shadow: 0px 0px 0px black">
+                <nav>
+            <div class="nav-wrapper wrap-bc" style="box-shadow: 0px 0px 0px black">
+              <div class="col s12 nav-breadcrumb">
+                <a href="#!" class="breadcrumb first-bc">Dashboard</a>
+                <a href="#!" class="breadcrumb second-bc">SETTINGS</a>
+                <a href="#!" class="breadcrumb third-bc">USERS</a>
+              </div>
+            </div>
+          </nav>
+            </div>
             <a class="waves-effect waves-light btn modal-trigger pull-right" href="#modal2" style="background-color: #53D530; float: right; padding-left: 20px; margin-left: 15px">
             <i class="fa fa-plus" aria-hidden="true" style="padding-right: 10px;"></i>User</a>
 		<a class="waves-effect waves-light btn active pull-right" style="background-color: #DF3D3D"><i class="fa fa-trash-o" aria-hidden="true"></i>  Trash</a>
@@ -29,7 +39,7 @@
                             <div class="input-field col s5">
                                 <input type="text" class="validate" name="Ulname" required>
               		            <label>Last Name</label>
-                            </div>  
+                            </div>
                             <div class="input-field col s10">
                                 <input type="text" class="validate" name="Uusername" required>
               		            <label>Username</label>

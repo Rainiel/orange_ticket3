@@ -8,7 +8,28 @@ nav .ticketing-logo {
     font-size: 20px;
     margin-left: 250px;
     color: #2d3e50;
+    font-weight: normal;
 }
+
+.nav-breadcrumb {
+    background-color: white ;
+    box-shadow: none;
+}
+
+.wrap-bc {
+    box-shadow: none;
+}
+
+.first-bc {
+    color: #2d3e50;
+    font-weight: bold;
+}
+
+.second-bc {
+    font-size: 14px;
+    color: #C8C8C8;
+}
+
 
 nav ul a {
     transition: background-color .3s;
@@ -34,50 +55,76 @@ nav ul a {
 
 .cardone {
     background: #61d7f1;
+    padding: 20px;
+    color: white;
 }
 
 .cardtwo {
     background: #ec7172;
+    padding: 20px;
+    color: white;
 }
 
 .cardthree {
     background: #6bd049;
+    padding: 20px;
+    color: white;
 }
 
 .cardfour {
     background: #f0e94b;
+    padding: 20px;
+    color: white;
 }
 
 .fa-paper-plane-o {
     font-size: 65px;
+    padding: 5px;
 }
 
 .fa-envelope-o {
     font-size: 65px;
+    padding: 5px;
 }
 
 .fa-list-alt {
     font-size: 65px;
+    padding: 5px;
 }
 
 .fa-users {
     font-size: 65px;
+    padding: 5px;
 }
 
-.dash-num {
+.card-stacked {
     border: 1px solid #7C7C7C;
     border-top: none;
     border-bottom: none;
     border-right: none;
     height: 70px;
-    margin-left: 110px;
-    margin-top: -65px;
+    max-width: 100px;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 100%;
+}
+
+.ticketnumber {
+    font-size: 45px;
+}
+
+.card-action {
+    font-size: 12px;
+    border-bottom: none;
+    border-top: none;
+}
+
+.dash-name {
+    margin-top: -12px;
 }
 
 .ticketNum {
     font-size: 45px;
-    margin-right: 20px;
-    margin-top: -12px;
 }
 
 .urgentNum {
@@ -100,8 +147,7 @@ nav ul a {
 
 .ticketName {
     font-size: 14px;
-    margin-right: 10px;
-    margin-top: -5px;
+    width: 100%;
 }
 
 .urgentName {
@@ -145,6 +191,14 @@ nav ul a {
     margin-top: -30px;
 }
 
+.per-month {
+    background-color: #1F2A37;
+    margin-right: 6px;
+    padding: 0px;
+    font-size: 12px;
+    font-weight: normal;
+}
+
 .tbl-dash {
     box-shadow: 0px 1px 1px 0px #888888;
 }
@@ -156,4 +210,20 @@ nav ul a {
 .th-dash{
     color: white;
     border-radius: 0px;
+}
+
+/**admintickets**/
+.all-side {
+    font-size: 10px;
+}
+
+.badge-new {
+    color: black;
+    font-size: 0.8rem;
+    font-weight: 300;
+    border-radius: 2px;
+    padding: 2px;
+    margin-top: 5px;
+    margin-bottom: 2px;
+    margin-left: 60px;
 }

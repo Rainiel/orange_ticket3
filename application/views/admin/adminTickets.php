@@ -35,14 +35,39 @@
     <div class="row">
         <div class="col s2" style="padding-left: 0px;">
         	<!-- Modal Trigger -->
-  	<a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="background-color: #2d3e50;padding-left: 20px;
+  	<center><a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="background-color: #2d3e50;padding-left: 20px;
 		  	<?php if ($this->session->userdata('Acc_type') != 'user'){?> display: none; <?php } ?>"
 		  	<?php if ($this->session->userdata('Acc_type') != 'user'){?> disabled <?php } ?>
-		><i class="fa fa-plus" aria-hidden="true" style="padding-right: 10px;"></i>Ticket</a>
+		><i class="fa fa-plus" aria-hidden="true" style="padding-right: 10px;"></i>Ticket</a></center>
 		  	<?php if ($this->session->userdata('Acc_type') == 'user'){?> <hr> <?php } ?>
 				  <!-- Modal Structure -->
 
-				  <form id="addTicket">
+                    <form id="addTicket">
+                        <div id="modal1" class="modal" style="width: 600px">
+                            <div class="modal-content" style="padding: 0;">
+                              <h4 class="modal-header" style="background-color: #2d3e50; padding: 10px; color: white">Create Ticket</h4>
+                                    <div class="row" style="margin-left: 30px">
+                                          <div class="input-field col s5">
+                                              <input type="text" class="validate" name="SAfname" required>
+                                              <label>Subject</label>
+                                          </div>
+                                          <div class="input-field col s10">
+                                              <select name="Team" required>
+                                                <option value="" disabled selected required>Choose Issue Type</option>
+                                                <option value="Data">Data Team</option>
+                                                <option value="Technical">Technical Team</option>
+                                              </select>
+                                              <label>Team</label>
+                                          </div>
+                                          <div class="input-field col s12">
+                                                <textarea id="textarea1" class="materialize-textarea" name="Desc" required></textarea>
+                                          </div>
+                                      </div>
+                                      </div>
+                                          <a href="#!" class=" modal-action modal-close waves-effect waves-light btn pull-right" style="margin-right: 10px; margin-bottom: 13px; background-color: #2d3e50"><i class="material-icons right">done_all</i>DONE</a>
+                            </div>
+                    </form>
+				  <!-- <form id="addTicket">
 				  <div id="modal1" class="modal" style="width: 35%;">
 				    <div class="modal-content" style="background-color: #2d3e50; padding: 15px;" >
 				      <h5 style="margin: 0px; color: white;">Ticket</h5></div>
@@ -77,34 +102,34 @@
 				    <input type="hidden" id="auto" name="Nauto">
 
 				  </div>
-				  </form>
+				  </form> -->
 				  <!-- END MODAL -->
             <div class="tabs-vertical" id="sideBar">
                 <div class="header" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>My Conversations</center></div>
     		        <ul class="tabs" id="statFilt">
-    		        	<li class="tab filt"><span class="new badge pull-right" data-badge-caption="4" style="margin-top: 4px"></span>
-    		              <a class="waves-effect" data-stat="">All </a>
-    		           </li>
-    		           <li class="tab filt" >
-    		              <a class="waves-effect" data-stat="New">New <span class="new badge" data-badge-caption="4" style="margin-top: 4px"></span></a>
+    		        	<li class="tab filt">
+    		              <a class="waves-effect" data-stat="">All<span class="new badge" data-badge-caption="4"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="On-progress">On-progress <span class="new badge" data-badge-caption="4" style="margin-top: 4px"></span></a>
+    		               <a class="waves-effect" data-stat="New">New<label class="badge badge-new">1</label></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="On-hold">On-hold <span class="new badge" data-badge-caption="4" style="margin-top: 4px"></span></a>
+    		             <a class="waves-effect" data-stat="On-progress">On-progress <span class="badge badge-new pull-right">1</span></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="Resolved">Resolved <span class="new badge" data-badge-caption="4" style="margin-top: 4px"></span></a>
+    		             <a class="waves-effect" data-stat="On-hold">On-hold<span class="badge badge-new pull-right">1</span></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="Closed">Closed <span class="new badge" data-badge-caption="4" style="margin-top: 4px"></span></a>
+    		             <a class="waves-effect" data-stat="Resolved">Resolved <span class="badge badge-new pull-right">1</span></a>
     		           </li>
-    		        <!-- </ul> -->
-     	    <!-- </div> -->
+    		           <li class="tab filt">
+    		             <a class="waves-effect" data-stat="Closed">Closed <span class="badge badge-new pull-right">1</span></a>
+    		           </li>
+    		        </ul>
+     	          </div>
 
 		 <hr id="hr">
-     	  <!-- <div class="tabs-vertical" id="sideBar4"> -->
+     	  <div class="tabs-vertical" id="sideBar4">
                 <div class="headertwo" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>Team Conversation</center></div>
     		        <?php if($tim == 'Data'){ ?>
     		           	<li class="tab filt">

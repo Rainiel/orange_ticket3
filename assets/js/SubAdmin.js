@@ -44,8 +44,8 @@ function showSubAdmin(){
 				var test = data[i].ticketId;
 				if($Acc_type != 'user'){
 					body+=	'<tr>'+
-					// '<td style="width: 50px; padding-left: 20px;" data-id2="28"><input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="28" data-stat="Resolved" data-prio="Low" data-ass="3"><label for="28" style="margin-top: 15px;"></label></td>'+
-	                '<td>'+data[i].userId+'</td>'+
+					//'<td style="width: 50px; padding-left: 20px;" data-id2="28"><input height="15px" width="15px" type="checkbox" class="filled-in fill-box" id="28" data-stat="Resolved" data-prio="Low" data-ass="3"><label for="28" style="margin-top: 15px;"></label></td>'+
+	                '<td><center>'+data[i].userId+'</td>'+
 	                '<td><center>'+data[i].fname+''+data[i].lname+'</center></td>'+
 	                '<td><center>'+data[i].team+'</center></td>'+
 	                '<td><center><a class="waves-effect waves-light btn">Info</a></center></td>'+

@@ -189,7 +189,7 @@ function filetTicket(){
 			      			}
 							body+= '<td class="ticketView">'+
 							'<img src="assets/images/square.png" style="height: 40px; width: 40px; float: left; margin-right: 10px;">'+
-							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'<span style="float: right;">'+Log+'</span>'+
+							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 14px; font-weight: bold;">'+data[i].fname1+'&nbsp;'+data[i].lname1+'<span style="float: right; font-weight: normal; font-size: 10px">'+Log+'</span>'+
 							'<p style="margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-weight: 500;">Issue Type: '+data[i].Issue+'<small style="font-size: 11px; margin-left: 10px;">'+data[i].Subject+'</small></p>'+
 							'</td>';
 							if(data[i].Status == 'New'){
@@ -286,7 +286,7 @@ function filetTicket(){
 // 							body+='<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].Stamp+'</td>'+
 // 							'<td class="ticketView" style="font-size: 12px; text-align: center;">'+data[i].DateFiled+'</td>'+
 // 						'</tr>';
-				
+
 // 				}
 // 				$('#showTicket').html(body);
 // 			},
@@ -303,7 +303,7 @@ function notifChat(){
 	$.ajax({
 		url: base_url + 'Ticket_control/notifChat',
 		success: function(data)
-		{	
+		{
 			notifChat();
 			filetTicket();
 		}

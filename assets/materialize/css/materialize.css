@@ -2715,7 +2715,7 @@ video.responsive-video {
 
 .breadcrumb {
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.7);
+  color: black;
 }
 
 .breadcrumb i,
@@ -2728,7 +2728,7 @@ video.responsive-video {
 
 .breadcrumb:before {
   content: '\E5CC';
-  color: rgba(255, 255, 255, 0.7);
+  color: #919191;
   vertical-align: top;
   display: inline-block;
   font-family: 'Material Icons';
@@ -2741,10 +2741,13 @@ video.responsive-video {
 
 .breadcrumb:first-child:before {
   display: none;
+  color: #2d3e50;
+  font-weight: bold;
 }
 
 .breadcrumb:last-child {
-  color: #fff;
+  color: #C8C8C8;
+  font-size: 14px;
 }
 
 .parallax-container {
@@ -3304,9 +3307,10 @@ span.badge {
 span.badge.new {
   font-weight: 300;
   font-size: 0.8rem;
-  color: #fff;
-  background-color: #26a69a;
+  color: black;
+  background-color: #D4D4D4;
   border-radius: 2px;
+  margin-top: 3px;
 }
 
 span.badge.new:after {
