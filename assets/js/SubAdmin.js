@@ -21,12 +21,48 @@ $(document).on('submit', '#addSubAdmin', function(e){
 		data: new FormData(this),
 			success: function(data){
 				showSubAdmin();
+				$('#modalClose').trigger('click');
 			},
 			error: function(){
 				alert();
 			},
 	});
 });
+
+$(document).on('click', '#editSAform', function(e){
+	e.preventDefault();
+	base_url = $('#base1').val();
+	var id 	  = $('#subadminId').val();
+	var fname =	$('#fname').val();
+	var lname =	$('#lname').val();
+	var team  = $('#SATeam').val();
+	var user  = $('#user').val();
+	var pass  =	$('#pass').val();
+	$.ajax({
+		type: "POST",
+		url: base_url + 'SubAdmin_control/editSubAdmin',
+		data: {'id': id,
+			'SAfname': fname,
+			'SAlname': lname,
+			 'Team' : team,
+			 'SAusername' : user,
+			 'SApassword' : pass
+	},
+		// contentType: false,
+		// cache: false,
+		// processData: false,
+		// data: new FormData(this),
+		success: function(){
+			showSubAdmin();
+			$('#modalClose2').trigger('click');
+		},
+	});
+});
+
+$(document).on('click', '#subadminbtn', function(){
+	var id = $(this).data('id');
+	$('#subadminId').val(id);
+})
 
 function showSubAdmin(){
 	var $Acc_type = $('#account').val();
@@ -48,7 +84,7 @@ function showSubAdmin(){
 	                '<td><center>'+data[i].userId+'</td>'+
 	                '<td><center>'+data[i].fname+''+data[i].lname+'</center></td>'+
 	                '<td><center>'+data[i].team+'</center></td>'+
-	                '<td><center><a class="waves-effect waves-light btn">Info</a></center></td>'+
+	                '<td><center><a onclick="showSubAdminInfo('+data[i].userId+')" id="subadminbtn" data-id="'+data[i].userId+'" class="waves-effect waves-light btn modal-trigger" href="#modal2">Info</a></center></td>'+
 	                '</tr>';
 					}
 				}
@@ -71,42 +107,35 @@ function showSubAdminInfo(id){
 			},
 			dataType: 'JSON',
 			success: function(data){
-				var SAT='';
+				var SAfname='';
+				var SAlname='';
+				var SATeam='';
+				var SAuser='';
+				var SApass='';
 
-					SAT += '<ul class="collection">'+
-					'<ul class="collection" style="border-top:none; border-left: none; border-right: none; border-bottom: none;">'+
-					  '<li class="collection-item avatar" style="border-bottom: none">'+
-						'<img src="assets/images/square.png" alt="" class="circle">'+
-						'<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>'+
-						'<p style="font-size: 12px;	margin-top: -5px;">February 18<br>'+
-						'</p>'+
-						'<span class="title" style="color: #2d3e50; font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>'+
-							'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>'+
-							'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>'+
-							'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>'+
-							'sunt in culpa qui officia deserunt mollit anim id est laborum.<br>'+
-							'<br>'+
-							'<br>'+
-							'Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>'+
-							'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>'+
-							'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>'+
-							'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, <br>'+
-							'sunt in culpa qui officia deserunt mollit anim id est laborum.<br>'+
-						'</span>'+
-						//'<a href="#!" class="secondary-content"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a>'+
-					  '</li>'+
-						// '<ul class="collection with-header" style="width: 600px; height: 200px; margin-left: 20px">'+
-		  		// 	  		'<li class="collection-header" style="padding: 0px; height: 20px">'+
-						// 		'<p style="margin-left: 20px; margin-bottom: 20px; font-size: 12px">'+
-						// 			'<i class="fa fa-inbox" aria-hidden="true"></i>rainiel@orangeapps.com'+
-						// 		'</p>'+
-						// 	'</li>'+
-						// 	'<li class="collection-item" style="border-bottom: none"><input type="text" name="fname" placeholder="Enter your reply here" style="border-bottom: none"></li>'+
-						// 	'<a class="waves-effect waves-light btn pull-right" style="margin-top: 35px; margin-right: 10px">SAVE</a>'+
-					 //  	'</ul>'+
-				'</ul>';
+					SAfname += '<input type="text" class="validate" id="fname" value="'+data.fname+'" required>'+
+                  '<label class="active" for="fname">First Name</label>';
 
-				$('#SAT').html(SAT);
+					SAlname += '<input type="text" class="validate" id="lname" value="'+data.lname+'" required>'+
+                  '<label class="active" for="lname">Last Name</label>';
+
+					SATeam += '<option value="'+data.team+'" selected required>'+data.team+'</option>'+
+                  '<option value="Data">Data Team</option>'+
+                  '<option value="Technical">Technical Team</option>';
+
+					SAuser += '<input type="text" class="validate" id="user" value="'+data.username+'" required>'+
+                  '<label class="active" for="user">Username</label>';
+
+					SApass += '<input type="password" class="validate" id="pass" value="'+data.password+'" required>'+
+                  '<label class="active" for="pass">Password</label>';
+
+
+				$('#SAfname').html(SAfname);
+				$('#SAlname').html(SAlname);
+				$('#SATeam').html(SATeam);
+				$('#SATeam').material_select();
+				$('#SAuser').html(SAuser);
+				$('#SApass').html(SApass);
 			},
 			error: function(){
 				alert('error');

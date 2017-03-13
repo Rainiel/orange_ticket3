@@ -6,7 +6,7 @@
         margin-bottom: 0px;
         margin-left: 0px;
     ">Dashboard</h6> -->
-        <!-- <h6 style="margin-top: 20px; margin-bottom: 0px; margin-left: 0px; min-width: 40%; width: 40px">
+        <!--  <h6 style="margin-top: 20px; margin-bottom: 0px; margin-left: 0px; min-width: 40%; width: 40px">
         <nav>
             <div class="nav-wrapper" style="padding: 0; background-color: white; box-shadow: 0px 0px 0px #000">
               <div class="col s12">
@@ -17,14 +17,14 @@
             </div>
         </nav>
         </h6> -->
-        <!-- <div class="nav-wrapper pull-right" style="min-width: 20%; width: 20px; margin-top: -55px">
-          <form>
-            <div class="input-field">
-              <input id="search" type="search" required>
+        <div class="nav-wrapper pull-right" style="min-width: 25%; width: 20px; margin-top: 0px">
+          <!-- <form> -->
+            <div class="input-field" style="margin-top: 0px;">
+              <input id="SearchFilter" type="search" style="margin-bottom: 0px;" onkeyup="showTickets()">
               <label class="label-icon" for="search"><i class="material-icons">search</i></label>
             </div>
-          </form>
-        </div> -->
+          <!-- </form> -->
+        </div>
     </div>
   <div class="row" style="box-shadow: 0px 1px 10px 0px #888888;
      						 margin-left: 0px;
@@ -42,7 +42,7 @@
 		  	<?php if ($this->session->userdata('Acc_type') == 'user'){?> <hr> <?php } ?>
 				  <!-- Modal Structure -->
 
-                    <form id="addTicket">
+                    <!-- <form id="addTicket">
                         <div id="modal1" class="modal" style="width: 600px">
                             <div class="modal-content" style="padding: 0;">
                               <h4 class="modal-header" style="background-color: #2d3e50; padding: 10px; color: white">Create Ticket</h4>
@@ -66,13 +66,13 @@
                                       </div>
                                           <a href="#!" class=" modal-action modal-close waves-effect waves-light btn pull-right" style="margin-right: 10px; margin-bottom: 13px; background-color: #2d3e50"><i class="material-icons right">done_all</i>DONE</a>
                             </div>
-                    </form>
-				  <!-- <form id="addTicket">
-				  <div id="modal1" class="modal" style="width: 35%;">
+                    </form> -->
+				  <form id="addTicket" novalidate>
+				  <div id="modal1" class="modal" style="width: 40%;">
 				    <div class="modal-content" style="background-color: #2d3e50; padding: 15px;" >
 				      <h5 style="margin: 0px; color: white;">Ticket</h5></div>
 				      <div class="col s12"><p style="padding-top: 20px;">Start Creating Ticket</p></div>
-				      <div class="input-field col s12">
+				      <div class="input-field col s6">
 				          <input id="icon_prefix" type="text" class="validate" name="Subj" required>
 				          <label>Subject</label>
 				      </div>
@@ -91,8 +91,8 @@
 				      </div>
 
 				    <div class="modal-footer">
-				      <button id="addForm" class="waves-effect waves-green btn-flat" type="submit">Add
-					    <i class="material-icons right">Update</i>
+				      <button id="addForm" class="waves-effect waves-green btn-flat" style="margin-right: 10px; margin-bottom: 13px; background-color: #2d3e50; color: white;" type="submit">
+              <i class="material-icons right">done_all</i>Add
 					  </button>
 				    </div>
 
@@ -102,7 +102,7 @@
 				    <input type="hidden" id="auto" name="Nauto">
 
 				  </div>
-				  </form> -->
+				  </form>
 				  <!-- END MODAL -->
             <div class="tabs-vertical" id="sideBar">
                 <div class="header" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>My Conversations</center></div>
@@ -126,7 +126,6 @@
     		             <a class="waves-effect" data-stat="Closed">Closed <span class="badge badge-new pull-right">1</span></a>
     		           </li>
     		        </ul>
-     	          </div>
 
 		 <hr id="hr">
      	  <div class="tabs-vertical" id="sideBar4">
@@ -156,13 +155,16 @@
     		        </ul>
     		        <?php } ?>
      	  </div>
+        </div>
           <!-- <hr id="hrtwo">
           <a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #2d3e50">manage tickets</a> -->
      	  <form id="editTicket">
      	  <div class="input-field col s12 sideBar2" style="display: none;">
-		    <!-- <select name="uAssign" id="sidebarS1">
+        <!-- <?php if($this->session->userdata('Acc_type') == 'Admin'){?>
+		    <select name="uAssign" id="sidebarS1">
 		    </select>
-		    <label>Assign To</label> -->
+		    <label>Assign To</label>
+        <?php } ?> -->
 		  </div>
 		  <div class="input-field col s12 sideBar2" style="display: none;">
 		    <select name="uStatus" id="sidebarS2">
@@ -235,7 +237,7 @@
                 </div> -->
               </div>
             </div>
-            <form id="insChat">
+            <form id="insMail">
              <textarea id="textarea2" placeholder="Your Reply xD"></textarea>
 
 

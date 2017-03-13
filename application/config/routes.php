@@ -59,3 +59,4 @@ $route['Tickets'] = 'admin/Tickets';
 $route['ManageTickets'] = 'admin/ManageTickets';
 $route['SubAdminSA'] = 'admin/SubAdminSA';
 $route['Users'] = 'admin/Users';
+$route['Messages'] = 'admin/Messages';

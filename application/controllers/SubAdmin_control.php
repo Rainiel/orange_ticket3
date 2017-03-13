@@ -17,7 +17,22 @@ class SubAdmin_control extends CI_controller{
         );
 
         $this->SubAdmin_model->addSubAdmin($post_data);
+    }
 
+    public function editSubAdmin()
+    {
+        $this->load->model('SubAdmin_model');
+        $post_data=array(
+            'fname'             => $this->input->post('SAfname'),
+            'lname'             => $this->input->post('SAlname'),
+            'username'          => $this->input->post('SAusername'),
+            'password'          => $this->input->post('SApassword'),
+            'team'              => $this->input->post('Team')
+            );
+
+        $id=$this->input->post('id');
+
+        $this->SubAdmin_model->editSubAdmin($post_data, $id);
     }
 
     public function showSubAdmin()

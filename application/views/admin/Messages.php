@@ -36,7 +36,7 @@
             </div>
           </div>
         </div> -->
-        <div class="col s12 m3">
+        <!-- <div class="col s12 m3">
             <div class="card horizontal cardone">
               <div class="card-image">
                 <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
@@ -98,93 +98,17 @@
                 </div>
               </div>
             </div>
-        </div>
+        </div> -->
     </div>
-
-
-
-        <!-- <div class="col s12 m3">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text cardtwo">
-              <i class="fa fa-envelope-o" aria-hidden="true"></i>
-              <div class="dash-num">
-             <p class="urgentNum pull-right" id="HighTicket"></p>
-             <p class="urgentName pull-right">Urgent</p>
-             </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col s12 m3">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text cardthree">
-              <i class="fa fa-list-alt" aria-hidden="true"></i>
-              <div class="dash-num">
-              <p class="comNum pull-right" id="ClosedTicket"></p>
-              <p class="comName pull-right">Completed</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col s12 m3">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text cardfour">
-              <i class="fa fa-users" aria-hidden="true"></i>
-              <div class="dash-num">
-              <p class="onlineNum pull-right" style="font-size: 45px; margin-right: 20px; margin-top: -12px">2</p>
-              <p class="onlineName pull-right" style="font-size: 14px; margin-right: 10px; margin-top: -5px">Online</p>
-              </div>
-          </div>
-        </div>
-    </div> -->
-
-
 
    <div class="row">
 
         <div class="col s5">
-          <div class="row performance-row">
-              <p class="txtperf">Performance</p>
-                <div class="filter-month pull-right">
-                    <div class="col s3 per-month">Days</div>
-                    <div class="col s3 per-month">Week</div>
-                    <div class="col s3 per-month">Month</div>
-                </div>
-            </div>
-            <div class="col s4" style="padding-left: 0px; box-shadow: 0px 0px 0px solid black">
-              <ul class="pieID legend">
-                  <li id="New">
-                    <em>New</em>
-                    <span id="new"></span>
-                  </li>
-                  <li id="Prog">
-                    <em>On Progress</em>
-                    <span id="prog"></span>
-                  </li>
-                  <li id="Hold">
-                    <em>On Hold</em>
-                    <span id="onhold"></span>
-                  </li>
-                  <li id="Resolved">
-                    <em>Resolved</em>
-                    <span id="resolved"></span>
-                  </li>
-                  <li id="Closed">
-                    <em>Closed</em>
-                    <span id="closed">1</span>
-                  </li>
-                </ul>
-              </div>
-
-            <div class="col s8" style="margin: 0px;padding-right: 0px; margin-top: 20px">
-              <div class="pieID pie">
-              </div>
-            </div>
+          
         </div>
 
         <div class="col s7">
-            <table class="tbl-dash">
+            <!-- <table class="tbl-dash">
                 <thead class="thead-dash">
                 <tr>
                 <th class="th-dash" data-field="id"><center>Name</th>
@@ -197,7 +121,7 @@
                 <tbody id='dashboardTickets'>
 
                 </tbody>
-            </table>
+            </table> -->
         </div>
 
     </div>

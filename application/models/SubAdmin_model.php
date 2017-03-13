@@ -8,6 +8,12 @@ class SubAdmin_model extends CI_Model {
     return $this->db->insert('tbl_user', $post_data);
   }
 
+  public function editSubAdmin($post_data, $id)
+  {
+    $this->db->where('userId', $id);
+    return $this->db->update('tbl_user', $post_data);
+  }
+
    public function showAllSubAdmin($Acc_type, $team)
    {
    	 if($Acc_type == 'Admin')

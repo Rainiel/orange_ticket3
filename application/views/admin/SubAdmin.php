@@ -31,11 +31,11 @@
               		            <label>Last Name</label>
                             </div>
                             <div class="input-field col s10">
-                                <select name="Team" required>
-                			      <option value="" disabled selected required>Choose Team</option>
-                			      <option value="Data">Data Team</option>
-                			      <option value="Technical">Technical Team</option>
-                			    </select>
+                              <select name="Team" required>
+                    			      <option value="" disabled selected required>Choose Team</option>
+                    			      <option value="Data">Data Team</option>
+                    			      <option value="Technical">Technical Team</option>
+                    			    </select>
                 			    <label>Team</label>
                             </div>
                             <div class="input-field col s10">
@@ -49,7 +49,11 @@
                         </div>
             </div>
             <input type="hidden" name="Sub" value="Sub-Admin">
-                <button type="submit" class="modal-action modal-close waves-effect waves-light btn pull-right" style="margin-right: 80px; margin-bottom: 13px; background-color: #2d3e50"><i class="material-icons right">done_all</i>DONE</button>
+            <div class="modal-footer">
+            
+                <button type="submit" class="waves-effect waves-light btn " style="margin-right: 80px; margin-bottom: 13px; background-color: #2d3e50"><i class="material-icons right">done_all</i>DONE</button>
+                <a class="modal-action modal-close waves-effect waves-green btn" id="modalClose" style="margin-right: 80px;">Close</a>
+            </div>
           </div>
         </form>
 
@@ -73,7 +77,47 @@
 		<input type="hidden" id='SAradio'>
 		<input type="hidden" id="GTICK" value="<?php echo $uid; ?>">
 		</div>
+    <form id="editSA">
+    <div id="modal2" class="modal" style="width: 40%;">
+        <div class="modal-content" style="background-color: #2d3e50; padding: 15px;">
+          <h5 style="margin: 0px; color: white;">Sub-Admin</h5>
+        </div>
+          <div class="row" style="margin-left: 50px">
+              <div class="input-field col s5" id="SAfname">
+                  <!-- <input type="text" class="validate" name="SAfname" required>
+                  <label>First Name</label> -->
+              </div>
+              <div class="input-field col s5" id="SAlname">
+                  <!-- <input type="text" class="validate" name="SAlname" required>
+                  <label>Last Name</label> -->
+              </div>
+              <div class="input-field col s10">
+                <select required id="SATeam">
+                  <!-- <option value="" disabled selected required>Choose Team</option>
+                  <option value="Data">Data Team</option>
+                  <option value="Technical">Technical Team</option> -->
+                </select>
+                <label>Team</label>
+              </div>
+              <div class="input-field col s10" id="SAuser">
+                  <!-- <input type="text" class="validate" name="SAusername" required>
+                  <label>Username</label> -->
+              </div>
+              <div class="input-field col s10" id="SApass">
+                  <!-- <input type="password" class="validate" name="SApassword" required>
+                  <label>Password</label> -->
+              </div>
+          </div>
 
+        <div class="modal-footer">
+          <button id="editSAform" class="waves-effect waves-green btn-flat" style="margin-right: 10px; margin-bottom: 13px; background-color: #2d3e50; color: white;" type="submit">
+          <i class="material-icons right">done_all</i>Update
+        </button>
+        <a class="modal-action modal-close waves-effect waves-green btn" id="modalClose2" style="margin-right: 80px;">Close</a>
+        </div>
+        <input type="hidden" id="subadminId">
+    </div>
+    </form>
         <!-- <form id="addsub">
             <div id="modal" class="modal" style="width: 500px">
               <div class="modal-content" style="padding: 0;">

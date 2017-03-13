@@ -120,4 +120,27 @@ class admin extends CI_Controller{
 			redirect('');
 		}
 	}
+
+	function Messages()
+	{
+		if($this->session->userdata('is_logged_in'))
+        {
+        	if($this->session->userdata('Acc_type') != 'user')
+                {
+				$this->load->view('includes/header');
+				$this->load->view('includes/navBar');
+				$this->load->view('includes/sidebar');
+				$this->load->view('admin/Messages');
+				$this->load->view('includes/footer');
+				}
+			else
+				{
+
+				}
+		}
+		else
+		{
+			redirect('');
+		}
+	}
 }
