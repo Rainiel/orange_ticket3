@@ -28,15 +28,21 @@ class Ticket_control extends CI_controller{
     {
         $this->load->model('Tickets_model');
                 $Status = $this->input->post('uStatus');
-                //$Assign = $this->input->post('uAssign');
+                $Assign = $this->input->post('uAssign');
                 $Priority =  $this->input->post('uPriority');
            
 
         $id=$this->input->post('TID');
         for($i=0;$i<count($id);$i++){
             echo($id[$i]);
-            $update = $this->Tickets_model->update_ticket($Status, $Priority, $id[$i]);
+            $update = $this->Tickets_model->update_ticket($Status, $Assign, $Priority, $id[$i]);
         }
+    }
+
+    public function AssignedTo(){
+        $this->load->model('Tickets_model');
+        $result =$this->Tickets_model->AssignedTo();
+        echo json_encode($result);
     }
 
     public function getEditTicket()
@@ -84,32 +90,6 @@ class Ticket_control extends CI_controller{
         }      
         echo json_encode($return);
     }
-
-    // public function showTickets()
-    // {
-    //     $return=array();
-    //     $this->load->model('Tickets_model');
-    //     $id = $this->session->userdata('userID');
-    //     $Acc_type = $this->session->userdata('Acc_type');
-    //     $team = $this->session->userdata('Team');
-
-    //     $result=$this->Tickets_model->showAllTickets($Acc_type, $id, $team);
-    //      if($result != false)
-    //      { 
-    //         foreach($result as $DateAndTime)
-    //          {          
-    //             $Time = date("g:i a", strtotime($DateAndTime['Stamp']));
-    //             $date = date("F j, Y", strtotime($DateAndTime['DateFiled']));
-    //             $TimeLog = date("g:i a", strtotime($DateAndTime['TimeLog']));
-    //             $DateAndTime['Stamp'] = $Time;
-    //             $DateAndTime['DateFiled'] = $date;
-    //             $DateAndTime['TimeLog'] = $TimeLog;
-
-    //             $return[] = $DateAndTime;
-    //          }
-    //     }
-    //   echo json_encode($return);
-    // }
 
     public function dashboardTicks()
     {

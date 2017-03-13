@@ -123,13 +123,14 @@
     		             <a class="waves-effect" data-stat="Resolved">Resolved <span class="badge badge-new pull-right">1</span></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="Closed">Closed <span class="badge badge-new pull-right">1</span></a>
+    		              <a class="waves-effect" data-stat="Closed">Closed <span class="badge badge-new pull-right">1</span></a>
     		           </li>
-    		        </ul>
-
-		 <hr id="hr">
-     	  <div class="tabs-vertical" id="sideBar4">
+    		        
+                   <?php if($accts != 'user') { ?>
+		            <hr id="hr">
+     	  <!-- <div class="tabs-vertical" id="sideBar4"> -->
                 <div class="headertwo" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>Team Conversation</center></div>
+                <?php } ?>
     		        <?php if($tim == 'Data'){ ?>
     		           	<li class="tab filt">
     		              <a class="waves-effect" data-Ass="Data">Data</a>
@@ -140,12 +141,12 @@
     		             <a class="waves-effect" data-Ass="Technical">Technical</a>
     		           	</li>
     		        <?php } ?>
-    		        </ul>
+    		       </ul>
     		        <?php if($accts == 'Admin'){ ?>
     		        <ul class="tabs" id="AssFilt">
-    		        	<li class="tab filt">
+    		        	<!-- <li class="tab filt">
     		              <a class="waves-effect" data-Ass2="">All</a>
-    		           	</li>
+    		           	</li> -->
     		           	<li class="tab filt">
     		              <a class="waves-effect" data-Ass2="Data">Data</a>
     		           	</li>
@@ -155,16 +156,16 @@
     		        </ul>
     		        <?php } ?>
      	  </div>
-        </div>
+        
           <!-- <hr id="hrtwo">
           <a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #2d3e50">manage tickets</a> -->
      	  <form id="editTicket">
      	  <div class="input-field col s12 sideBar2" style="display: none;">
-        <!-- <?php if($this->session->userdata('Acc_type') == 'Admin'){?>
+        <?php if($this->session->userdata('Acc_type') == 'Admin'){?>
 		    <select name="uAssign" id="sidebarS1">
 		    </select>
 		    <label>Assign To</label>
-        <?php } ?> -->
+        <?php } ?>
 		  </div>
 		  <div class="input-field col s12 sideBar2" style="display: none;">
 		    <select name="uStatus" id="sidebarS2">
@@ -193,7 +194,7 @@
 	          <tr>
 	          	  <th data-field="id" style="width: 50px; padding-left: 20px; padding-top: 5px;
 	          	  <?php if ($this->session->userdata('Acc_type') == 'user'){?> display: none; <?php } ?>">
-	          	    <input type="checkbox" class="filled-in" id="filled-in-box" />
+	          	   <!--  <input type="checkbox" class="filled-in" id="filled-in-box" /> -->
       				<label for="filled-in-box" style="margin-top: 15px;"></label>
       			  </th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; width: 300px;">Tickets</th>

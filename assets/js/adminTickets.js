@@ -6,6 +6,7 @@ showTickets();
 //notifMail();
 TimeTickets();
  });
+
 // setTimeout(function(){
 // 	notifMail();
 // }, 3000);
@@ -23,18 +24,24 @@ Tickets = setTimeout(function(){
 // 		Mail();
 // 	}, 3000);
 // };
+
 $(document).on('click', '.fill-box', function(){
 		var check = $('.fill-box:checked').length;
+		var stat = $('.fill-box:checked').attr('data-stat');
+		var prio = $('.fill-box:checked').attr('data-prio');
+		var Ass = $('.fill-box:checked').attr('data-Ass');
+		var parent = $(this);
+		//$('.fill-box:not(:checked)').prop('disabled', true);
 		if(check > 0){
 			clearTimeout(Tickets);
 			showTicketInfo($(this).parent('td').attr('data-Id2'));
+			//AssignedTo();
     		$('#sideBar').hide();
     		//$('#sideBar4').hide();
     		$('#hr').hide();
     		$('.sideBar2').show();
     		//$('#sideBar3').show();
     		$('#sideBar2Btn').show();
-
 		}
 		if(check == 0){
 			TimeTickets();
@@ -45,6 +52,20 @@ $(document).on('click', '.fill-box', function(){
         	//$('#sideBar3').hide();
         	$('#sideBar2Btn').hide();
 		}
+		//alert(stat);
+		if($('.fill-box[data-stat='+stat+']').is(':checked') 
+			&& $('.fill-box[data-prio='+prio+']').is(':checked')
+			&& $('.fill-box[data-Ass='+Ass+']').is(':checked')){
+  		$('.fill-box[data-stat!='+stat+']').not(parent).attr('disabled', true, parent.is(':checked'));
+  		$('.fill-box[data-prio!='+prio+']').not(parent).attr('disabled', true, parent.is(':checked'));
+  		$('.fill-box[data-Ass!='+Ass+']').not(parent).attr('disabled', true, parent.is(':checked'));
+  		}
+  		else{
+  		showTickets();
+  		$('.fill-box[data-stat='+stat+']').not(parent).attr('disabled', false, parent.is(':checked'));
+  		$('.fill-box[data-prio='+prio+']').not(parent).attr('disabled', false, parent.is(':checked'));
+  		$('.fill-box[data-Ass='+Ass+']').not(parent).attr('disabled', false, parent.is(':checked'));
+  		}
     });
 
 $(document).on('click', '#filled-in-box', function(){
@@ -77,6 +98,8 @@ $(document).on('click', '#filled-in-box', function(){
 $(document).on('click', '.ticketView', function(){
 	var ticketId = $(this).parent('tr').attr('data-Id');
 	showTicketInfo(ticketId);
+	insNotifMail();
+	Mail();
 	clearTimeout(Tickets);
 	// TimeMail();
 	$('#allTable').hide();
@@ -167,25 +190,6 @@ $(document).on('change', '#selectTeam', function(){
  AutoAssign();
  });
 
-// function notifMail(){
-// 	base_url 		= $('#base').val();
-// 	 Time = setTimeout(function(){
-// 	$.ajax({
-// 		url: base_url + 'Ticket_control/notifMail',
-// 		success: function(data)
-// 		{
-// 			filetTicket();
-// 			if($('#filled-in-box').prop("checked") == true){
-// 				clearTimeout(Time);
-// 			}
-// 			if($('#filled-in-box').prop("checked") == false){
-// 				notifMail();
-// 			}
-// 		}
-// 	})
-// 	}, 3000);
-// }
-
 $(document).on('click', '.filt', function(){
 showTickets();
 });
@@ -262,7 +266,7 @@ function showTickets(){
 				},
 			error: function()
 			{
-				alert('dito pumapasok');
+				
 			},
 		});
  };
@@ -363,6 +367,8 @@ function showTicketInfo(id){
 				var sideBarS1='';
 				var sideBarS2='';
 				var sideBarS3='';
+				var team = data.team;
+				var Assign = data.AssignedTo;
 				ticketId = data.ticketId;
 
 					ticketHead += '<div class="collection-item">'+
@@ -386,7 +392,7 @@ function showTicketInfo(id){
 									'<div class="flex-item">'+
 										'<div class="sender-wrap">'+
 											'<div class="namedate">'+
-												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: '+float+';"><b>'+data.fname+'&nbsp;'+data.lname+'</b></span>'+
+												'<span class="title" style="font-size: 14px; color: #2d3e50; text-align: '+float+';"><b>'+data.fname1+'&nbsp;'+data.lname1+'</b></span>'+
 												'<p style="font-size: 12px;	margin-top: -5px">'+data.DateFiled+'<br>'+
 												'</p>'+
 											'</div>'+
@@ -397,12 +403,33 @@ function showTicketInfo(id){
 									'</div>'+
 								'</div>'+
 							'</div>';
-							
 
-					// sideBarS1 +=
-					// '<option value="'+data.AssignedTo+'" selected>'+data.AssignedTo+'</option>'+
-					// '<option value="Data">Data Team</option>'+
-					// '<option value="Technical">Technical Team</option>';
+				sideBarS1 +=
+						'<option value="'+data.AssignedTo+'" selected>'+data.fname2+'&nbsp;'+data.lname2+'</option>';	
+				$.ajax({
+					type: 'POST',
+					url: base_url + 'Ticket_control/AssignedTo',
+					dataType: 'json',
+					success:function(data){
+						var i;
+						var sideBarS1='';
+							for(i=0;i<data.length;i++){
+								if(team == 'Data'){
+								if(data[i].team == 'Data'){
+								sideBarS1 += '<option value="'+data[i].userId+'">'+data[i].fname+'&nbsp;'+data[i].lname+'</option>';
+								}
+								}
+								if(team == 'Technical'){
+								if(data[i].team == 'Technical'){
+								sideBarS1 += '<option value="'+data[i].userId+'">'+data[i].fname+'&nbsp;'+data[i].lname+'</option>';
+								}
+								}
+						}
+						$('#sidebarS1').append(sideBarS1);
+						$('#sidebarS1').material_select();
+					}
+				})
+					
 					sideBarS2 +=
 					'<option value="'+data.Status+'" selected>'+data.Status+'</option>'+
 					'<option value="On-progress">On-progress</option>'+
@@ -415,8 +442,8 @@ function showTicketInfo(id){
 					 '<option value="High">High</option>';
 
 
-				//$('#sidebarS1').html(sideBarS1);
-				//$('#sidebarS1').material_select();
+				$('#sidebarS1').html(sideBarS1);
+				$('#sidebarS1').material_select();
 				$('#sidebarS2').html(sideBarS2);
 				$('#sidebarS2').material_select();
 				$('#sidebarS3').html(sideBarS3);
@@ -424,14 +451,16 @@ function showTicketInfo(id){
 
 				$('#ticketHead').html(ticketHead);
 				$('#messages').html(messages);
-				Mail();
-				insNotifMail();
 			},
 			error: function(){
 				alert('error');
 			},
 		});
 };
+
+function AssignedTo(){
+	
+}
 
 function updNotifMail(){
 	$.ajax({
@@ -454,8 +483,6 @@ function insNotifMail(){
 		},
 	});
 };
-
-
 
 function Mail(){
 	var TID = ticketId;

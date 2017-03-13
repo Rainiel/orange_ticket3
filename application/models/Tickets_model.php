@@ -35,13 +35,25 @@ class Tickets_model extends CI_Model {
 		return $this->db->insert('tbl_tickets', $post_data);
 	}
 
-  public function update_ticket($Status, $Priority, $id)
+  public function update_ticket($Status, $Assign, $Priority, $id)
   {
     $this->db->set('Status', $Status);
-    //$this->db->set('AssignedTo', $Assign);
+    $this->db->set('AssignedTo', $Assign);
     $this->db->set('Priority', $Priority);
     $this->db->where('ticketId', $id); 
     return $this->db->update('tbl_tickets');
+  }
+
+  public function AssignedTo()
+  {
+    $query = $this->db->query("SELECT userId, fname, lname, team
+                                FROM tbl_user
+                                WHERE account_type = 'Sub-Admin'
+      ");
+    if($query->num_rows()>0){
+      return $query->result_array();
+    }
+    else{return false;}
   }
 
   public function showTickets($stat, $Ass, $Ass2, $Search, $Acc_type, $id, $team)
@@ -49,14 +61,10 @@ class Tickets_model extends CI_Model {
       if($Acc_type == 'Admin')
       {
         $Where = '';
-         if($stat == NULL && $Ass2 == NULL){}
-         if($stat != NULL && $Ass2 == NULL){
-          $Where = "WHERE t.Status = '$stat'";
-         }
          if($Ass2 != NULL && $stat == NULL){
           $Where = "WHERE t.Issue = '$Ass2'";
          }
-         if($stat != NULL && $Ass2 != NULL){
+         if($Ass2 != NULL && $stat != NULL){
           $Where = "WHERE t.Status = '$stat' AND t.Issue = '$Ass2'";
          }
          if($Search != Null){
@@ -77,11 +85,6 @@ class Tickets_model extends CI_Model {
       }
       if($Acc_type == 'Sub-Admin')
       {
-        // $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
-        // $this->db->from('tbl_tickets as t');
-        // $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
-        // $this->db->join('tbl_user as u1', 't.User=u1.userId');
-        // $this->db->order_by('ticketId', 'desc');
         $Where = '';
         if($stat == NULL && $Ass == NULL){
           $Where = "WHERE t.AssignedTo = '$id'";
@@ -92,9 +95,11 @@ class Tickets_model extends CI_Model {
         if($Ass != NULL){
           $Where = "WHERE t.Issue = '$Ass' AND t.AssignedTo != '$id'";
         }
-        
+        if($Search != Null){
+          $Where = "Where u1.fname Like '%$Search%' OR u1.lname Like '%$Search%' OR u2.fname Like '%$Search%' OR u2.lname Like '%$Search%' OR t.Subject Like '%$Search%' OR t.Issue Like '%$Search%' OR t.Priority Like '%$Search%' OR t.Status Like '%$Search%' OR t.Stamp Like '%$Search%' OR t.DateFiled Like '%$Search%'";
+         }
         $query = $this->db->query("SELECT t.*, 
-                                u1.fname AS fname1, u1.lname AS lname1, 
+                                u1.fname AS fname1, u1.lname AS lname1,
                                 u2.fname AS fname2, u2.lname AS lname2,
                                 u1.Online AS Online, u1.TimeLog AS TimeLog,
                                 (SELECT notif FROM tbl_notifMail where TID = t.ticketId AND UID = $id) AS notif,
@@ -108,11 +113,6 @@ class Tickets_model extends CI_Model {
       }
       if($Acc_type == 'user')
       {
-        // $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
-        // $this->db->from('tbl_tickets as t');
-        // $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
-        // $this->db->join('tbl_user as u1', 't.User=u1.userId');
-        // $this->db->order_by('ticketId', 'desc');
         $Where = '';
         if($stat == NULL){
           $Where = "WHERE t.User = '$id'";
@@ -120,6 +120,9 @@ class Tickets_model extends CI_Model {
         if($stat != NULL){
           $Where = "WHERE t.User = '$id' AND t.Status = '$stat'";
           }
+          if($Search != Null){
+          $Where = "Where u1.fname Like '%$Search%' OR u1.lname Like '%$Search%' OR u2.fname Like '%$Search%' OR u2.lname Like '%$Search%' OR t.Subject Like '%$Search%' OR t.Issue Like '%$Search%' OR t.Priority Like '%$Search%' OR t.Status Like '%$Search%' OR t.Stamp Like '%$Search%' OR t.DateFiled Like '%$Search%'";
+         }
         $query = $this->db->query("SELECT t.*, 
                                 u1.fname AS fname1, u1.lname AS lname1,
                                 u2.fname AS fname2, u2.lname AS lname2,
@@ -130,8 +133,8 @@ class Tickets_model extends CI_Model {
                                 INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
                                 INNER JOIN tbl_user as u1 on t.User=u1.userId
                                 $Where
-                                ORDER BY t.ticketId DESC 
-                                  ");
+                                ORDER BY t.ticketId DESC
+                                ");
       }
     if($query->num_rows()>0)
     {
@@ -139,60 +142,6 @@ class Tickets_model extends CI_Model {
     }
     else{return false;}
   }
-
-  // public function showAllTickets($Acc_type, $id, $team)
-  // {
-  //     if($Acc_type == 'Admin')
-  //     {
-
-  //       $query = $this->db->query("SELECT t.*, 
-  //                           u1.fname AS fname1, u1.lname AS lname1, 
-  //                           u2.fname AS fname2, u2.lname AS lname2,
-  //                           u1.Online AS Online, u1.TimeLog AS TimeLog,
-  //                           (SELECT notif FROM tbl_notifMail where TID = t.ticketId AND UID = $id) AS notif,
-  //                           (SELECT COUNT(*) FROM tbl_notifMail WHERE TID = t.ticketId AND UID = $id) AS noticount
-  //                         FROM tbl_tickets AS t
-  //                         INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
-  //                         INNER JOIN tbl_user as u1 on t.User=u1.userId
-  //                         ORDER BY t.ticketId DESC
-  //         ");
-  //     }
-  //     if($Acc_type == 'Sub-Admin')
-  //     {
-  //       $query = $this->db->query("SELECT t.*, 
-  //                           u1.fname AS fname1, u1.lname AS lname1, 
-  //                           u2.fname AS fname2, u2.lname AS lname2,
-  //                           u1.Online AS Online, u1.TimeLog AS TimeLog,
-  //                           (SELECT notif FROM tbl_notifMail where TID = t.ticketId AND UID = $id) AS notif,
-  //                           (SELECT COUNT(*) FROM tbl_notifMail WHERE TID = t.ticketId AND UID = $id) AS noticount
-  //                         FROM tbl_tickets AS t
-  //                         INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
-  //                         INNER JOIN tbl_user as u1 on t.User=u1.userId
-  //                         Where t.AssignedTo = $id
-  //                         ORDER BY t.ticketId DESC
-  //         ");
-  //     }
-  //     if($Acc_type == 'user')
-  //     {
-  //       $query = $this->db->query("SELECT t.*, 
-  //                           u1.fname AS fname1, u1.lname AS lname1, 
-  //                           u2.fname AS fname2, u2.lname AS lname2,
-  //                           u1.Online AS Online, u1.TimeLog AS TimeLog,
-  //                           (SELECT notif FROM tbl_notifMail where TID = t.ticketId AND UID = $id) AS notif,
-  //                           (SELECT COUNT(*) FROM tbl_notifMail WHERE TID = t.ticketId AND UID = $id) AS noticount
-  //                         FROM tbl_tickets AS t
-  //                         INNER JOIN tbl_user as u2 ON t.AssignedTo=u2.userId
-  //                         INNER JOIN tbl_user as u1 on t.User=u1.userId
-  //                         Where t.User = $id
-  //                         ORDER BY t.ticketId DESC
-  //         ");
-  //     }   
-  //     if($query->num_rows()>0)
-  //       {
-  //         return $query->result_array();
-  //       }
-  //       else{return false;}
-  // }
 
   public function showAllTicketsSA($Acc_type, $id, $team)
   {
@@ -233,7 +182,6 @@ class Tickets_model extends CI_Model {
                               WHERE Status = 'New'
                               ORDER BY t.ticketId DESC
                               ");
-    //$query = $this->db->get();
     if($query->num_rows()>0)
     {
       return $query->result_array();
@@ -257,11 +205,15 @@ class Tickets_model extends CI_Model {
 
   public function getTicket($id)
   {
-    $this->db->select('t.*, u.fname, u.lname, u.userId');
-    $this->db->from('tbl_tickets as t');
-    $this->db->join('tbl_user as u', 't.User=u.userId');
-    $this->db->where('ticketId', $id);
-    $query = $this->db->get();
+    $query = $this->db->query("SELECT t.*, u2.team,
+                              u1.fname as fname1, u1.lname as lname1,
+                              u2.fname as fname2, u2.lname as lname2
+                              FROM tbl_tickets AS t
+                              INNER JOIN tbl_user AS u2 ON t.AssignedTo=u2.userId
+                              INNER JOIN tbl_user AS u1 ON t.User=u1.userId
+                              WHERE t.ticketId = '$id'
+      ");
+    //$query = $this->db->get();
     return $query;
   }
 
