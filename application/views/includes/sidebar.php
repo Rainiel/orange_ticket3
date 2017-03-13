@@ -15,9 +15,8 @@
                 <i class="fa fa-cog" aria-hidden="true" style="color: white;"></i>Settings</a>
             <div class="collapsible-body" style="padding: 0px;">
               <ul>
-                <li style="background-color: #2d3e50;"><a style="color: white;" href="ManageTickets">Manage Tickets</a></li>
-                <li style="background-color: #2d3e50;"><a style="color: white;" href="SubAdminSA">Sub-Admin</a></li>
-                <li style="background-color: #2d3e50;"><a style="color: white;" href="Users">Users</a></li>
+                <li style="background-color: #2d3e50;"><a style="color: white;" href="SubAdminSA"><i class="fa fa-user-circle" aria-hidden="true"  style="color: white; font-size: 22px"></i>Sub-Admin</a></li>
+                <li style="background-color: #2d3e50;"><a style="color: white;" href="Users"><i class="fa fa-users" aria-hidden="true"  style="color: white; font-size: 22px"></i>Users</a></li>
               </ul>
             </div>
           </li>

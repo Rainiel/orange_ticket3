@@ -53,6 +53,14 @@ nav ul a {
     padding-top: 20px;
 }
 
+.mess-row {
+    box-shadow: 0px 1px 10px 0px #888888;
+    margin-left: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+}
+
 .cardone {
     background: #61d7f1;
     padding: 20px;
@@ -212,6 +220,14 @@ nav ul a {
     border-radius: 0px;
 }
 
+/**sidebar**/
+.side-nav li > a > i > .fa > .fa-home {
+    color: white;
+    font-size: 22px;
+}
+
+
+
 /**admintickets**/
 .all-side {
     font-size: 10px;
@@ -226,4 +242,10 @@ nav ul a {
     margin-top: 5px;
     margin-bottom: 2px;
     margin-left: 60px;
+}
+
+/**messages**/
+
+.searchbar, .searchbar:hover, .searchbar:link, .searchbar:visited{
+    background-color: #6B7580;
 }

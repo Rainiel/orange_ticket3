@@ -125,7 +125,7 @@
     		           <li class="tab filt">
     		             <a class="waves-effect" data-stat="Closed">Closed <span class="badge badge-new pull-right">1</span></a>
     		           </li>
-    		        </ul>
+                   
 
 		 <hr id="hr">
      	  <div class="tabs-vertical" id="sideBar4">
