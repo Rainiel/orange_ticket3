@@ -458,10 +458,6 @@ function showTicketInfo(id){
 		});
 };
 
-function AssignedTo(){
-	
-}
-
 function updNotifMail(){
 	$.ajax({
 		type: 'POST',

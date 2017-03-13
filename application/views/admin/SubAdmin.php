@@ -7,6 +7,19 @@
 		    margin-left: 0px;
 		">Dashboard</h6>
       </div> -->
+      <div class="row" style="margin-left: 0px; padding-right: 15px;padding-top: 20px;">
+          <div class=" col s6" style="box-shadow: 0px 0px 0px black; margin-left: 2px">
+              <nav>
+              <div class="nav-wrapper wrap-bc" style="box-shadow: 0px 0px 0px black">
+                <div class="col s12 nav-breadcrumb">
+                  <a href="#!" class="breadcrumb first-bc">Dashboard</a>
+                  <a href="#!" class="breadcrumb second-bc">SETTINGS</a>
+                  <a href="#!" class="breadcrumb third-bc">SUB-ADMIN</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+      </div>
   <div class="row" style="box-shadow: 0px 1px 10px 0px #888888;
      						 margin-left: 0px;
      						 padding-left: 15px;
@@ -50,7 +63,7 @@
             </div>
             <input type="hidden" name="Sub" value="Sub-Admin">
             <div class="modal-footer">
-            
+
                 <button type="submit" class="waves-effect waves-light btn " style="margin-right: 80px; margin-bottom: 13px; background-color: #2d3e50"><i class="material-icons right">done_all</i>DONE</button>
                 <a class="modal-action modal-close waves-effect waves-green btn" id="modalClose" style="margin-right: 80px;">Close</a>
             </div>
@@ -58,17 +71,7 @@
         </form>
 
 		<div class="row cols s12">
-            <div class=" col s6" style="box-shadow: 0px 0px 0px black">
-                <nav>
-            <div class="nav-wrapper wrap-bc" style="box-shadow: 0px 0px 0px black">
-              <div class="col s12 nav-breadcrumb">
-                <a href="#!" class="breadcrumb first-bc">Dashboard</a>
-                <a href="#!" class="breadcrumb second-bc">SETTINGS</a>
-                <a href="#!" class="breadcrumb third-bc">SUB-ADMIN</a>
-              </div>
-            </div>
-          </nav>
-            </div>
+
             <a class="waves-effect waves-light btn modal-trigger pull-right" href="#modal1" style="background-color: #53D530; float: right; padding-left: 20px; margin-right: 10px;">
     	    <i class="fa fa-plus" aria-hidden="true" style="padding-right: 10px;"></i>Sub-Admin</a>
 	<!-- 	<a class="waves-effect waves-light btn active pull-right" style="background-color: #DF3D3D"><i class="fa fa-trash-o" aria-hidden="true"></i>  Trash</a> -->

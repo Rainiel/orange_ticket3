@@ -129,6 +129,7 @@
                    <?php if($accts != 'user') { ?>
 		            <hr id="hr">
      	  <!-- <div class="tabs-vertical" id="sideBar4"> -->
+
                 <div class="headertwo" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>Team Conversation</center></div>
                 <?php } ?>
     		        <?php if($tim == 'Data'){ ?>
