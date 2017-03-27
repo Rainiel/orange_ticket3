@@ -88,7 +88,7 @@ function showUser(){
 				{
 				if($Acc_type != 'user'){
 					body+=	'<tr>'+
-	                '<td>'+data[i].userId+'</td>'+
+	                '<td><center>'+data[i].userId+'</center></td>'+
 	                '<td><center>'+data[i].fname+'&nbsp;'+data[i].lname+'</center></td>'+
 	                '<td><center>'+data[i].account_type+'</center></td>'+
 	                '<td><center><a onclick="showUsernInfo('+data[i].userId+')" id="userBtn" data-id="'+data[i].userId+'" class="waves-effect waves-light btn" href="#modal2">Info</a></center></td>'+

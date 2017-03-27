@@ -7,7 +7,7 @@
 		    margin-left: 0px;
 		">Dashboard</h6>
       </div> -->
-      <!-- <div class="row" style="margin-left: 0px; padding-right: 15px;padding-top: 20px;">
+      <div class="row" style="margin-left: 0px; padding-right: 15px;padding-top: 20px;">
           <div class=" col s6" style="box-shadow: 0px 0px 0px black; margin-left: 2px">
               <nav>
               <div class="nav-wrapper wrap-bc" style="box-shadow: 0px 0px 0px black">
@@ -19,7 +19,7 @@
               </div>
             </nav>
           </div>
-      </div> -->
+      </div>
   <div class="row" style="box-shadow: 0px 1px 10px 0px #888888;
      						 margin-left: 0px;
      						 padding-left: 15px;
@@ -31,9 +31,9 @@
 
     <!-- Modal Structure -->
 		<form id="addSubAdmin">
-            <div id="modal1" class="modal" style="width: 500px">
+            <div id="modal1" class="modal" style="width: 500px; max-height: 500%; height: 570px">
               <div class="modal-content" style="padding: 0;">
-                <h4 class="modal-header" style="background-color: #2d3e50; padding: 10px; color: white">Create Sub-Admin</h4>
+                <h4 class="modal-header" style="background-color: #2d3e50; padding: 10px; color: white">Create Sub-Admin<a class="modal-close" id="modalClose" type="button"><i class="fa fa-times pull-right" aria-hidden="true" style="color: #232F3D; font-size: 30px"></i></a></h4>
                       <div class="row" style="margin-left: 50px">
                             <div class="input-field col s5">
                                 <input type="text" class="validate" id="addSAfname" required>
@@ -69,7 +69,6 @@
             <div class="modal-footer">
 
                 <button type="submit" class="waves-effect waves-light btn" style="margin-right: 80px; margin-bottom: 13px; background-color: #2d3e50"><i class="material-icons right">done_all</i>DONE</button>
-                <a class="modal-action modal-close waves-effect waves-green btn" id="modalClose" style="margin-right: 80px;">Close</a>
             </div>
           </div>
         </form>
@@ -85,11 +84,11 @@
 		<input type="hidden" id="GTICK" value="<?php echo $uid; ?>">
 		</div>
     <form id="editSA">
-    <div id="modal2" class="modal" style="width: 40%;">
+    <div id="modal2" class="modal" style="width: 40%; max-height: 500%; height: 500px">
         <div class="modal-content" style="background-color: #2d3e50; padding: 15px;">
-          <h5 style="margin: 0px; color: white;">Sub-Admin</h5>
+          <h5 style="margin: 0px; color: white;">Sub-Admin<a class="modal-close" id="modalClose" type="button"><i class="fa fa-times pull-right" aria-hidden="true" style="color: #232F3D; font-size: 30px"></i></a></h5>
         </div>
-          <div class="row" style="margin-left: 50px">
+          <div class="row" style="margin-left: 50px; padding: 15px">
               <div class="input-field col s5" id="SAfname">
                   <!-- <input type="text" class="validate" name="SAfname" required>
                   <label>First Name</label> -->
@@ -117,11 +116,10 @@
           </div>
 
         <div class="modal-footer">
-          <button id="editSAform" class="waves-effect waves-green btn-flat" style="margin-right: 10px; margin-bottom: 13px; background-color: #2d3e50; color: white;" type="submit" 
+          <button id="editSAform" class="waves-effect waves-green btn-flat" style="margin-right: 20px; margin-bottom: 10px; background-color: #2d3e50; color: white;" type="submit"
           <?php if($this->session->userdata('Acc_type') != 'Admin') { ?> Disabled <?php } ?> >
           <i class="material-icons right">done_all</i>Update
         </button>
-        <a class="modal-action modal-close waves-effect waves-green btn" id="modalClose2" style="margin-right: 80px;">Close</a>
         </div>
         <input type="hidden" id="subadminId">
     </div>

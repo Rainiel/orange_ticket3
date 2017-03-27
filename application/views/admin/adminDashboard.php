@@ -153,7 +153,7 @@
                 </div>
             </div>
             <!-- <div class="col s4" style="padding-left: 0px; box-shadow: 0px 0px 0px solid black">
-            
+
               </div> -->
 
             <div class="col s12" id="chart-container" style="margin: 0px;padding-right: 0px; margin-top: 20px">
@@ -162,7 +162,7 @@
         </div>
 
         <div class="col s7">
-            <table class="tbl-dash">
+            <table class="tbl-dash" style="min-height: 100%; height: 400px; max-height: 1000px; overflow: scroll; overflow-x: hidden; border:none;">
                 <thead class="thead-dash">
                 <tr>
                 <th class="th-dash" data-field="id"><center>Name</th>
