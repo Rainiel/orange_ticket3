@@ -1,25 +1,65 @@
 $(document).ready(function(){
-//ticketGraph();
+ticketGraph();
 dashboardTick();
 dashboardCounts();
 
+});
+
 function ticketGraph(){
-		$.ajax({
+	var New
+	var Prog
+	var Hold
+	var Resolved
+	var Closed
+	$.ajax({
 			url : 'Ticket_control/ticketGraph',
 			type :'ajax',
 			dataType: 'JSON',
 			success: function(data){
-				$("#new").append(data.New);
-				$("#prog").append(data.Prog);
-				$("#onhold").append(data.Hold);
-				$("#resolved").append(data.Resolved);
+				New = data.New;
+				Prog = data.Prog;
+				Hold = data.Hold;
+				Resolved = data.Resolved;
+				Closed = data.Closed;
+				// $("#new").append(data.New);
+				// $("#prog").append(data.Prog);
+				// $("#onhold").append(data.Hold);
+				// $("#resolved").append(data.Resolved);
 				// $("#closed").append(data.Closed);
-
+			    var revenueChart = new FusionCharts({
+			        type: 'doughnut2d',
+			        renderAt: 'chart-container',
+			        width: '100%',
+			        height: '100%',
+			        dataFormat: 'json',
+			        dataSource: {
+			            "chart": {
+			            	"enableSmartLabels": "0",
+			            	"showValues": "0",
+			            	"showPercentValues": "0",               
+			                "startingAngle": "310",
+			                "decimals": "0",
+			               
+			                "theme": "fint"                
+			            },
+			            "data": [{
+			                "value": New
+			            }, {
+			                "value": Prog
+			            }, {
+			                "value": Hold
+			            }, {
+			                "value": Resolved
+			            }, {
+			                "value": Closed
+			            }]
+			        }
+			    }).render();
 			},
 			error: function(){
 			alert();
 			},
-			});
+	});
 		};
 
  function dashboardTick(){
@@ -60,17 +100,28 @@ function dashboardCounts(){
 			var AllTicket='';
 			var HighTicket='';
 			var ClosedTicket='';
+			var Online='';
 			AllTicket+= data.AllTicket;
 			HighTicket+= data.HighTicket;
 			ClosedTicket+= data.ClosedTicket;
+			Online+= data.Online;
 			$('#AllTicket').append(AllTicket);
 			$('#HighTicket').append(HighTicket);
 			$('#ClosedTicket').append(ClosedTicket);
+			$('#Online').append(Online);
 		},
 	});
 };
 
- });
+function Chart(){
+
+	alert(New)
+
+
+};
+
+
+
 
 
 

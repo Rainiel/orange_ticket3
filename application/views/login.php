@@ -8,14 +8,14 @@
                         <div class="row" style="width: 380px">
                           <div class="input-field col s12" style="width:380px">
                             <i class="material-icons prefix">account_circle</i>
-                            <input id="username" type="text" class="validate" name="username">
+                            <input type="text" class="validate" name="username">
                             <label for="username">Username</label>
                           </div>
                         </div>
                         <div class="row">
                           <div class="input-field col s12" style="width:380px">
                             <i class="material-icons prefix">vpn_key</i>
-                            <input id="password" type="password" class="validate" name="password">
+                            <input type="password" class="validate" name="password">
                             <label for="password">Password</label>
                           </div>
                         </div>

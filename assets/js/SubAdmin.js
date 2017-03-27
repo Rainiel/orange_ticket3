@@ -12,16 +12,31 @@ $(document).on('click', '.subAdminView', function(){
 $(document).on('submit', '#addSubAdmin', function(e){
 	e.preventDefault();
 	base_url = $('#base1').val();
+	var fname = $('#addSAfname').val();
+	var lname = $('#addSAlname').val();
+	var team = $('#addTeam').val();
+	var user = $('#addSAusername').val();
+	var pass = $('#addSApassword').val();
+	var cpass = $('#addSACpassword').val();
+	var acc = $('#addSub').val();
 	$.ajax({
 		type: "POST",
 		url: base_url + 'SubAdmin_control/addSubAdmin',
-		contentType: false,
-		cache: false,
-		processData: false,
-		data: new FormData(this),
+		data:{
+			'fname': fname,
+			'lname': lname,
+			'team' : team,
+			'user' : user,
+			'pass' : pass,
+			'cpass': cpass,
+			'acc'  : acc
+		},
 			success: function(data){
+				if(pass == cpass){
 				showSubAdmin();
 				$('#modalClose').trigger('click');
+				}
+				else{alert("password not match");}
 			},
 			error: function(){
 				alert();
@@ -48,10 +63,6 @@ $(document).on('click', '#editSAform', function(e){
 			 'SAusername' : user,
 			 'SApassword' : pass
 	},
-		// contentType: false,
-		// cache: false,
-		// processData: false,
-		// data: new FormData(this),
 		success: function(){
 			showSubAdmin();
 			$('#modalClose2').trigger('click');

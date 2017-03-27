@@ -67,7 +67,7 @@
                                           <a href="#!" class=" modal-action modal-close waves-effect waves-light btn pull-right" style="margin-right: 10px; margin-bottom: 13px; background-color: #2d3e50"><i class="material-icons right">done_all</i>DONE</a>
                             </div>
                     </form> -->
-				  <form id="addTicket" novalidate>
+				  <form id="addTicket">
 				  <div id="modal1" class="modal" style="width: 40%;">
 				    <div class="modal-content" style="background-color: #2d3e50; padding: 15px;" >
 				      <h5 style="margin: 0px; color: white;">Ticket</h5></div>
@@ -77,23 +77,25 @@
 				          <label>Subject</label>
 				      </div>
 				      <div class="input-field col s12">
-					    <select id="selectTeam" name="Iss" required>
-					      <option value="" disabled selected>Choose Issue Type</option>
+					    <select id="selectTeam" name="Iss">
+					      <option value="" selected disabled>Choose Issue Type</option>
 					      <option value="Data">Data Issue</option>
 					      <option value="Technical">Technical Issue</option>
 					    </select>
 					    <label>Issue Type</label>
-					    <input type="hidden" id="Team">
+            <input type="hidden" id="Team">
+
 					  </div>
 					  <div class="input-field col s12">
-				         <textarea id="textarea1" class="materialize-textarea" name="Desc" required></textarea>
-				         <label for="textarea1">Description</label>
-				      </div>
+				         <textarea id="textarea1" class="materialize-textarea" name="Desc"></textarea>
+				         <!-- <label for="textarea1">Description</label> -->
+				    </div>
 
 				    <div class="modal-footer">
 				      <button id="addForm" class="waves-effect waves-green btn-flat" style="margin-right: 10px; margin-bottom: 13px; background-color: #2d3e50; color: white;" type="submit">
               <i class="material-icons right">done_all</i>Add
 					  </button>
+            <a id="modalCloseTicket" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
 				    </div>
 
 				    <input type="text" style="display: none;" name="Stat" value="New">
@@ -108,10 +110,10 @@
                 <div class="header" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>My Conversations</center></div>
     		        <ul class="tabs" id="statFilt">
     		        	<li class="tab filt">
-    		              <a class="waves-effect" data-stat="">All<span class="new badge" data-badge-caption="4"></span></a>
+    		              <a class="waves-effect" data-stat="">All<!-- <span class="new badge" data-badge-caption="4"></span> --></a>
     		           </li>
     		           <li class="tab filt">
-    		               <a class="waves-effect" data-stat="New">New<label class="badge badge-new">1</label></a>
+    		               <a class="waves-effect" data-stat="New">New<!-- <label class="badge badge-new">1</label> --></a>
     		           </li>
     		           <li class="tab filt">
     		             <a class="waves-effect" data-stat="On-progress">On-progress <span class="badge badge-new pull-right">1</span></a>
@@ -162,8 +164,8 @@
           <a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #2d3e50">manage tickets</a> -->
      	  <form id="editTicket">
      	  <div class="input-field col s12 sideBar2" style="display: none;">
-        <?php if($this->session->userdata('Acc_type') == 'Admin'){?>
-		    <select name="uAssign" id="sidebarS1">
+        <?php if($accts != 'user'){?>
+		    <select name="uAssign" id="sidebarS1" <?php if($accts == 'Sub-Admin'){?> disabled <?php } ?> >
 		    </select>
 		    <label>Assign To</label>
         <?php } ?>
@@ -178,8 +180,8 @@
 		    </select>
 		    <label>Priority</label>
 		  </div>
-		  <button style="display: none; background-color: #2d3e50" id="sideBar2Btn" class="btn waves-effect waves-light" type="submit"
-		    <i class="material-icons right">Update</i>
+		  <button style="display: none; background-color: #2d3e50" id="sideBar2Btn" class="btn waves-effect waves-light" type="submit" <?php if($accts == 'user') { ?> disabled <?php } ?> >Update
+		    <!-- <i class="material-icons right">Update</i> -->
 		  </button>
 		<input type="hidden" id="tickCount" name="tickCount[]">
 		<input type="hidden" id="tickCount" name="userCount[]">
@@ -201,11 +203,19 @@
 	              <th style="padding-top: 5px; padding-bottom: 10px; width: 300px;">Tickets</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Status</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Assignee</th>
-	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Priority<i class="fa fa-chevron-down" aria-hidden="true" style="margin-left: 7px"></i></th>
+	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">
+                <a style="padding-right: 10px; padding-left: 10px;" class='dropdown-button btn' href='#' data-activates='dropdown1'>Priority</a>
+                </th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Latest Update</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Date Filed</th>
 	          </tr>
 	        </thead>
+            <ul id='dropdown1' class='dropdown-content'>
+              <li class="active" id="AllPrio" data-value=""><a>All</a></li>
+              <li class="divider"></li>
+              <li id="LowPrio" data-value="Low"><a>Low</a></li>
+              <li id="HighPrio" data-value="High"><a>High</a></li>
+            </ul>
 
 	        <tbody id="showTicket">
 	          <!-- <tr>
@@ -228,7 +238,7 @@
 
             <div class="collection" style="min-height: 100%; height: 400px; max-height: 1000px; overflow: scroll; overflow-x: hidden; border:none;">
                         <!-- <a href="#!" class="secondary-content pull-right" style="margin-top: 15px; margin-right: 20px"><i class="fa fa-share" aria-hidden="true" style="margin-right: 8px; color: black"></i><i class="fa fa-quote-right" aria-hidden="true" style="color: black"></i></a> -->
-    					<div class="collection" id="messages" style="border-top:none; border-left: none; border-right: none; border-bottom: none">
+    					<div class="collection" id="Description" style="border-top:none; border-left: none; border-right: none; border-bottom: none">
     					  <!-- <div class="collection-item avatar" style="border-bottom: none;">
     						<img src="assets/images/square.png" alt="" class="circle">
     						<span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
@@ -236,6 +246,16 @@
     						</p>
     						<span class="title" id="msg" style="color: #2d3e50; font-size: 12px;">
     						</span>
+                </div> -->
+              </div>
+              <div class="collection" id="messages" style="border-top:none; border-left: none; border-right: none; border-bottom: none">
+                <!-- <div class="collection-item avatar" style="border-bottom: none;">
+                <img src="assets/images/square.png" alt="" class="circle">
+                <span class="title" style="font-size: 14px; color: #2d3e50"><b>Rainiel</b></span>
+                <p style="font-size: 12px;  margin-top: -5px;">February 18<br>
+                </p>
+                <span class="title" id="msg" style="color: #2d3e50; font-size: 12px;">
+                </span>
                 </div> -->
               </div>
             </div>

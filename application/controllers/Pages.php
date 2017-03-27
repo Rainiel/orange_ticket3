@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
 *
 */
-class admin extends CI_Controller{
+class Pages extends CI_Controller{
 
 	function Dashboard()
 	{
@@ -48,30 +48,6 @@ class admin extends CI_Controller{
 		}
 	}
 
-	function ManageTickets()
-	{
-		if($this->session->userdata('is_logged_in'))
-        {
-
-        	if($this->session->userdata('Acc_type') != 'user')
-                {
-                $user['uid'] = $this->session->userdata('userID');
-				$this->load->view('includes/header');
-				$this->load->view('includes/navBar');
-				$this->load->view('includes/sidebar');
-				$this->load->view('admin/ManageTickets', $user);
-				$this->load->view('includes/footer');
-				}
-			else
-				{
-
-				}
-		}
-		else
-		{
-			redirect('');
-		}
-	}
 	function SubAdminSA()
 	{
 		if($this->session->userdata('is_logged_in'))
@@ -125,17 +101,19 @@ class admin extends CI_Controller{
 	{
 		if($this->session->userdata('is_logged_in'))
         {
+
         	if($this->session->userdata('Acc_type') != 'user')
                 {
+                $user['uid'] = $this->session->userdata('userID');
 				$this->load->view('includes/header');
 				$this->load->view('includes/navBar');
 				$this->load->view('includes/sidebar');
-				$this->load->view('admin/Messages');
+				$this->load->view('admin/Messages', $user);
 				$this->load->view('includes/footer');
 				}
 			else
 				{
-
+				
 				}
 		}
 		else

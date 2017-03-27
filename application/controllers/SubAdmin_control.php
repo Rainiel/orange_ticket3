@@ -7,26 +7,32 @@ class SubAdmin_control extends CI_controller{
     {
         $this->load->model('SubAdmin_model');
 
+        $SubAdminPass = $this->input->post('SApassword');
+        $SAPassEncrypt = md5(mysqli_real_escape_string($SubAdminPass));
+        $SubAdminCPass = $this->input->post('SACpassword');
         $post_data=array(
             'account_type'      => $this->input->post('Sub'),
             'fname'             => $this->input->post('SAfname'),
             'lname'       		=> $this->input->post('SAlname'),
             'username'      	=> $this->input->post('SAusername'),
-            'password'          => $this->input->post('SApassword'),
+            'password'          => $SAPassEncrypt,
             'team'   			=> $this->input->post('Team')
         );
 
-        $this->SubAdmin_model->addSubAdmin($post_data);
+        $this->SubAdmin_model->addSubAdmin($post_data, $SubAdminCPass);
     }
 
     public function editSubAdmin()
     {
         $this->load->model('SubAdmin_model');
+        $SubAdminPass = $this->input->post('SApassword');
+        $SAPassEncrypt = md5(mysqli_real_escape_string($SubAdminPass));
+        $SubAdminCPass = $this->input->post('SACpassword');
         $post_data=array(
             'fname'             => $this->input->post('SAfname'),
             'lname'             => $this->input->post('SAlname'),
             'username'          => $this->input->post('SAusername'),
-            'password'          => $this->input->post('SApassword'),
+            'password'          => $SAPassEncrypt,
             'team'              => $this->input->post('Team')
             );
 

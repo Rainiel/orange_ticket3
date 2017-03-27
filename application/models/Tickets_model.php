@@ -3,12 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Tickets_model extends CI_Model {
 
-	public function checklogin()
+	public function checklogin($username, $password)
 	{
-		$this->db->where('username',$this->input->post('username'));
-		$this->db->where('password',$this->input->post('password'));
+    $upass = md5($password);
+    // $user = $this->input->post('username');
+    // $pass = $this->input->post('password');
+    // $upass = md5($pass);
+    // echo $upass;
+		// $this->db->where('username', $user);
+		// $this->db->where('password', md5($pass));
 
-		$query=$this->db->get('tbl_user');
+		$query=$this->db->query("SELECT * FROM tbl_user WHERE username = '$username' AND password = '$upass'");
 
 		if($query->num_rows()==1){
 			return $query->row_array();
@@ -19,7 +24,7 @@ class Tickets_model extends CI_Model {
   public function checkOnline($UserId)
   {
     $this->db->set('Online', '1');
-    $this->db->where('userId', $UserId); 
+    $this->db->where('userId', $UserId);
     return $this->db->update('tbl_user');
   }
 
@@ -35,13 +40,21 @@ class Tickets_model extends CI_Model {
 		return $this->db->insert('tbl_tickets', $post_data);
 	}
 
-  public function update_ticket($Status, $Assign, $Priority, $id)
+  public function update_ticket($Admin, $Status, $Assign, $Priority, $UID, $id)
   {
+    if($UID == $Assign){
+    $this->db->set('Status', $Status);
+    $this->db->set('Priority', $Priority);
+    $this->db->where('ticketId', $id); 
+    return $this->db->update('tbl_tickets');
+    }
+    if($Admin == 'Admin'){
     $this->db->set('Status', $Status);
     $this->db->set('AssignedTo', $Assign);
     $this->db->set('Priority', $Priority);
     $this->db->where('ticketId', $id); 
     return $this->db->update('tbl_tickets');
+    }
   }
 
   public function AssignedTo()
@@ -56,21 +69,27 @@ class Tickets_model extends CI_Model {
     else{return false;}
   }
 
-  public function showTickets($stat, $Ass, $Ass2, $Search, $Acc_type, $id, $team)
+  public function showTickets($stat, $Ass, $Ass2, $Prio, $Search, $Acc_type, $id, $team)
   {
       if($Acc_type == 'Admin')
       {
         $Where = '';
-         if($Ass2 != NULL && $stat == NULL){
+         if($Ass2 != NULL && $stat == NULL && $Prio == NULL){
           $Where = "WHERE t.Issue = '$Ass2'";
          }
-         if($Ass2 != NULL && $stat != NULL){
+         if($Ass2 != NULL && $stat == NULL && $Prio != NULL){
+          $Where = "WHERE t.Issue = '$Ass2' AND t.Priority = '$Prio'";
+         }
+         if($Ass2 != NULL && $stat != NULL && $Prio == NULL){
           $Where = "WHERE t.Status = '$stat' AND t.Issue = '$Ass2'";
+         }
+         if($Ass2 != NULL && $stat != NULL && $Prio != NULL){
+          $Where = "WHERE t.Status = '$stat' AND t.Issue = '$Ass2' AND t.Priority = '$Prio'";
          }
          if($Search != Null){
           $Where = "Where u1.fname Like '%$Search%' OR u1.lname Like '%$Search%' OR u2.fname Like '%$Search%' OR u2.lname Like '%$Search%' OR t.Subject Like '%$Search%' OR t.Issue Like '%$Search%' OR t.Priority Like '%$Search%' OR t.Status Like '%$Search%' OR t.Stamp Like '%$Search%' OR t.DateFiled Like '%$Search%'";
          }
-        $query = $this->db->query("SELECT t.*, 
+        $query = $this->db->query("SELECT t.*,
                                 u1.fname AS fname1, u1.lname AS lname1, 
                                 u2.fname AS fname2, u2.lname AS lname2,
                                 u1.Online AS Online, u1.TimeLog AS TimeLog,
@@ -89,14 +108,22 @@ class Tickets_model extends CI_Model {
         if($stat == NULL && $Ass == NULL){
           $Where = "WHERE t.AssignedTo = '$id'";
         }
+        if($stat == NULL && $Ass == NULL && $Prio != NULL){
+          $Where = "WHERE t.AssignedTo = '$id' AND t.Priority = '$Prio'";
+        }
         if($stat != NULL){
           $Where = "WHERE t.AssignedTo = '$id' AND Status = '$stat'";
           }
+        if($stat != NULL && $Prio != NULL){
+          $Where = "WHERE t.AssignedTo = '$id' AND Status = '$stat' AND t.Priority = '$Prio'";
+          }
         if($Ass != NULL){
           $Where = "WHERE t.Issue = '$Ass' AND t.AssignedTo != '$id'";
+        }  
+        if($Ass != NULL && $Prio != NULL){
+          $Where = "WHERE t.Issue = '$Ass' AND t.AssignedTo != '$id' AND t.Priority = '$Prio'";
         }
         if($Search != Null){
-          $Where = "Where u1.fname Like '%$Search%' OR u1.lname Like '%$Search%' OR u2.fname Like '%$Search%' OR u2.lname Like '%$Search%' OR t.Subject Like '%$Search%' OR t.Issue Like '%$Search%' OR t.Priority Like '%$Search%' OR t.Status Like '%$Search%' OR t.Stamp Like '%$Search%' OR t.DateFiled Like '%$Search%'";
          }
         $query = $this->db->query("SELECT t.*, 
                                 u1.fname AS fname1, u1.lname AS lname1,
@@ -117,11 +144,13 @@ class Tickets_model extends CI_Model {
         if($stat == NULL){
           $Where = "WHERE t.User = '$id'";
           }
+        if($stat == NULL && $Prio != NULL){
+          $Where = "WHERE t.User = '$id' AND t.Priority = '$Prio'";
+          }
         if($stat != NULL){
-          $Where = "WHERE t.User = '$id' AND t.Status = '$stat'";
+          $Where = "WHERE t.User = '$id' AND t.Status = '$stat' AND t.Priority = '$Prio'";
           }
           if($Search != Null){
-          $Where = "Where u1.fname Like '%$Search%' OR u1.lname Like '%$Search%' OR u2.fname Like '%$Search%' OR u2.lname Like '%$Search%' OR t.Subject Like '%$Search%' OR t.Issue Like '%$Search%' OR t.Priority Like '%$Search%' OR t.Status Like '%$Search%' OR t.Stamp Like '%$Search%' OR t.DateFiled Like '%$Search%'";
          }
         $query = $this->db->query("SELECT t.*, 
                                 u1.fname AS fname1, u1.lname AS lname1,
@@ -143,33 +172,33 @@ class Tickets_model extends CI_Model {
     else{return false;}
   }
 
-  public function showAllTicketsSA($Acc_type, $id, $team)
-  {
-      if($Acc_type == 'Admin')
-      {
-        $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
-        $this->db->from('tbl_tickets as t');
-        $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
-        $this->db->join('tbl_user as u1', 't.User=u1.userId');
-        $this->db->order_by("ticketId", "desc");
-        $query = $this->db->get();
-      }
-      if($Acc_type == 'Sub-Admin')
-      {
-        $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
-        $this->db->from('tbl_tickets as t');
-        $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
-        $this->db->join('tbl_user as u1', 't.User=u1.userId');
-        //$this->db->where("u.team = '$team' AND Issue = '$team'");
-        $this->db->order_by("ticketId", "desc");
-        $query = $this->db->get();
-      } 
-      if($query->num_rows()>0)
-        {
-          return $query->result_array();
-        }
-        else{return false;}
-  }
+  // public function showAllTicketsSA($Acc_type, $id, $team)
+  // {
+  //     if($Acc_type == 'Admin')
+  //     {
+  //       $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
+  //       $this->db->from('tbl_tickets as t');
+  //       $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
+  //       $this->db->join('tbl_user as u1', 't.User=u1.userId');
+  //       $this->db->order_by("ticketId", "desc");
+  //       $query = $this->db->get();
+  //     }
+  //     if($Acc_type == 'Sub-Admin')
+  //     {
+  //       $this->db->select('t.*, u1.fname as fname1, u1.lname as lname1, u2.fname as fname2, u2.lname as lname2');
+  //       $this->db->from('tbl_tickets as t');
+  //       $this->db->join('tbl_user as u2', 't.AssignedTo=u2.userId');
+  //       $this->db->join('tbl_user as u1', 't.User=u1.userId');
+  //       //$this->db->where("u.team = '$team' AND Issue = '$team'");
+  //       $this->db->order_by("ticketId", "desc");
+  //       $query = $this->db->get();
+  //     } 
+  //     if($query->num_rows()>0)
+  //       {
+  //         return $query->result_array();
+  //       }
+  //       else{return false;}
+  // }
 
   public function dashboardTicks()
   {
@@ -194,7 +223,8 @@ class Tickets_model extends CI_Model {
     $query = $this->db->query("SELECT
                                 (SELECT COUNT(*) FROM tbl_tickets) AS AllTicket,
                                 (SELECT COUNT(*) FROM tbl_tickets WHERE Priority = 'High') AS HighTicket,
-                                (SELECT COUNT(*) FROM tbl_tickets WHERE Status = 'Closed') AS ClosedTicket
+                                (SELECT COUNT(*) FROM tbl_tickets WHERE Status = 'Closed') AS ClosedTicket,
+                                (SELECT COUNT(*) FROM tbl_user WHERE Online = '1') AS Online
       ");
     if($query->num_rows()>0)
     {
@@ -217,10 +247,10 @@ class Tickets_model extends CI_Model {
     return $query;
   }
 
-  public function updNotifMail($TID)
+  public function updNotifMail($TID, $UID)
   {
     $this->db->set('notif', '0');
-    $this->db->where('TID', $TID);
+    $this->db->where("TID = '$TID' AND UID != '$UID'");
     return $this->db->update('tbl_notifMail');
   }
 
@@ -253,9 +283,16 @@ class Tickets_model extends CI_Model {
     else{return false;}
   }
 
-  public function insMail($post_data)
+  public function insMail($post_data, $UID)
   {
+    $Admin = $this->session->userdata('Acc_type');
+    $query = $this->db->query("SELECT User, AssignedTo FROM tbl_tickets WHERE User = '$UID' OR AssignedTo = '$UID'");
+    if($query->num_rows()>0){
     return $this->db->insert('tbl_mailtickets', $post_data);
+    }
+    if($Admin == 'Admin'){
+    return $this->db->insert('tbl_mailtickets', $post_data);
+    }
   }
 
   public function Mail($TID, $UID){

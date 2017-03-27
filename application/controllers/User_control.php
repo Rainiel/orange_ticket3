@@ -7,17 +7,36 @@ class User_control extends CI_controller{
     {
         $this->load->model('User_model');
 
+        $UPass = $this->input->post('pass');
+        $UPassEncrypt = md5(mysqli_real_escape_string($UPass));
+        $UCPass = $this->input->post('cpass');
+
         $post_data=array(
             'account_type'      => $this->input->post('acc'),
             'fname'             => $this->input->post('Ufname'),
             'lname'       		=> $this->input->post('Ulname'),
             'username'      	=> $this->input->post('Uusername'),
-            'password'          => $this->input->post('Upassword'),
+            'password'          => $UPassEncrypt,
             'team'   			=> $this->input->post('Team')
         );
 
-        $this->User_model->addUser($post_data);
+        $this->User_model->addUser($post_data, $UCPass);
 
+    }
+
+    public function editUser()
+    {
+        $this->load->model('User_model');
+        $post_data=array(
+            'fname'             => $this->input->post('Ufname'),
+            'lname'             => $this->input->post('Ulname'),
+            'username'          => $this->input->post('Uuser'),
+            'password'          => $this->input->post('Upass')
+            );
+
+        $id=$this->input->post('id');
+
+        $this->User_model->editUser($post_data, $id);
     }
 
     public function showUser()

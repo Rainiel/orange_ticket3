@@ -31,12 +31,14 @@ class Ticket_control extends CI_controller{
                 $Assign = $this->input->post('uAssign');
                 $Priority =  $this->input->post('uPriority');
            
-
+        $UID=$this->session->userdata('userID');
+        $Admin = $this->session->userdata('Acc_type');
         $id=$this->input->post('TID');
         for($i=0;$i<count($id);$i++){
-            echo($id[$i]);
-            $update = $this->Tickets_model->update_ticket($Status, $Assign, $Priority, $id[$i]);
+            //echo($id[$i]);
+            $update = $this->Tickets_model->update_ticket($Admin, $Status, $Assign, $Priority, $UID, $id[$i]);
         }
+        echo $Assign;
     }
 
     public function AssignedTo(){
@@ -65,6 +67,7 @@ class Ticket_control extends CI_controller{
         $stat=$this->input->post('stat');
         $Ass=$this->input->post('Ass');
         $Ass2=$this->input->post('Ass2');
+        $Prio=$this->input->post('Prio');
         $Search=$this->input->post('Search');
  
         $id = $this->session->userdata('userID');
@@ -72,7 +75,7 @@ class Ticket_control extends CI_controller{
         $team = $this->session->userdata('Team');
         $this->load->model('Tickets_model');
 
-        $result=$this->Tickets_model->showTickets($stat, $Ass, $Ass2, $Search, $Acc_type, $id, $team);
+        $result=$this->Tickets_model->showTickets($stat, $Ass, $Ass2, $Prio, $Search, $Acc_type, $id, $team);
 
         if($result != false)
          { 
@@ -105,17 +108,17 @@ class Ticket_control extends CI_controller{
         echo json_encode($result);
     }
 
-    public function showTicketsSA()
-    {
-        $this->load->model('Tickets_model');
-        $id = $this->session->userdata('userID');
-        $Acc_type = $this->session->userdata('Acc_type');
-        $team = $this->session->userdata('Team');
+    // public function showTicketsSA()
+    // {
+    //     $this->load->model('Tickets_model');
+    //     $id = $this->session->userdata('userID');
+    //     $Acc_type = $this->session->userdata('Acc_type');
+    //     $team = $this->session->userdata('Team');
 
-        $result=$this->Tickets_model->showAllTicketsSA($Acc_type, $id, $team);
+    //     $result=$this->Tickets_model->showAllTicketsSA($Acc_type, $id, $team);
 
-      echo json_encode($result);
-    }
+    //   echo json_encode($result);
+    // }
 
     public function getTicket()
     {
@@ -143,16 +146,15 @@ class Ticket_control extends CI_controller{
     {
         $this->load->model('Tickets_model');
         $TID=$this->input->post('TID');
-        $this->Tickets_model->updNotifMail($TID);
+        $UID=$this->session->userdata('userID');
+        $this->Tickets_model->updNotifMail($TID, $UID);
     }
 
     public function insNotifMail()
     {
         $this->load->model('Tickets_model');
-        
-            $TID = $this->input->post('TID');
-            $UID = $this->session->userdata('userID');
-            
+        $TID = $this->input->post('TID');
+        $UID = $this->session->userdata('userID');
         $this->Tickets_model->insNotifMail($TID, $UID);
     }
 
@@ -168,12 +170,13 @@ class Ticket_control extends CI_controller{
     public function insMail()
     {
         $this->load->model('Tickets_model');
+        //$UID = $this->session->userdata('userID');
         $post_data=array(
            'TID'     => $this->input->post('TID'),
            'UID'     => $this->session->userdata('userID'),
            'Message' => $this->input->post('msg')
             );
-        $this->Tickets_model->insMail($post_data);
+        $this->Tickets_model->insMail($post_data, $UID);
     }
 
     public function Mail()

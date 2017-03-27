@@ -17,13 +17,37 @@ Tickets = setTimeout(function(){
 	showTickets();
 	}, 3000);
 };
-// var Mails=null;
-// function TimeMail(){
-// 	Mails = setTimeout(function(){
-// 		TimeMail();
-// 		Mail();
-// 	}, 3000);
-// };
+var Mails=null;
+function TimeMail(){
+	Mails = setTimeout(function(){
+		TimeMail();
+		Mail();
+	}, 3000);
+};
+
+$('#AllPrio').click(function(){ 
+	$('.dropdown-content li.active').removeClass('active');
+	$('#AllPrio').addClass('active'); 
+	$('.dropdown-button').dropdown('close');
+	showTickets();
+	return false;
+});
+ 
+$('#LowPrio').click(function(){ 
+	$('.dropdown-content li.active').removeClass('active');
+	$('#LowPrio').addClass('active'); 
+	$('.dropdown-button').dropdown('close');
+	showTickets();
+	return false;
+});
+
+$('#HighPrio').click(function(){ 
+	$('.dropdown-content li.active').removeClass('active');
+	$('#HighPrio').addClass('active'); 
+	$('.dropdown-button').dropdown('close');
+	showTickets();
+	return false;
+});
 
 $(document).on('click', '.fill-box', function(){
 		var check = $('.fill-box:checked').length;
@@ -34,6 +58,7 @@ $(document).on('click', '.fill-box', function(){
 		//$('.fill-box:not(:checked)').prop('disabled', true);
 		if(check > 0){
 			clearTimeout(Tickets);
+			TimeMail();
 			showTicketInfo($(this).parent('td').attr('data-Id2'));
 			//AssignedTo();
     		$('#sideBar').hide();
@@ -44,6 +69,7 @@ $(document).on('click', '.fill-box', function(){
     		$('#sideBar2Btn').show();
 		}
 		if(check == 0){
+			clearTimeout(Mails);
 			TimeTickets();
 			$('#sideBar').show();
 			//$('#sideBar4').show();
@@ -98,10 +124,9 @@ $(document).on('click', '#filled-in-box', function(){
 $(document).on('click', '.ticketView', function(){
 	var ticketId = $(this).parent('tr').attr('data-Id');
 	showTicketInfo(ticketId);
-	insNotifMail();
-	Mail();
+	insNotifMail(ticketId);
 	clearTimeout(Tickets);
-	// TimeMail();
+	TimeMail();
 	$('#allTable').hide();
 	$('.123').show();
 	$('#sideBar').hide();
@@ -113,7 +138,7 @@ $(document).on('click', '.ticketView', function(){
 });
 
 $(document).on('click', '#backT', function(){
-	// clearTimeout(Mail);
+	clearTimeout(Mails);
 	TimeTickets();
 	$('#allTable').show();
 	$('.123').hide();
@@ -144,6 +169,7 @@ $(document).on('click', '#sideBar2Btn', function(){
 		data: {'uAssign' : uAssign, 'uStatus' : uStatus, 'uPriority' : uPriority, 'TID' : getTicket},
 		success: function(data){
 			showTickets();
+			getCount();
 			$('#filled-in-box').prop('checked',false);
 			$('#sideBar').show();
 			//$('#sideBar4').show();
@@ -160,26 +186,33 @@ $(document).on('click', '#sideBar2Btn', function(){
 $(document).on('submit', '#addTicket', function(e){
 	e.preventDefault();
 	base_url = $('#base').val();
- $.ajax({
-    type: "POST",
-    url: base_url + 'Ticket_control/addTicket',
-    // url: "<?php echo base_url(); ?>index.php/comment/create",
-    contentType: false,
-    cache: false,
-	processData: false,
-	data: new FormData(this),
-		success: function(data){
-			 $('#modelclose').trigger('click');
-			 showTickets();
-			 getCount();
-			 $('#icon_prefix').val('');
-			 //$('#selectTeam').prop('selectedIndex',0);
-			 $('#textarea1').val('');
-		},
-		error: function(){
-			alert();
-		},
- });
+	if(!$('#selectTeam').val()){
+		alert('Please Select Issue');
+	}
+	if(!$('#textarea1').val()){
+		alert('Please Put Some Description');
+	}
+	if($('#selectTeam').val() && $('#textarea1').val()){
+		 $.ajax({
+		    type: "POST",
+		    url: base_url + 'Ticket_control/addTicket',
+		    contentType: false,
+		    cache: false,
+			processData: false,
+			data: new FormData(this),
+				success: function(data){
+					 $('#modalCloseTicket').trigger('click');
+					 showTickets();
+					 getCount();
+					 $('#icon_prefix').val('');
+					 //$('#selectTeam').val('');
+					 tinyMCE.activeEditor.setContent('');
+				},
+				error: function(){
+					alert();
+				},
+		 });
+	}
 });
 
 $(document).on('submit', '#editTicket', function(e){
@@ -199,13 +232,14 @@ function showTickets(){
 	var Status  = $('#statFilt a.active').attr('data-stat');
 	var Assign  = $('#statFilt a.active').attr('data-Ass');
 	var Assign2 = $('#AssFilt a.active').attr('data-Ass2');
-	var Search = $('#SearchFilter').val();
+	var Prio    = $('.dropdown-content li.active').attr('data-value');
+	var Search	= $('#SearchFilter').val();
 		base_url 		= $('#base').val();
 		$.ajax({
 			type : 'POST',
 			url: base_url + 'Ticket_control/showTickets',
 			data: {
-				 'stat' : Status, 'Ass' : Assign, 'Ass2' : Assign2, 'Search' : Search
+				 'stat' : Status, 'Ass' : Assign, 'Ass2' : Assign2, 'Prio' : Prio, 'Search' : Search
 			},
 			dataType:'json',
 			success: function(data)
@@ -339,6 +373,7 @@ function getCount(){
 				});
 				}
 
+
 			},
 			error: function()
 			{
@@ -362,7 +397,7 @@ function showTicketInfo(id){
 			success: function(data){
 
 				var ticketHead='';
-				var messages='';
+				var Description='';
 				var message='';
 				var sideBarS1='';
 				var sideBarS2='';
@@ -380,11 +415,11 @@ function showTicketInfo(id){
 		    						'</div>';
 		    		var float = 'left';
 		    		var flex = '';
-		    		if(ID == data.userId){
+		    		if(ID == data.User){
 		    			float = 'right';
 		    			flex = 'end';
 		    		}
-	    			messages += '<div class="collection-item avatar" style="border-bottom: none; padding-right: 0px; float: '+float+';">'+
+	    			Description += '<div class="collection-item avatar" style="border-bottom: none; padding-right: 0px; float: '+float+';">'+
 	 							'<img src="assets/images/square.png" alt="" class="circle">'+
 							'</div>'+
 							'<div class="row">'+
@@ -450,7 +485,8 @@ function showTicketInfo(id){
 				$('#sidebarS3').material_select();
 
 				$('#ticketHead').html(ticketHead);
-				$('#messages').html(messages);
+				$('#Description').html(Description);
+				Mail();
 			},
 			error: function(){
 				alert('error');
@@ -469,7 +505,7 @@ function updNotifMail(){
 	});
 };
 
-function insNotifMail(){
+function insNotifMail(ticketId){
 		$.ajax({
 		type: 'POST',
 		url: base_url + 'Ticket_control/insNotifMail',
@@ -520,7 +556,7 @@ function Mail(){
 								'</div>'+
 							'</div>';
 			}
-			$('#messages').append(Mail);
+			$('#messages').html(Mail);
 		}
 	});
 };
@@ -530,6 +566,13 @@ $(document).on('submit', '#insMail', function(e){
 	var TID = ticketId;
 	var MSG = $.trim($('textarea#textarea2').val());
 	base_url = $('#base').val();
+	// if (!MSG.replace(/\s/g, '').length) {
+	//     alert("string only contained spaces")
+	// }
+	if(!MSG){
+		alert('Please Put Some Content');
+	}
+	if(MSG){
 		$.ajax({
 			type: "POST",
 			url: base_url + 'Ticket_control/insMail',
@@ -537,7 +580,8 @@ $(document).on('submit', '#insMail', function(e){
 			success: function(){
 				updNotifMail();
 				showTicketInfo(TID);
-				$('#textarea2').val('');
+				tinyMCE.activeEditor.setContent('');
 			}
 		});
+	}
 });

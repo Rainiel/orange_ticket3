@@ -7,7 +7,7 @@
 		    margin-left: 0px;
 		">Dashboard</h6>
       </div> -->
-      <div class="row" style="margin-left: 0px; padding-right: 15px;padding-top: 20px;">
+      <!-- <div class="row" style="margin-left: 0px; padding-right: 15px;padding-top: 20px;">
           <div class=" col s6" style="box-shadow: 0px 0px 0px black; margin-left: 2px">
               <nav>
               <div class="nav-wrapper wrap-bc" style="box-shadow: 0px 0px 0px black">
@@ -19,7 +19,7 @@
               </div>
             </nav>
           </div>
-      </div>
+      </div> -->
   <div class="row" style="box-shadow: 0px 1px 10px 0px #888888;
      						 margin-left: 0px;
      						 padding-left: 15px;
@@ -36,15 +36,15 @@
                 <h4 class="modal-header" style="background-color: #2d3e50; padding: 10px; color: white">Create Sub-Admin</h4>
                       <div class="row" style="margin-left: 50px">
                             <div class="input-field col s5">
-                                <input type="text" class="validate" name="SAfname" required>
+                                <input type="text" class="validate" id="addSAfname" required>
               		            <label>First Name</label>
                             </div>
                             <div class="input-field col s5">
-                                <input type="text" class="validate" name="SAlname" required>
+                                <input type="text" class="validate" id="addSAlname" required>
               		            <label>Last Name</label>
                             </div>
                             <div class="input-field col s10">
-                              <select name="Team" required>
+                              <select id="addTeam" required>
                     			      <option value="" disabled selected required>Choose Team</option>
                     			      <option value="Data">Data Team</option>
                     			      <option value="Technical">Technical Team</option>
@@ -52,19 +52,23 @@
                 			    <label>Team</label>
                             </div>
                             <div class="input-field col s10">
-                                <input type="text" class="validate" name="SAusername" required>
+                                <input type="text" class="validate" id="addSAusername" required>
               		            <label>Username</label>
                             </div>
                             <div class="input-field col s10">
-                                <input type="password" class="validate" name="SApassword" required>
+                                <input type="password" class="validate" id="addSApassword" required>
               		            <label>Password</label>
+                            </div>
+                            <div class="input-field col s10">
+                                <input type="password" class="validate" id="addSACpassword" required>
+                              <label>Confirm Password</label>
                             </div>
                         </div>
             </div>
-            <input type="hidden" name="Sub" value="Sub-Admin">
+            <input type="hidden" id="addSub" value="Sub-Admin">
             <div class="modal-footer">
 
-                <button type="submit" class="waves-effect waves-light btn " style="margin-right: 80px; margin-bottom: 13px; background-color: #2d3e50"><i class="material-icons right">done_all</i>DONE</button>
+                <button type="submit" class="waves-effect waves-light btn" style="margin-right: 80px; margin-bottom: 13px; background-color: #2d3e50"><i class="material-icons right">done_all</i>DONE</button>
                 <a class="modal-action modal-close waves-effect waves-green btn" id="modalClose" style="margin-right: 80px;">Close</a>
             </div>
           </div>
@@ -113,7 +117,8 @@
           </div>
 
         <div class="modal-footer">
-          <button id="editSAform" class="waves-effect waves-green btn-flat" style="margin-right: 10px; margin-bottom: 13px; background-color: #2d3e50; color: white;" type="submit">
+          <button id="editSAform" class="waves-effect waves-green btn-flat" style="margin-right: 10px; margin-bottom: 13px; background-color: #2d3e50; color: white;" type="submit" 
+          <?php if($this->session->userdata('Acc_type') != 'Admin') { ?> Disabled <?php } ?> >
           <i class="material-icons right">done_all</i>Update
         </button>
         <a class="modal-action modal-close waves-effect waves-green btn" id="modalClose2" style="margin-right: 80px;">Close</a>

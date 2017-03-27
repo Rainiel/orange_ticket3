@@ -18,44 +18,22 @@
 
 	 <script>
       tinymce.init({
-          selector: "textarea"
+        menubar:false,
+		statusbar:false,
+		plugins: "emoticons textcolor directionality searchreplace preview print paste charmap link fullscreen",
+		selector: "textarea",
+		toolbar: 'emoticons forecolor backcolor ltr rtl searchreplace preview print charmap link unlink fullscreen',
+		toolbar2: 'alignleft aligncenter alignright alignjustify cut copy paste undo redo',
+		toolbar3: 'bold italic underline strikethrough subscript superscript fontselect fontsizeselect removeformat'
      });
-
-
-
-// 	 window.onload = function () {
-// 	var chart = new CanvasJS.Chart("chartContainer",
-// 	{
-// 		title:{
-// 			text: "Gaming Consoles Sold in 2012"
-// 		},
-// 		legend: {
-// 			maxWidth: 350,
-// 			itemWidth: 120
-// 		},
-// 		data: [
-// 		{
-// 			type: "pie",
-// 			showInLegend: true,
-// 			legendText: "{indexLabel}",
-// 			dataPoints: [
-// 				{ y: 4181563, indexLabel: "PlayStation 3" },
-// 				{ y: 2175498, indexLabel: "Wii" },
-// 				{ y: 3125844, indexLabel: "Xbox 360" },
-// 				{ y: 1176121, indexLabel: "Nintendo DS"},
-// 				{ y: 1727161, indexLabel: "PSP" },
-// 				{ y: 4303364, indexLabel: "Nintendo 3DS"},
-// 				{ y: 1717786, indexLabel: "PS Vita"}
-// 			]
-// 		}
-// 		]
-// 	});
-// 	chart.render();
-// }
- </script>
+	 </script>
 
 </head>
 <body style="padding-top: 0px; font-family: helvetica">
    <div class="row">
+
    	<script src="assets/js/jquery-3.1.1.min.js"></script>
 	<script src="assets/materialize/js/materialize.min.js"></script>
+	<script src="http://static.fusioncharts.com/code/latest/fusioncharts.js?cacheBust=8232"></script>
+	<script src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js?cacheBust=8232"></script>
+

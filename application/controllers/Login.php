@@ -6,8 +6,13 @@ class Login extends CI_Controller {
 	public function login_validation()
 	{
 		$this->load->library('form_validation');
-        $this->form_validation->set_rules('username','Username','trim|required|callback_validate_credentials');
-        $this->form_validation->set_rules('password','Password','trim|required');
+        $this->form_validation->set_rules('username','Username','required|callback_validate_credentials');
+        $this->form_validation->set_rules('password','Password','required');
+
+        // $rules['username'] = 'trim|required|callback_validate_credentials';
+        // $rules['password'] = 'trim|required';
+
+        //$this->form_validation->set_rules();
 
         if($this->form_validation->run())
         {  
@@ -34,7 +39,10 @@ class Login extends CI_Controller {
     {
         $this->load->model('Tickets_model');
 
-        $return = $this->Tickets_model->checklogin();
+        $username = $this->input->post('username', TRUE);
+        $password = $this->input->post('password', TRUE);
+
+        $return = $this->Tickets_model->checklogin($username, $password);
 
         if($return != false)
         {

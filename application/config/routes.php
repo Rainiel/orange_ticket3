@@ -54,9 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //$route['Login'] = 'Welcome/Login';
-$route['Dashboard'] = 'admin/Dashboard';
-$route['Tickets'] = 'admin/Tickets';
-$route['ManageTickets'] = 'admin/ManageTickets';
-$route['SubAdminSA'] = 'admin/SubAdminSA';
-$route['Users'] = 'admin/Users';
-$route['Messages'] = 'admin/Messages';
+$route['Dashboard'] = 'Pages/Dashboard';
+$route['Tickets'] = 'Pages/Tickets';
+$route['ManageTickets'] = 'Pages/ManageTickets';
+$route['SubAdminSA'] = 'Pages/SubAdminSA';
+$route['Users'] = 'Pages/Users';
+$route['Messages'] = 'Pages/Messages';

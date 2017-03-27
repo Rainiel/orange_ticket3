@@ -91,7 +91,7 @@
               </div>
               <div class="card-stacked">
                 <div class="card-content">
-                  <p class="ticketnumber" id="Online" style="margin-top: -35px; margin-left: 20px; border-top: none">7</p>
+                  <p class="ticketnumber" id="Online" style="margin-top: -35px; margin-left: 20px; border-top: none"></p>
                 </div>
                 <div class="card-action" style="margin-top: -50px; margin-left: 15px; border-top: none">
                   Online
@@ -152,34 +152,12 @@
                     <div class="col s3 per-month">Month</div>
                 </div>
             </div>
-            <div class="col s4" style="padding-left: 0px; box-shadow: 0px 0px 0px solid black">
-              <ul class="pieID legend">
-                  <li id="New">
-                    <em>New</em>
-                    <span id="new"></span>
-                  </li>
-                  <li id="Prog">
-                    <em>On Progress</em>
-                    <span id="prog"></span>
-                  </li>
-                  <li id="Hold">
-                    <em>On Hold</em>
-                    <span id="onhold"></span>
-                  </li>
-                  <li id="Resolved">
-                    <em>Resolved</em>
-                    <span id="resolved"></span>
-                  </li>
-                  <li id="Closed">
-                    <em>Closed</em>
-                    <span id="closed">1</span>
-                  </li>
-                </ul>
-              </div>
+            <!-- <div class="col s4" style="padding-left: 0px; box-shadow: 0px 0px 0px solid black">
+            
+              </div> -->
 
-            <div class="col s8" style="margin: 0px;padding-right: 0px; margin-top: 20px">
-              <div class="pieID pie">
-              </div>
+            <div class="col s12" id="chart-container" style="margin: 0px;padding-right: 0px; margin-top: 20px">
+            <!-- <div ></div> -->
             </div>
         </div>
 
