@@ -106,7 +106,7 @@ function privatechat(){
 					}
 					personChat+= '<div class="row personChat" style="margin-bottom: 2px;" data-id="'+data[i].CID+'">'+
 			                        '<div class="col s6" style="width: 70px"><p><img src="./assets/images/square.png" style="width: 50px; height: 50px"></p></div>'+
-			                        '<div class="col s6" style="color: white; font-size: 16px"><p>'+data[i].fname+'&nbsp;'+data[i].lname+'</p></div><small style="float:right; color:white;">'+Log+'</small>'+
+			                        '<div class="col s6" style="color: white; font-size: 16px"><p>'+data[i].fname+'&nbsp;'+data[i].lname+'</p></div><small style="float:right; padding: 20px; color:white;">'+Log+'</small>'+
 			                        '<div class="col s6 m9" style="color: #CECECE; margin-top: -25px; font-size: 12px"><p>'+data[i].LastR+'</p></div>'+
 			                      '</div>'+
 			                 '</div>'+
@@ -151,7 +151,7 @@ function personpm(CID){
 					chatreply += '<div class="flex-container pull-right">'+
                     '<div class="flex-item pull-right" style="display: flex; justify-content: flex-end; float: right">'+
                         '<div class="col s6 pull-right">'+
-                            '<div class="talk-bubble tri-right left-in" style="background-color: white;  border-radius: 15px; text-align: right;">'+
+                            '<div class="talk-bubble tri-right left-in" style="background-color: white;  border-radius: 15px; text-align: right; width: 100px">'+
                               '<div class="talktext" style="color: black; padding: 5px; font-size: 12px; margin-top: 10px">'+
                                 '<p class="pChat" style="margin: 2px">'+data[i].CHAT+'</p>'+
                               '</div>'+
