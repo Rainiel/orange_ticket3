@@ -147,9 +147,11 @@
           <div class="row performance-row">
               <p class="txtperf">Performance</p>
                 <div class="filter-month pull-right">
-                    <div class="col s3 per-month">Days</div>
-                    <div class="col s3 per-month">Week</div>
-                    <div class="col s3 per-month">Month</div>
+                    <div class="row">
+                         <div class="col s3" style="background-color: #212D3A; margin-right: 2px; font-weight: normal; font-size: 16px"><center>Day</center></div>
+                         <div class="col s4" style="background-color: #212D3A; margin-right: 2px; font-weight: normal; font-size: 16px"><center>Week</center></div>
+                         <div class="col s4" style="background-color: #212D3A; margin-right: 2px; font-weight: normal; font-size: 16px"><center>Month</center></div>
+                    </div>
                 </div>
             </div>
             <!-- <div class="col s4" style="padding-left: 0px; box-shadow: 0px 0px 0px solid black">

@@ -110,22 +110,22 @@
                 <div class="header" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>My Conversations</center></div>
     		        <ul class="tabs" id="statFilt">
     		        	<li class="tab filt">
-    		              <a class="waves-effect" data-stat="">All<span class="new badge" data-badge-caption="4" style="font-weight: bold"></span></a>
+    		              <a class="waves-effect" data-stat="">All<span class="new badge" data-badge-caption="4" style="font-weight: bold; width: 10px"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		               <a class="waves-effect" data-stat="New">New</a>
+    		               <a class="waves-effect" data-stat="New">New<span class="new badge" data-badge-caption="4" style="font-weight: bold"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="On-progress">On-progress </a>
+    		             <a class="waves-effect" data-stat="On-progress">On-progress<span class="new badge" data-badge-caption="4" style="font-weight: bold"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="On-hold">On-hold</a>
+    		             <a class="waves-effect" data-stat="On-hold">On-hold<span class="new badge" data-badge-caption="4" style="font-weight: bold"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="Resolved">Resolved</a>
+    		             <a class="waves-effect" data-stat="Resolved">Resolved<span class="new badge" data-badge-caption="4" style="font-weight: bold; width: 10px"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		              <a class="waves-effect" data-stat="Closed">Closed </a>
+    		              <a class="waves-effect" data-stat="Closed">Closed<span class="new badge" data-badge-caption="4" style="font-weight: bold"></span></a>
     		           </li>
 
                    <?php if($accts != 'user') { ?>
