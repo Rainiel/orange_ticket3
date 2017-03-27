@@ -61,14 +61,14 @@
 
 
 
-          <div class="col s4 pull-s8" style="background-color: #6B7580; height: 500px; overflow-y: auto;">
+          <div class="col s4 pull-s8" style="background-color: #6B7580; height: 500px; overflow-y: auto; padding:0">
               <div class="row">
                 <div class="col s12 m4 l2" style="padding: 20px; color: white; font-weight: normal"></div>
                 <div class="col s12 m4 l8" style="padding: 15px; font-size: 20px; color: white; font-weight: normal"><center>Messages</div>
                 <div class="col s12 m4 l2"  style="padding: 20px; color: white; font-weight: normal"><a href="#modal1"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 20px; color:#4C5259"></i></a></div>
               </div>
                  <div class="divider"></div>
-                 <div class="section" style="padding: 5px;" id="personChat">
+                 <div class="section" style="padding: 0px;" id="personChat">
                      <!-- <div class="row" style="margin-bottom: 2px">
                         <div class="col s6" style="width: 70px"><p><img src="./assets/images/profile-circle.png" style="width: 50px; height: 50px"></p></div>
                         <div class="col s6" style="color: white; font-size: 16px"><p>Roland Salunga</p></div>

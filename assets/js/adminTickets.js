@@ -25,25 +25,25 @@ function TimeMail(){
 	}, 3000);
 };
 
-$('#AllPrio').click(function(){ 
+$('#AllPrio').click(function(){
 	$('.dropdown-content li.active').removeClass('active');
-	$('#AllPrio').addClass('active'); 
-	$('.dropdown-button').dropdown('close');
-	showTickets();
-	return false;
-});
- 
-$('#LowPrio').click(function(){ 
-	$('.dropdown-content li.active').removeClass('active');
-	$('#LowPrio').addClass('active'); 
+	$('#AllPrio').addClass('active');
 	$('.dropdown-button').dropdown('close');
 	showTickets();
 	return false;
 });
 
-$('#HighPrio').click(function(){ 
+$('#LowPrio').click(function(){
 	$('.dropdown-content li.active').removeClass('active');
-	$('#HighPrio').addClass('active'); 
+	$('#LowPrio').addClass('active');
+	$('.dropdown-button').dropdown('close');
+	showTickets();
+	return false;
+});
+
+$('#HighPrio').click(function(){
+	$('.dropdown-content li.active').removeClass('active');
+	$('#HighPrio').addClass('active');
 	$('.dropdown-button').dropdown('close');
 	showTickets();
 	return false;
@@ -79,7 +79,7 @@ $(document).on('click', '.fill-box', function(){
         	$('#sideBar2Btn').hide();
 		}
 		//alert(stat);
-		if($('.fill-box[data-stat='+stat+']').is(':checked') 
+		if($('.fill-box[data-stat='+stat+']').is(':checked')
 			&& $('.fill-box[data-prio='+prio+']').is(':checked')
 			&& $('.fill-box[data-Ass='+Ass+']').is(':checked')){
   		$('.fill-box[data-stat!='+stat+']').not(parent).attr('disabled', true, parent.is(':checked'));
@@ -300,7 +300,7 @@ function showTickets(){
 				},
 			error: function()
 			{
-				
+
 			},
 		});
  };
@@ -446,7 +446,7 @@ function showTicketInfo(id){
 							'</div>';
 
 				sideBarS1 +=
-						'<option value="'+data.AssignedTo+'" selected>'+data.fname2+'&nbsp;'+data.lname2+'</option>';	
+						'<option value="'+data.AssignedTo+'" selected>'+data.fname2+'&nbsp;'+data.lname2+'</option>';
 				$.ajax({
 					type: 'POST',
 					url: base_url + 'Ticket_control/AssignedTo',
@@ -470,7 +470,7 @@ function showTicketInfo(id){
 						$('#sidebarS1').material_select();
 					}
 				})
-					
+
 					sideBarS2 +=
 					'<option value="'+data.Status+'" selected>'+data.Status+'</option>'+
 					'<option value="On-progress">On-progress</option>'+
