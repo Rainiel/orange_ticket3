@@ -323,7 +323,13 @@ function AutoAssign(){
 
 				for(i=0;i<data.length;i++)
 				{
-				min.push(data[i].Tickets);
+					if(data.Online == 1){
+						min.push(data[i].Tickets);
+					}
+					if(data.Online == 0){
+						min.push(data[i].Tickets);
+					}
+
 				}
 				var a = Math.min.apply(null, min);
 				for(i=0;i<data.length;i++)
