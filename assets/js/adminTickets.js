@@ -319,26 +319,42 @@ function AutoAssign(){
 				var body='';
 				var i;
 				var min = [];
+				var notonline = [];
 				var b;
-
+				var bb;
+				var c;
+				var count = 0;
 				for(i=0;i<data.length;i++)
 				{
-					if(data.Online == 1){
+					if(data[i].Online == 1){
 						min.push(data[i].Tickets);
 					}
-					if(data.Online == 0){
-						min.push(data[i].Tickets);
+					if(data[i].Online == 0){
+						notonline.push(data[i].Tickets);
 					}
-
 				}
 				var a = Math.min.apply(null, min);
+				var aa = Math.min.apply(null, notonline);
 				for(i=0;i<data.length;i++)
 				{
-					if(a == data[i].Tickets){
-						b = data[i].userId;
-					}
+						if(a == data[i].Tickets){
+							b = data[i].userId;
+						}
+						if(aa == data[i].Tickets){
+							bb = data[i].userId;
+						}
+						
 				}
-				$('#auto').val(b);
+					if(typeof b == "undefined"){
+						c = bb;
+						//alert();
+					}
+					if(typeof b != "undefined"){
+						c = b;
+					}
+
+				$('#auto').val(c);
+				//alert(c);
 			},
 			error: function()
 			{
