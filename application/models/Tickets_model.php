@@ -45,14 +45,14 @@ class Tickets_model extends CI_Model {
     if($UID == $Assign){
     $this->db->set('Status', $Status);
     $this->db->set('Priority', $Priority);
-    $this->db->where('ticketId', $id); 
+    $this->db->where('ticketId', $id);
     return $this->db->update('tbl_tickets');
     }
     if($Admin == 'Admin'){
     $this->db->set('Status', $Status);
     $this->db->set('AssignedTo', $Assign);
     $this->db->set('Priority', $Priority);
-    $this->db->where('ticketId', $id); 
+    $this->db->where('ticketId', $id);
     return $this->db->update('tbl_tickets');
     }
   }
@@ -90,7 +90,7 @@ class Tickets_model extends CI_Model {
           $Where = "Where u1.fname Like '%$Search%' OR u1.lname Like '%$Search%' OR u2.fname Like '%$Search%' OR u2.lname Like '%$Search%' OR t.Subject Like '%$Search%' OR t.Issue Like '%$Search%' OR t.Priority Like '%$Search%' OR t.Status Like '%$Search%' OR t.Stamp Like '%$Search%' OR t.DateFiled Like '%$Search%'";
          }
         $query = $this->db->query("SELECT t.*,
-                                u1.fname AS fname1, u1.lname AS lname1, 
+                                u1.fname AS fname1, u1.lname AS lname1,
                                 u2.fname AS fname2, u2.lname AS lname2,
                                 u1.Online AS Online, u1.TimeLog AS TimeLog,
                                 (SELECT notif FROM tbl_notifMail where TID = t.ticketId AND UID = $id) AS notif,
@@ -119,13 +119,13 @@ class Tickets_model extends CI_Model {
           }
         if($Ass != NULL){
           $Where = "WHERE t.Issue = '$Ass' AND t.AssignedTo != '$id'";
-        }  
+        }
         if($Ass != NULL && $Prio != NULL){
           $Where = "WHERE t.Issue = '$Ass' AND t.AssignedTo != '$id' AND t.Priority = '$Prio'";
         }
         if($Search != Null){
          }
-        $query = $this->db->query("SELECT t.*, 
+        $query = $this->db->query("SELECT t.*,
                                 u1.fname AS fname1, u1.lname AS lname1,
                                 u2.fname AS fname2, u2.lname AS lname2,
                                 u1.Online AS Online, u1.TimeLog AS TimeLog,
@@ -152,7 +152,7 @@ class Tickets_model extends CI_Model {
           }
           if($Search != Null){
          }
-        $query = $this->db->query("SELECT t.*, 
+        $query = $this->db->query("SELECT t.*,
                                 u1.fname AS fname1, u1.lname AS lname1,
                                 u2.fname AS fname2, u2.lname AS lname2,
                                 u1.Online AS Online, u1.TimeLog AS TimeLog,
@@ -192,7 +192,7 @@ class Tickets_model extends CI_Model {
   //       //$this->db->where("u.team = '$team' AND Issue = '$team'");
   //       $this->db->order_by("ticketId", "desc");
   //       $query = $this->db->get();
-  //     } 
+  //     }
   //     if($query->num_rows()>0)
   //       {
   //         return $query->result_array();
@@ -202,8 +202,8 @@ class Tickets_model extends CI_Model {
 
   public function dashboardTicks()
   {
-    $query = $this->db->query("SELECT t.*, 
-                              u1.fname as fname1, u1.lname as lname1, 
+    $query = $this->db->query("SELECT t.*,
+                              u1.fname as fname1, u1.lname as lname1,
                               u2.fname as fname2, u2.lname as lname2
                               FROM tbl_tickets AS t
                               INNER JOIN tbl_user AS u2 ON t.AssignedTo=u2.userId

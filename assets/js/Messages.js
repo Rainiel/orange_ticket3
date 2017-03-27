@@ -42,7 +42,7 @@ $(document).on('click', '#addChat', function(e){
 	e.preventDefault();
 	base_url = $('#base').val();
 	var UID = $('#rId').val();
-	
+
 	$.ajax({
 		type: 'POST',
 		data: {'UID' : UID},
@@ -145,15 +145,15 @@ function personpm(CID){
 			var i;
 			var chatreply='';
 			for(i=0;i<data.length;i++){
-			
-	
+
+
 				if(data[i].UID == UID){
 					chatreply += '<div class="flex-container pull-right">'+
                     '<div class="flex-item pull-right" style="display: flex; justify-content: flex-end; float: right">'+
                         '<div class="col s6 pull-right">'+
                             '<div class="talk-bubble tri-right left-in" style="background-color: white;  border-radius: 15px; text-align: right;">'+
                               '<div class="talktext" style="color: black; padding: 5px; font-size: 12px; margin-top: 10px">'+
-                                '<p>'+data[i].CHAT+'</p>'+
+                                '<p class="pChat" style="margin: 2px">'+data[i].CHAT+'</p>'+
                               '</div>'+
                             '</div>'+
                         '</div>'+
@@ -168,7 +168,7 @@ function personpm(CID){
                         '<div class="col s6" style="color: white; font-size: 16px">'+
                             '<div class="talk-bubble tri-right left-in" style="background-color: white;  border-radius: 15px">'+
                               '<div class="talktext" style="color: black; padding: 5px; font-size: 12px; margin-top: 10px; text-align: left">'+
-                                '<p>'+data[i].CHAT+'</p>'+
+                                '<p class="pChat" style="margin: 2px">'+data[i].CHAT+'</p>'+
                               '</div>'+
                             '</div>'+
                         '</div>'+

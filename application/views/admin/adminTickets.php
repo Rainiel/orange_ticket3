@@ -92,10 +92,10 @@
 				    </div>
 
 				    <div class="modal-footer">
-				      <button id="addForm" class="waves-effect waves-green btn-flat" style="margin-right: 10px; margin-bottom: 13px; background-color: #2d3e50; color: white;" type="submit">
-              <i class="material-icons right">done_all</i>Add
-					  </button>
-            <a id="modalCloseTicket" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+				        <button id="addForm" class="waves-effect waves-green btn-flat" style="margin-right: 10px; margin-bottom: 13px; background-color: #2d3e50; color: white;" type="submit">
+                            <i class="material-icons right">done_all</i>Add
+					    </button>
+                        <a id="modalCloseTicket" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
 				    </div>
 
 				    <input type="text" style="display: none;" name="Stat" value="New">
@@ -110,24 +110,24 @@
                 <div class="header" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>My Conversations</center></div>
     		        <ul class="tabs" id="statFilt">
     		        	<li class="tab filt">
-    		              <a class="waves-effect" data-stat="">All<!-- <span class="new badge" data-badge-caption="4"></span> --></a>
+    		              <a class="waves-effect" data-stat="">All<span class="new badge" data-badge-caption="4" style="font-weight: bold"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		               <a class="waves-effect" data-stat="New">New<!-- <label class="badge badge-new">1</label> --></a>
+    		               <a class="waves-effect" data-stat="New">New</a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="On-progress">On-progress <span class="badge badge-new pull-right">1</span></a>
+    		             <a class="waves-effect" data-stat="On-progress">On-progress </a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="On-hold">On-hold<span class="badge badge-new pull-right">1</span></a>
+    		             <a class="waves-effect" data-stat="On-hold">On-hold</a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="Resolved">Resolved <span class="badge badge-new pull-right">1</span></a>
+    		             <a class="waves-effect" data-stat="Resolved">Resolved</a>
     		           </li>
     		           <li class="tab filt">
-    		              <a class="waves-effect" data-stat="Closed">Closed <span class="badge badge-new pull-right">1</span></a>
+    		              <a class="waves-effect" data-stat="Closed">Closed </a>
     		           </li>
-    		        
+
                    <?php if($accts != 'user') { ?>
 		            <hr id="hr">
      	  <!-- <div class="tabs-vertical" id="sideBar4"> -->
@@ -159,7 +159,7 @@
     		        </ul>
     		        <?php } ?>
      	  </div>
-        
+
           <!-- <hr id="hrtwo">
           <a class="waves-effect waves-light btn" style="font-size: 12px; background-color: #2d3e50">manage tickets</a> -->
      	  <form id="editTicket">
@@ -203,8 +203,7 @@
 	              <th style="padding-top: 5px; padding-bottom: 10px; width: 300px;">Tickets</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Status</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Assignee</th>
-	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">
-                <a style="padding-right: 10px; padding-left: 10px;" class='dropdown-button btn' href='#' data-activates='dropdown1'>Priority</a>
+	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Priority <a href="#" style="color:black"><i class="fa fa-caret-down dropdown-button" aria-hidden="true" data-activates='dropdown1'></i></a>
                 </th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Latest Update</th>
 	              <th style="padding-top: 5px; padding-bottom: 10px; text-align: center;">Date Filed</th>
