@@ -36,6 +36,8 @@ function ticketGraph(){
 			            "chart": {
 			            	"enableSmartLabels": "0",
 			            	"showValues": "0",
+			            	"showLabels": "0",
+			            	"showLegend": "1",
 			            	"showPercentValues": "0",               
 			                "startingAngle": "310",
 			                "decimals": "0",
@@ -43,14 +45,19 @@ function ticketGraph(){
 			                "theme": "fint"                
 			            },
 			            "data": [{
+			            	"label": "New",
 			                "value": New
 			            }, {
+			            	"label": "On-Progress",
 			                "value": Prog
 			            }, {
+			            	"label": "On-Hold",
 			                "value": Hold
 			            }, {
+			            	"label": "Resolved",
 			                "value": Resolved
 			            }, {
+			            	"label": "Closed",
 			                "value": Closed
 			            }]
 			        }

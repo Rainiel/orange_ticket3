@@ -13,7 +13,7 @@ class Tickets_model extends CI_Model {
 		// $this->db->where('username', $user);
 		// $this->db->where('password', md5($pass));
 
-		$query=$this->db->query("SELECT * FROM tbl_user WHERE username = '$username' AND password = '$upass'");
+		$query=$this->db->query("SELECT * FROM tbl_user WHERE username = '$username' AND password = '$password'");
 
 		if($query->num_rows()==1){
 			return $query->row_array();
