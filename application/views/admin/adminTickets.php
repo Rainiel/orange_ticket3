@@ -136,12 +136,12 @@
                 <?php } ?>
     		        <?php if($tim == 'Data'){ ?>
     		           	<li class="tab filt">
-    		              <a class="waves-effect" data-Ass="Data">Data</a>
+    		              <a class="waves-effect" data-Ass="Data">Data<span id='Data1' class="new badge" data-badge-caption="" style="font-weight: bold"></a>
     		           	</li>
     		        <?php } ?>
     		        <?php if($tim == 'Technical'){ ?>
     		           	<li class="tab filt">
-    		             <a class="waves-effect" data-Ass="Technical">Technical</a>
+    		             <a class="waves-effect" data-Ass="Technical">Technical<span id='Technical1' class="new badge" data-badge-caption="" style="font-weight: bold"></a>
     		           	</li>
     		        <?php } ?>
     		       </ul>
@@ -151,10 +151,10 @@
     		              <a class="waves-effect" data-Ass2="">All</a>
     		           	</li> -->
     		           	<li class="tab filt">
-    		              <a class="waves-effect" data-Ass2="Data">Data</a>
+    		              <a class="waves-effect" data-Ass2="Data">Data<span id='Data2' class="new badge" data-badge-caption="" style="font-weight: bold"></a>
     		           	</li>
     		           	<li class="tab filt">
-    		             <a class="waves-effect" data-Ass2="Technical">Technical</a>
+    		             <a class="waves-effect" data-Ass2="Technical">Technical<span id='Technical2' class="new badge" data-badge-caption="" style="font-weight: bold"></a>
     		           	</li>
     		        </ul>
     		        <?php } ?>

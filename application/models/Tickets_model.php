@@ -397,12 +397,21 @@ class Tickets_model extends CI_Model {
                     (SELECT Count(*) FROM tbl_tickets WHERE Status = 'On-hold' $Issue2) as HoldT,
                     (SELECT Count(*) FROM tbl_tickets WHERE Status = 'Resolved' $Issue2) as ResolvedT,
                     (SELECT Count(*) FROM tbl_tickets WHERE Status = 'Closed' $Issue2) as ClosedT,
+                    (SELECT Count(*) FROM tbl_tickets WHERE Issue = 'Data'  AND AssignedTo != $id) as Data1T,
+                    (SELECT Count(*) FROM tbl_tickets WHERE Issue = 'Data') as DataT,
+                    (SELECT Count(*) FROM tbl_tickets WHERE Issue = 'Technical') as TechnicalT,
+                    (SELECT Count(*) FROM tbl_tickets WHERE Issue = 'Technical' AND AssignedTo != $id) as Technical1T,
 
                     (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Status = 'New' AND notif = 1 $Issue) as NewO,
                     (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Status = 'On-progress' AND notif = 1 $Issue) as ProgO,
                     (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Status = 'On-hold' AND notif = 1 $Issue) as HoldO,
                     (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Status = 'Resolved' AND notif = 1 $Issue) as ResolvedO,
-                    (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Status = 'Closed' AND notif = 1 $Issue) as ClosedO
+                    (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Status = 'Closed' AND notif = 1 $Issue) as ClosedO,
+                    (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Issue = 'Data' AND notif = 1) as DataO,
+                    (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Issue = 'Data' AND notif = 1 AND t.AssignedTo != $id) as Data1O,
+                    (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Issue = 'Technical' AND notif = 1) as TechnicalO,
+                    (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Issue = 'Technical' AND notif = 1 AND t.AssignedTo != $id) as Technical1O
+
               ");
     if($query->num_rows()>0){
       return $query->row_array();
