@@ -3292,13 +3292,14 @@ input[type=range] + .thumb {
 }
 
 span.badge {
-  min-width: 3rem;
-  padding: 0 6px;
-  margin-left: 14px;
+  min-width: 10px;
+  width: 12px;
+  padding: 0 3px;
+  margin-left: 2px;
   text-align: center;
-  font-size: 1rem;
-  line-height: 22px;
-  height: 22px;
+  font-size: 4px;
+  line-height: 16px;
+  height: 15px;
   color: #757575;
   float: right;
   box-sizing: border-box;
@@ -3306,11 +3307,11 @@ span.badge {
 
 span.badge.new {
   font-weight: 300;
-  font-size: 0.8rem;
+  font-size: 11px;
   color: black;
   background-color: #D4D4D4;
   border-radius: 2px;
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
 span.badge.new:after {
@@ -3319,6 +3320,7 @@ span.badge.new:after {
 
 span.badge[data-badge-caption]::after {
   content: " " attr(data-badge-caption);
+  width: 5px;
 }
 
 nav ul a span.badge {
@@ -4021,7 +4023,7 @@ nav.nav-extended {
 nav.nav-extended .nav-wrapper {
   min-height: 56px;
   height: auto;
-box-shadow: 0px 0px 0px #000;
+
 }
 
 nav.nav-extended .nav-content {

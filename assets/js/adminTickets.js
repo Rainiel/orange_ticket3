@@ -4,7 +4,7 @@ $('select').material_select();
 showTickets();
 //filetTicket();
 //notifMail();
-TimeTickets();
+//TimeTickets();
  });
 
 // setTimeout(function(){
@@ -58,7 +58,7 @@ $(document).on('click', '.fill-box', function(){
 		//$('.fill-box:not(:checked)').prop('disabled', true);
 		if(check > 0){
 			clearTimeout(Tickets);
-			TimeMail();
+			//TimeMail();
 			showTicketInfo($(this).parent('td').attr('data-Id2'));
 			//AssignedTo();
     		$('#sideBar').hide();
@@ -70,7 +70,7 @@ $(document).on('click', '.fill-box', function(){
 		}
 		if(check == 0){
 			clearTimeout(Mails);
-			TimeTickets();
+			//TimeTickets();
 			$('#sideBar').show();
 			//$('#sideBar4').show();
 			$('#hr').show();
@@ -126,7 +126,7 @@ $(document).on('click', '.ticketView', function(){
 	showTicketInfo(ticketId);
 	insNotifMail(ticketId);
 	clearTimeout(Tickets);
-	TimeMail();
+	//TimeMail();
 	$('#allTable').hide();
 	$('.123').show();
 	$('#sideBar').hide();
@@ -139,7 +139,7 @@ $(document).on('click', '.ticketView', function(){
 
 $(document).on('click', '#backT', function(){
 	clearTimeout(Mails);
-	TimeTickets();
+	//TimeTickets();
 	$('#allTable').show();
 	$('.123').hide();
 	$('#sideBar').show();
@@ -454,7 +454,7 @@ function showTicketInfo(id){
 												'</p>'+
 											'</div>'+
 											'<div class="convo-msg">'+
-											'<span style="color: black; background-color: white; font-size: 12px; border-radius: 7px; padding: 10px">'+data.Description+'</span>'+
+											'<span style="color: black; font-size: 12px; border-radius: 7px; padding: 0px; box-shadow: 2px 2px 2px solid back">'+data.Description+'</span>'+
 											'</div>'+
 										'</div>'+
 									'</div>'+
@@ -571,7 +571,7 @@ function Mail(){
 												'</p>'+
 											'</div>'+
 											'<div class="convo-msg">'+
-												'<span style="color: black; background-color: white; font-size: 12px; border-radius: 7px; padding: 10px">'+data[i].Message+'</span>'+
+												'<span style="color: black; font-size: 12px; border-radius: 7px; padding: 0px; box-shadow: 2px 2px 2px solid black">'+data[i].Message+'</span>'+
 											'</div>'+
 										'</div>'+
 									'</div>'+

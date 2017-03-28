@@ -106,8 +106,8 @@ function privatechat(){
 					}
 					personChat+= '<div class="row personChat" style="margin-bottom: 2px;" data-id="'+data[i].CID+'">'+
 			                        '<div class="col s6" style="width: 70px"><p><img src="./assets/images/square.png" style="width: 50px; height: 50px"></p></div>'+
-			                        '<div class="col s6" style="color: white; font-size: 16px"><p>'+data[i].fname+'&nbsp;'+data[i].lname+'</p></div><small style="float:right; padding: 20px; color:white;">'+Log+'</small>'+
-			                        '<div class="col s6 m9" style="color: #CECECE; margin-top: -25px; font-size: 12px"><p>'+data[i].LastR+'</p></div>'+
+			                        '<div class="col s6" style="color: #393939; font-size: 14px; font-weight: bold"><p>'+data[i].fname+'&nbsp;'+data[i].lname+'</p></div><small style="float:right; padding: 20px; color:#393939;">'+Log+'</small>'+
+			                        '<div class="col s6 m9" style="color: #6A6A6A; margin-top: -25px; font-size: 12px"><p>'+data[i].LastR+'</p></div>'+
 			                      '</div>'+
 			                 '</div>'+
 			                 '<div class="divider"></div>';
@@ -150,14 +150,14 @@ function personpm(CID){
 				if(data[i].UID == UID){
 					chatreply += '<div class="flex-container pull-right">'+
                     '<div class="flex-item pull-right" style="display: flex; justify-content: flex-end; float: right">'+
-                        '<div class="col s6 pull-right">'+
-                            '<div class="talk-bubble tri-right left-in" style="background-color: white;  border-radius: 15px; text-align: right; width: 100px">'+
-                              '<div class="talktext" style="color: black; padding: 5px; font-size: 12px; margin-top: 10px">'+
-                                '<p class="pChat" style="margin: 2px">'+data[i].CHAT+'</p>'+
+                        '<div class="col s6 pull-right" style="color: white; font-size: 16px; width: auto !important; max-width: 400px; word-wrap: break-word">'+
+                            '<div class="talk-bubble tri-right left-in" style="background-color: white;  border-radius: 12px;">'+
+                              '<div class="talktext" style="color: black; padding: 7px; font-size: 12px; margin-top: 15px; text-align: right;">'+
+                                '<p class="pChat" style="margin: 2px;">'+data[i].CHAT+'</p>'+
                               '</div>'+
                             '</div>'+
                         '</div>'+
-                        '<div class="col s2 pull-right" style="padding: 0px; margin-left: 0px; width: 70px"><p><img src="./assets/images/square.png" style="width: 50px; height: 50px"></p></div>'+
+                        '<div class="col s2 pull-right" style="padding: 0px; margin-left: 10px; width: 70px"><p><img src="./assets/images/square.png" style="width: 50px; height: 50px"></p></div>'+
                     '</div>'+
                 '</div>';
 				}
@@ -165,10 +165,10 @@ function personpm(CID){
 				chatreply += '<div class="flex-container">'+
                     '<div class="flex-item">'+
                         '<div class="col s2" style="width: 70px;"><p><img src="./assets/images/square.png" style="width: 50px; height: 50px"></p></div>'+
-                        '<div class="col s6" style="color: white; font-size: 16px">'+
-                            '<div class="talk-bubble tri-right left-in" style="background-color: white;  border-radius: 15px">'+
-                              '<div class="talktext" style="color: black; padding: 5px; font-size: 12px; margin-top: 10px; text-align: left">'+
-                                '<p class="pChat" style="margin: 2px">'+data[i].CHAT+'</p>'+
+                        '<div class="col s4" style="color: white; font-size: 16px; width: auto !important; max-width: 50%; word-wrap: break-word">'+
+                            '<div class="talk-bubble tri-right left-in" style="background-color: white;  border-radius: 12px">'+
+                              '<div class="talktext" style="color: black; padding: 7px; font-size: 12px; margin-top: 20px; text-align: left;">'+
+                                '<p class="pChat" style="margin: 2px;">'+data[i].CHAT+'</p>'+
                               '</div>'+
                             '</div>'+
                         '</div>'+
