@@ -627,6 +627,10 @@ function notifCountForSideBar(){
 			var ResolvedNC = data.ResolvedT - data.ResolvedO;
 			var ClosedNC = data.ClosedT - data.ClosedO;
 			var AllNC = NewNC + ProgNC + HoldNC + ResolvedNC + ClosedNC;
+			var Data2 = data.DataT - data.DataO;
+			var Data1 = data.Data1T - data.Data1O;
+			var Technical2 = data.TechnicalT - data.TechnicalO;
+			var Technical1 = data.Technical1T - data.Technical1O;
 
 			//alert(Ass);
 
@@ -636,6 +640,10 @@ function notifCountForSideBar(){
 			$('#HoldNC').attr('data-badge-caption', HoldNC);
 			$('#ResolvedNC').attr('data-badge-caption', ResolvedNC);
 			$('#ClosedNC').attr('data-badge-caption', ClosedNC);
+			$('#Data2').attr('data-badge-caption', Data2);
+			$('#Data1').attr('data-badge-caption', Data1);
+			$('#Technical2').attr('data-badge-caption', Technical2);
+			$('#Technical1').attr('data-badge-caption', Technical1);
 		}
 	});
 }
