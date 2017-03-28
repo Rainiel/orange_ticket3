@@ -311,7 +311,7 @@ class Tickets_model extends CI_Model {
   public function ticketGraph(){
     $query = $this->db->query("SELECT
                                 (SELECT Count(*) FROM tbl_tickets WHERE Status = 'New') as New,
-                                (SELECT Count(*) FROM tbl_tickets WHERE Status = 'In-progress') as Prog,
+                                (SELECT Count(*) FROM tbl_tickets WHERE Status = 'On-progress') as Prog,
                                 (SELECT Count(*) FROM tbl_tickets WHERE Status = 'On-hold') as Hold,
                                 (SELECT Count(*) FROM tbl_tickets WHERE Status = 'Resolved') as Resolved,
                                 (SELECT Count(*) FROM tbl_tickets WHERE Status = 'Closed') as Closed

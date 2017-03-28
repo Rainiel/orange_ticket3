@@ -354,7 +354,7 @@ function AutoAssign(){
 					}
 
 				$('#auto').val(c);
-				//alert(c);
+				alert(c);
 			},
 			error: function()
 			{
