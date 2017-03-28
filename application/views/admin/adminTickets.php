@@ -216,7 +216,7 @@
               <li id="HighPrio" data-value="High"><a>High</a></li>
             </ul>
 
-	        <tbody id="showTicket">
+	        <tbody id="showTicket" style="border-left: none; border-right: none; border-top:none; border-bottom:none">
 	          <!-- <tr>
 	          	<td style="width: 50px; padding-left: 20px;">
 	          		<input type="checkbox" class="filled-in" id="filled-in-box1" />
