@@ -2,6 +2,7 @@ $(document).ready(function(){
 $('.modal').modal();
 $('select').material_select();
 showTickets();
+notifCountForSideBar();
 //filetTicket();
 //notifMail();
 //TimeTickets();
@@ -225,6 +226,7 @@ $(document).on('change', '#selectTeam', function(){
 
 $(document).on('click', '.filt', function(){
 showTickets();
+notifCountForSideBar();
 });
 
 function showTickets(){
@@ -607,3 +609,33 @@ $(document).on('submit', '#insMail', function(e){
 		});
 	}
 });
+
+function notifCountForSideBar(){
+	var Ass  = $('#statFilt a.active').attr('data-Ass');
+	var Ass2 = $('#AssFilt a.active').attr('data-Ass2');
+	$.ajax({
+		type: 'POST',
+		dataType: 'JSON',
+		url: 'Ticket_control/notifCountForSideBar',
+		data: { 
+			'Ass' : Ass, 'Ass2' : Ass2 
+		},
+		success: function(data){
+			var NewNC = data.NewT - data.NewO;
+			var ProgNC = data.ProgT - data.ProgO;
+			var HoldNC = data.HoldT - data.HoldO;
+			var ResolvedNC = data.ResolvedT - data.ResolvedO;
+			var ClosedNC = data.ClosedT - data.ClosedO;
+			var AllNC = NewNC + ProgNC + HoldNC + ResolvedNC + ClosedNC;
+
+			//alert(Ass);
+
+			$('#AllNC').attr('data-badge-caption', AllNC);
+			$('#NewNC').attr('data-badge-caption', NewNC);
+			$('#ProgNC').attr('data-badge-caption', ProgNC);
+			$('#HoldNC').attr('data-badge-caption', HoldNC);
+			$('#ResolvedNC').attr('data-badge-caption', ResolvedNC);
+			$('#ClosedNC').attr('data-badge-caption', ClosedNC);
+		}
+	});
+}

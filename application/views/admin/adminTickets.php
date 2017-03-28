@@ -110,22 +110,22 @@
                 <div class="header" style="background-color: #2d3e50; padding: 5px; border-radius: 3px; color: white"><center>My Conversations</center></div>
     		        <ul class="tabs" id="statFilt">
     		        	<li class="tab filt">
-    		              <a class="waves-effect" data-stat="">All<span class="new badge" data-badge-caption="4" style="font-weight: bold; width: 10px"></span></a>
+    		              <a class="waves-effect" data-stat="">All<span id='AllNC' class="new badge" data-badge-caption="4" style="font-weight: bold; width: 10px"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		               <a class="waves-effect" data-stat="New">New<span class="new badge" data-badge-caption="4" style="font-weight: bold"></span></a>
+    		               <a class="waves-effect" data-stat="New">New<span id='NewNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="On-progress">On-progress<span class="new badge" data-badge-caption="4" style="font-weight: bold"></span></a>
+    		             <a class="waves-effect" data-stat="On-progress">Progress<span id='ProgNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="On-hold">On-hold<span class="new badge" data-badge-caption="4" style="font-weight: bold"></span></a>
+    		             <a class="waves-effect" data-stat="On-hold">On-hold<span id='HoldNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="Resolved">Resolved<span class="new badge" data-badge-caption="4" style="font-weight: bold; width: 10px"></span></a>
+    		             <a class="waves-effect" data-stat="Resolved">Resolved<span id='ResolvedNC' class="new badge" data-badge-caption="" style="font-weight: bold; width: 10px"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		              <a class="waves-effect" data-stat="Closed">Closed<span class="new badge" data-badge-caption="4" style="font-weight: bold"></span></a>
+    		              <a class="waves-effect" data-stat="Closed">Closed<span id='ClosedNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span></a>
     		           </li>
 
                    <?php if($accts != 'user') { ?>

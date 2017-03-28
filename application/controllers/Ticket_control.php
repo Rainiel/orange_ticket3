@@ -240,4 +240,18 @@ class Ticket_control extends CI_controller{
         echo json_encode($result);
     }
 
+    public function notifCountForSideBar(){
+        $this->load->model('Tickets_model');
+        $id=$this->session->userdata('userID');
+        $Acc_type=$this->session->userdata('Acc_type');
+        $Team=$this->session->userdata('Team');
+        $Ass=$this->input->post('Ass');
+        $Ass2=$this->input->post('Ass2');
+
+        //echo $Ass;
+
+        $result=$this->Tickets_model->notifCountForSideBar($id, $Ass, $Ass2, $Acc_type, $Team);
+        echo json_encode($result);
+    }
+
 }

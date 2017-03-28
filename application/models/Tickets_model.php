@@ -123,8 +123,6 @@ class Tickets_model extends CI_Model {
         if($Ass != NULL && $Prio != NULL){
           $Where = "WHERE t.Issue = '$Ass' AND t.AssignedTo != '$id' AND t.Priority = '$Prio'";
         }
-        if($Search != Null){
-         }
         $query = $this->db->query("SELECT t.*,
                                 u1.fname AS fname1, u1.lname AS lname1,
                                 u2.fname AS fname2, u2.lname AS lname2,
@@ -141,17 +139,18 @@ class Tickets_model extends CI_Model {
       if($Acc_type == 'user')
       {
         $Where = '';
-        if($stat == NULL){
+        if($stat == NULL && $Prio == NULL){
           $Where = "WHERE t.User = '$id'";
           }
         if($stat == NULL && $Prio != NULL){
           $Where = "WHERE t.User = '$id' AND t.Priority = '$Prio'";
           }
-        if($stat != NULL){
+        if($stat != NULL && $Prio != NULL){
           $Where = "WHERE t.User = '$id' AND t.Status = '$stat' AND t.Priority = '$Prio'";
           }
-          if($Search != Null){
-         }
+        if($stat != NULL && $Prio == NULL){
+          $Where = "WHERE t.User = '$id' AND t.Status = '$stat'";
+          }
         $query = $this->db->query("SELECT t.*,
                                 u1.fname AS fname1, u1.lname AS lname1,
                                 u2.fname AS fname2, u2.lname AS lname2,
@@ -369,4 +368,46 @@ class Tickets_model extends CI_Model {
             $rs = $result->row_array();
         }
 }
+
+  public function notifCountForSideBar($id, $Ass, $Ass2, $Acc_type, $Team){
+    $Issue = '';
+    $Issue2 = '';
+    if($Acc_type == 'Admin'){
+      $Issue = "AND t.Issue = '$Ass2'";
+      $Issue2 = "AND Issue = '$Ass2'";
+    }
+    if($Acc_type == 'Sub-Admin'){
+      if($Ass == NULL)
+      $Issue = "AND t.AssignedTo = $id";
+      $Issue2 = "AND AssignedTo = $id";
+      if($Ass != NULL){
+        $Issue = "AND t.AssignedTo != $id AND t.Issue = '$Ass'";
+        $Issue2 = "AND AssignedTo != $id AND Issue = '$Ass'";
+      }
+    }
+    if($Acc_type == 'user'){
+      $Issue = '';
+      $Issue2 = '';
+    }
+    //$New = 
+
+    $query = $this->db->query("SELECT
+                    (SELECT Count(*) FROM tbl_tickets WHERE Status = 'New' $Issue2) as NewT,
+                    (SELECT Count(*) FROM tbl_tickets WHERE Status = 'On-progress' $Issue2) as ProgT,
+                    (SELECT Count(*) FROM tbl_tickets WHERE Status = 'On-hold' $Issue2) as HoldT,
+                    (SELECT Count(*) FROM tbl_tickets WHERE Status = 'Resolved' $Issue2) as ResolvedT,
+                    (SELECT Count(*) FROM tbl_tickets WHERE Status = 'Closed' $Issue2) as ClosedT,
+
+                    (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Status = 'New' AND notif = 1 $Issue) as NewO,
+                    (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Status = 'On-progress' AND notif = 1 $Issue) as ProgO,
+                    (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Status = 'On-hold' AND notif = 1 $Issue) as HoldO,
+                    (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Status = 'Resolved' AND notif = 1 $Issue) as ResolvedO,
+                    (SELECT Count(*) FROM tbl_notifmail as NM INNER JOIN tbl_tickets as t ON t.ticketId = NM.TID WHERE NM.UID = $id AND t.Status = 'Closed' AND notif = 1 $Issue) as ClosedO
+              ");
+    if($query->num_rows()>0){
+      return $query->row_array();
+    }
+    else{return false;}
+  }
+
 }
