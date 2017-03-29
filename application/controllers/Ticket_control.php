@@ -170,7 +170,7 @@ class Ticket_control extends CI_controller{
     public function insMail()
     {
         $this->load->model('Tickets_model');
-        //$UID = $this->session->userdata('userID');
+        $UID = $this->session->userdata('userID');
         $post_data=array(
            'TID'     => $this->input->post('TID'),
            'UID'     => $this->session->userdata('userID'),

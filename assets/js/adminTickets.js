@@ -633,6 +633,7 @@ function notifCountForSideBar(){
 			var Technical1 = data.Technical1T - data.Technical1O;
 
 			//alert(Ass);
+			//window.location = "Tickets?NewNC=" + NewNC + "&ProgNC=" + ProgNC + "&HoldNC=" + HoldNC + "&ResolvedNC=" + ResolvedNC + "&ClosedNC=; 
 
 			$('#AllNC').attr('data-badge-caption', AllNC);
 			$('#NewNC').attr('data-badge-caption', NewNC);

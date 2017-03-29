@@ -113,19 +113,39 @@
     		              <a class="waves-effect" data-stat="">All<span id='AllNC' class="new badge" data-badge-caption="4" style="font-weight: bold;"></span></a>
     		           </li>
     		           <li class="tab filt">
-    		               <a class="waves-effect" data-stat="New">New<span id='NewNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span></a>
+    		               <a class="waves-effect" data-stat="New">New
+
+                       <span id='NewNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span>
+
+                       </a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="On-progress">Progress<span id='ProgNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span></a>
+    		             <a class="waves-effect" data-stat="On-progress">Progress
+
+                     <span id='ProgNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span>
+
+                     </a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="On-hold">On-hold<span id='HoldNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span></a>
+    		             <a class="waves-effect" data-stat="On-hold">On-hold
+                     <!-- <?php //if(isset($_POST["HoldNC"]) != 0){ ?> -->
+                     <span id='HoldNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span>
+                     <!-- <?php //} ?> -->
+                     </a>
     		           </li>
     		           <li class="tab filt">
-    		             <a class="waves-effect" data-stat="Resolved">Resolved<span id='ResolvedNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span></a>
+    		             <a class="waves-effect" data-stat="Resolved">Resolved
+
+                     <span id='ResolvedNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span>
+
+                     </a>
     		           </li>
     		           <li class="tab filt">
-    		              <a class="waves-effect" data-stat="Closed">Closed<span id='ClosedNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span></a>
+    		              <a class="waves-effect" data-stat="Closed">Closed
+
+                      <span id='ClosedNC' class="new badge" data-badge-caption="" style="font-weight: bold"></span>
+
+                      </a>
     		           </li>
 
                    <?php if($accts != 'user') { ?>
